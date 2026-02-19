@@ -42,6 +42,9 @@
         .panel-ai { flex: 1; min-height: 100px; overflow-y: auto; background: #fafafa; display: flex; flex-direction: column; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        /* Transitions för menyraden */
+        .sidebar-transition { transition: width 0.3s ease-in-out, opacity 0.2s ease-in-out; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -51,7 +54,6 @@
         const { useState, useEffect, useRef } = React;
         const MODEL = "gemini-2.5-flash"; 
 
-        // --- DATA: ALLA 7 BLOCK (MAXAT INNEHÅLL FRÅN BOKEN) ---
         const BLOCKS = [
             {
                 id: 1, title: "Block 1: Källkritik", icon: "sparkles", sections: [
@@ -60,14 +62,14 @@
                         text: "Boksida: 8–9\n\nI ämnet historia läser du om hur det var förr i tiden. Vad hände i Sverige 1520 till exempel, när Gustav Eriksson irrade omkring i Dalarna, jagad av den danske kungen Kristian Tyranns soldater? Så här stod det i Läsebok för folkskolan – alla barn i hela Sverige läste förr om hur bonden Sven Elvsson i Isala i Dalarna räddade livet på Gustav Eriksson.\n\n'Sven Elvsson menade att Gustav nog inte var säker i Isala. Han gömde honom därför i ett stort halmlass och körde det uppåt de ödsliga skogarna. Snart mötte han några av danskarnas utskickade soldater. De misstänkte bonden och stack sina spjut några gånger genom halmlasset. En av spjutspetsarna rispade Gustav i benet, men han låg orörlig. Danskarna märkte ingenting och lät Sven Elvsson köra vidare. Snart såg Sven att blod började rinna ur halmlasset och färga snön. Sven blev rädd att blodet skulle avslöja dem. Han tog därför upp sin kniv, skar ett djupt hål i benet på hästen. När Sven sedan blev tillfrågad om blodfläckarna i snön, skyllde han på hästens sår.'\n\nVisst är det en spännande historia! Men är den sann? Gustav III beundrade Gustav Vasa och ville gärna visa att de var släkt. Kungen beordrade därför landshövdingen i Dalarna att hitta personer som kunde skriva ned Gustav Vasas 'äventyr'. Berättelserna skrevs alltså ner 250 år senare och kallas ofta för skrönor. En skröna kan ha en kärna av sanning men är sedan överdriven och förljugen. Källkritik hjälper oss att fråga: Vem berättar? Varför? Och när hände det?",
                         concepts: ["Källkritik", "Skröna", "Fakta", "Historiker", "Propaganda"],
                         mustKnow: ["Vad en skröna är.", "Att Vasa-berättelsen kom 250 år efteråt.", "Hur kungar använde historier för makt."],
-                        summary: ["Källkritik granskar om information går att lita på.", "Skrönor är överdrivna historier.", "Syftet med Isala-berättelsen var att hylla kungen."],
-                        test: [{q: "Vad kallas en överdriven historia?", a: "Skröna"}, {q: "Vem beställde texten 250 år senare?", a: "Gustav III"}],
+                        summary: ["Källkritik granskar information.", "Skrönor är överdrivna historier.", "Syftet med Isala-berättelsen var att hylla kungen."],
+                        test: [{q: "Vad kallas en överdriven historia?", a: "Skröna"}, {q: "Vem beställde texten 250 år senare?", a: "Gustav III"}, {q: "Varför skar Sven sin häst?", a: "För att dölja blodet från kungen"}],
                         reasoning: "Varför ville en kung sprida hjältesagor om sina förfäder?",
-                        application: "Hitta en rubrik på nätet och ställ de 4 källfrågorna på den."
+                        application: "Hitta en rubrik på nätet och ställ källfrågorna på den."
                     },
                     {
-                        title: "B: Källfrågorna", page: "10",
-                        text: "Boksida: 10\n\nFör att granska en källa använder vi källkritik. En källa kan vara en text, en bild eller en person. Det finns fyra viktiga grundfrågor som du alltid ska ha med dig:\n\n1. Äkthet: Är källan vad den utger sig för att vara? Är det ett riktigt brev från medeltiden eller en förfalskning gjord igår? I den digitala världen kan bilder och filmer enkelt ändras så att de ser äkta ut trots att de är fejk.\n2. Tid: När skapades källan? Det är bäst om den skapades precis när något hände. Ju längre tid som går, desto mer glömmer vi bort eller råkar ändra på detaljer. En person som berättar om något idag som hände för 20 år sedan är inte lika pålitlig som en dagbok skriven samma dag.\n3. Beroende: Berättar källan något helt själv eller har den bara skrivit av någon annan? Om tre olika tidningar skriver samma sak men alla har tagit informationen från samma person, så finns det egentligen bara en enda källa.\n4. Syfte (Tendens): Vad vill författaren uppnå? Vill hen informera om sanningen, eller vill hen sälja något eller få oss att tycka på ett visst sätt? Om en källa är vinklad för att påverka kallas det att den har en tendens.",
+                        title: "B: De 4 Källfrågorna", page: "10",
+                        text: "Boksida: 10\n\nFör att granska en källa använder vi källkritik. Det finns fyra viktiga grundfrågor som du alltid ska ha med dig:\n\n1. Äkthet: Är källan vad den utger sig för att vara? Är det ett riktigt brev från medeltiden eller en förfalskning gjord igår? I den digitala världen kan bilder och filmer enkelt ändras så att de ser äkta ut trots att de är fejk.\n2. Tid: När skapades källan? Det är bäst om den skapades precis när något hände. Ju längre tid som går, desto mer glömmer vi bort eller råkar ändra på detaljer i vår berättelse. En person som berättar om något idag som hände för 20 år sedan är inte lika pålitlig som en dagbok skriven samma dag.\n3. Beroende: Berättar källan något helt själv eller har den bara skrivit av någon annan? Om tre olika tidningar skriver samma sak men alla har tagit informationen från samma person, så finns det egentligen bara en enda källa.\n4. Syfte (Tendens): Vad vill författaren uppnå? Vill hen informera om sanningen, eller vill hen sälja något eller få oss att tycka på ett visst sätt? Om en källa är vinklad för att påverka kallas det att den har en tendens.",
                         concepts: ["Äkthet", "Tid", "Beroende", "Tendens"],
                         mustKnow: ["De fyra grundfrågorna.", "Varför tid påverkar minnet.", "Vad en beroende källa är."],
                         summary: ["Äkthet, Tid, Beroende och Syfte är nyckelfrågor.", "Information nära händelsen är bäst.", "Var vaksam på vinklad information."],
@@ -136,6 +138,16 @@
                         test: [{q: "Vem utreder brott?", a: "Polisen"}, {q: "Vem beslutar om åtal?", a: "Åklagaren"}],
                         reasoning: "Varför har vi nämndemän som dömer i Sverige?",
                         application: "Rita upp stegen i rättskedjan som en serie."
+                    },
+                    {
+                        title: "B: Skollagen & Trygghet", page: "24–25",
+                        text: "Boksida: 24–25\n\nSkollagen säger att alla barn har rätt att känna sig trygga i skolan. Mobbning kallas för 'kränkande behandling'. Det kan vara fysiskt (slag), psykiskt (utfrysning) eller verbalt (elaka ord). Rektorn har huvudansvaret för tryggheten. All personal har anmälningsplikt, vilket betyder att de måste berätta för rektorn direkt om de misstänker att en elev mår dåligt. Det är alltid den utsatta som avgör om det är en kränkning, inte den som utför den. Varje skola måste enligt lag ha en plan mot kränkningar som uppdateras varje år.",
+                        concepts: ["Kränkning", "Anmälningsplikt", "Skollagen", "Rektor"],
+                        mustKnow: ["Tre typer av kränkning.", "Anmälningsplikten.", "Offrets tolkningsföreträde."],
+                        summary: ["Skollagen skyddar elever mot mobbning.", "Vuxna måste ingripa direkt.", "Offret avgör om det är fel."],
+                        test: [{q: "Vad kallas mobbning i lagen?", a: "Kränkande behandling"}, {q: "Vem har huvudansvaret?", a: "Rektorn"}],
+                        reasoning: "Varför är det viktigt att vuxna har anmälningsplikt?",
+                        application: "Ge tre förslag på hur skolan kan bli tryggare."
                     }
                 ]
             },
@@ -143,16 +155,16 @@
                 id: 5, title: "Block 5: Demokrati", icon: "users", sections: [
                     {
                         title: "A: Vad är demokrati?", page: "75",
-                        text: "Boksida: 75\n\nOrdet demokrati kommer från grekiskan. 'Demos' betyder folk och 'kratos' betyder styre. Alltså: folkstyre. I en demokrati utgår all offentlig makt från folket. I Sverige har vi representativ demokrati. Det betyder att vi inte röstar om varje lag själva, utan vi väljer representanter (politiker) till riksdagen som fattar besluten åt oss. Det finns även direkt demokrati, som när vi har folkomröstningar eller röstar genom handuppräckning i klassrummet.\n\nDemokratin startade i antikens Aten för 2500 år sedan. Där fick alla fria män vara med och rösta direkt om lagarna. Men det var ingen perfekt demokrati – kvinnor, slavar och utlänningar fick inte rösta. Idag kämpar vi för att alla vuxna ska ha lika rätt att vara med och bestämma. En demokrati är aldrig 'färdig', utan den måste försvaras och utvecklas varje dag.",
+                        text: "Boksida: 75\n\nOrdet demokrati kommer från grekiskan (demos=folk, kratos=styre) och betyder folkstyre. I Sverige har vi representativ demokrati. Det betyder att vi inte röstar om varje lag själva, utan vi väljer representanter (politiker) som vi litar på till riksdag, region och kommun. De fattar sedan besluten åt oss. Det finns även direkt demokrati, som när vi har folkomröstningar eller röstar genom handuppräckning i klassrummet.\n\nDemokratin startade i antikens Aten för 2500 år sedan. Där fick alla fria män vara med och rösta direkt om lagarna. Men det var ingen perfekt demokrati – kvinnor, slavar och utlänningar fick inte rösta. Idag kämpar vi för att alla vuxna ska ha lika rätt att vara med och bestämma. En demokrati är aldrig 'färdig', utan den måste försvaras och utvecklas varje dag.",
                         concepts: ["Folkstyre", "Representativ", "Direkt demokrati", "Antikens Aten"],
                         mustKnow: ["Ordets ursprung och betydelse.", "Skillnaden på direkt och representativ demokrati.", "Var demokratin startade."],
-                        summary: ["Demokrati betyder att folket bestämmer.", "Sverige väljer representanter som fattar beslut.", "Aten var demokratins födelseplats men uteslöt många."],
-                        test: [{q: "Vad betyder 'demos'?", a: "Folk"}, {q: "Vilken typ av demokrati har Sverige?", a: "Representativ"}],
-                        reasoning: "Varför tror du att vi väljer representanter istället för att alla röstar om allt via mobilen varje dag?",
-                        application: "Hitta ett exempel på när ni använder direkt demokrati i skolan."
+                        summary: ["Demokrati = Folkstyre.", "Vi väljer representanter.", "Aten var demokratins födelseplats men uteslöt många."],
+                        test: [{q: "Vad betyder ordet?", a: "Folkstyre"}, {q: "Vilken typ har Sverige?", a: "Representativ"}],
+                        reasoning: "Varför röstar vi inte om allt via mobilen varje dag?",
+                        application: "Hitta ett exempel på direkt demokrati i skolan."
                     },
                     {
-                        title: "B: Demokratins spelregler", page: "76–77",
+                        title: "B: Spelregler", page: "76–77",
                         text: "Boksida: 76–77\n\nFör att ett land ska få kallas för en demokrati krävs mer än bara val. Det finns fyra viktiga spelregler:\n\n1. Fria och hemliga val: Ingen får veta vad du röstar på och ingen får tvinga dig att rösta på ett visst sätt. Valen ska hållas regelbundet.\n2. Yttrandefrihet och tryckfrihet: Du har rätt att tycka, tänka och skriva vad du vill, även om du kritiserar de som bestämmer. Staten får inte censurera tidningar eller internet.\n3. Rättssäkerhet: Alla är lika inför lagen. Man kan inte bli fängslad utan en rättvis rättegång, och domstolen är oberoende av politikerna.\n4. Majoritetsprincipen: Det förslag som får flest röster vinner. Men man måste samtidigt skydda minoriteter (de som tycker annorlunda) så att de inte förtrycks av majoriteten.\n\nUtan dessa spelregler kan ett land vara en diktatur även om de låtsas hålla val.",
                         concepts: ["Hemliga val", "Yttrandefrihet", "Rättssäkerhet", "Minoritetsskydd"],
                         mustKnow: ["De fyra grundpelarna i en demokrati.", "Varför hemliga val är nödvändiga.", "Skillnaden mellan majoritet och minoritet."],
@@ -221,7 +233,7 @@
                         concepts: ["Grundlag", "Regeringsformen", "Succession", "Monarki"],
                         mustKnow: ["Namnen på de fyra grundlagarna.", "Varför de är svåra att ändra.", "Statschefens roll i Sverige."],
                         summary: ["Grundlagarna skyddar demokratin.", "Ändras bara med val emellan.", "Regeringsformen styr hur makt fördelas."],
-                        test: [{q: "Hur många grundlagar har Sverige?", a: "Fyra stycken"}, {q: "Vilken är viktigast?", a: "Regeringsformen"}],
+                        test: [{q: "Hur många grundlagar har Sverige?", a: "Four stycken"}, {q: "Vilken är viktigast?", a: "Regeringsformen"}],
                         reasoning: "Varför har vi gjort det så krångligt att ändra just grundlagarna?",
                         application: "Gör ett schema över grundlagarna och vad de skyddar."
                     }
@@ -241,7 +253,7 @@
                     },
                     {
                         title: "B: Mekanisering & Robotar", page: "31–32",
-                        text: "Boksida: 31–32\n\nTekniken ändrar jobben genom mekanisering (maskiner tar tunga lyft) och digitalisering (datorer styr). Robotar finns i fabriker och jobbar dygnet runt utan att bli trötta. En robot behöver inte fika, sova eller ha semester. Det gör att varor kan tillverkas snabbare och billigare. Men det betyder också att många tunga och farliga jobb försvinner. Samtidigt skapas nya jobb för de som kan bygga och programmera robotarna. Tekniken gör oss effektivare men kräver att vi lär oss nya saker hela tiden för att kunna jobba ihop med maskinerna.",
+                        text: "Boksida: 31–32\n\nTekniken ändrar jobben genom mekanisering och digitalisering. Mekanisering betyder att maskiner tar över tunga lyft och enformiga uppgifter som människor gjorde förr. Tänk dig en fabrik för hundra år sedan där arbetare bar tunga lådor hela dagen – idag gör en lyftkran eller en rullande matta det jobbet. \n\nIdag finns robotar i nästan alla stora fabriker. En robot kan jobba dygnet runt utan att bli trött, utan att behöva fika och utan att kräva semester. Detta gör att varor kan tillverkas snabbare och billigare. Men det betyder också att många tunga och farliga jobb försvinner. Samtidigt skapas nya jobb för de som kan bygga och programmera robotarna. Tekniken gör oss effektivare men kräver att vi lär oss nya saker hela tiden för att kunna jobba ihop med maskinerna.",
                         concepts: ["Mekanisering", "Robotisering", "Effektivitet"],
                         mustKnow: ["Vad mekanisering betyder.", "Fördelar med robotar.", "Att nya jobb skapas."],
                         summary: ["Maskiner tar tunga lyft.", "Robotar jobbar dygnet runt.", "Nya jobb kräver teknik-kunskap."],
@@ -280,6 +292,7 @@
             const [isLoading, setIsLoading] = useState(false);
             const [splitPercent, setSplitPercent] = useState(60);
             const [isTeacherMode, setIsTeacherMode] = useState(false);
+            const [isSidebarOpen, setIsSidebarOpen] = useState(true);
             const [history, setHistory] = useState([]);
             const [showDetail, setShowDetail] = useState(null);
 
@@ -328,7 +341,9 @@
 
             return (
                 <div className="flex w-full h-full text-left" onMouseMove={onDragging} onMouseUp={onEndDragging} onTouchMove={onDragging} onTouchEnd={onEndDragging}>
-                    <aside className="w-80 bg-white border-r flex flex-col shrink-0 z-50">
+                    
+                    {/* SIDEBAR */}
+                    <aside className={`bg-white border-r flex flex-col shrink-0 z-50 sidebar-transition ${isSidebarOpen ? 'w-80 opacity-100' : 'w-0 opacity-0 overflow-hidden'}`}>
                         <div className="p-8 bg-indigo-700 text-white">
                             <div className="flex items-center gap-3">
                                 <span className="bg-white p-2 rounded-lg text-indigo-700"><i data-lucide="graduation-cap"></i></span>
@@ -341,7 +356,7 @@
                                 <button key={i} onClick={() => { setActiveBlock(i); setActiveSection(0); setAiChat([]); }}
                                     className={`w-full flex items-center gap-3 p-4 rounded-2xl transition-all font-bold text-xs ${activeBlock === i ? 'bg-indigo-50 text-indigo-700' : 'text-slate-500 hover:bg-slate-50'}`}>
                                     <span className="p-2 bg-slate-100 rounded-lg"><i data-lucide={b.icon} className="w-4 h-4"></i></span>
-                                    {b.title}
+                                    <span className="whitespace-nowrap">{b.title}</span>
                                 </button>
                             ))}
                         </nav>
@@ -352,17 +367,27 @@
                         </div>
                     </aside>
 
+                    {/* MAIN CONTENT AREA */}
                     <main className="flex-1 flex flex-col relative bg-white overflow-hidden" ref={splitRef}>
                         <header className="bg-white/90 border-b p-4 flex items-center justify-between z-10 shrink-0">
-                            <div className="flex gap-2 overflow-x-auto no-scrollbar">
-                                {block.sections.map((s, i) => (
-                                    <button key={i} onClick={() => { setActiveSection(i); setAiChat([]); setShowDetail(null); }}
-                                        className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest ${activeSection === i ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'}`}>
-                                        {s.title}
-                                    </button>
-                                ))}
+                            <div className="flex items-center gap-4 overflow-hidden">
+                                <button 
+                                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition-colors shrink-0"
+                                    title={isSidebarOpen ? "Dölj meny" : "Visa meny"}
+                                >
+                                    <i data-lucide={isSidebarOpen ? "panel-left-close" : "panel-left-open"}></i>
+                                </button>
+                                <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+                                    {block.sections.map((s, i) => (
+                                        <button key={i} onClick={() => { setActiveSection(i); setAiChat([]); setShowDetail(null); }}
+                                            className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeSection === i ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'}`}>
+                                            {s.title}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase whitespace-nowrap border border-indigo-100">
+                            <div className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase whitespace-nowrap border border-indigo-100 ml-2">
                                 Sida {section.page}
                             </div>
                         </header>
@@ -400,12 +425,12 @@
                                         <div className="bg-slate-50 p-12 rounded-[3.5rem] border-2 border-slate-100 animate-fade-in text-left">
                                             {showDetail === 'summary' && <ul className="space-y-4">{section.summary.map((s, i) => <li key={i} className="bg-white p-7 rounded-3xl font-bold flex gap-5 shadow-sm leading-tight border border-slate-100 text-left"><span className="text-indigo-500 font-black">0${i+1}</span>{s}</li>)}</ul>}
                                             {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{section.test.map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800 text-left">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600 font-black'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left">Visa svar</button></div>)}</div>}
-                                            {showDetail === 'reasoning' && <div className="bg-white p-12 rounded-[3rem] italic font-black text-2xl text-slate-700 text-center leading-relaxed">"{section.reasoning}"<button onClick={() => askAI('develop')} className="bg-emerald-600 text-white px-10 py-4 rounded-full text-xs font-black mt-10 uppercase tracking-widest block mx-auto text-center shadow-lg">Hjälp mig tänka vidare</button></div>}
+                                            {showDetail === 'reasoning' && <div className="bg-white p-12 rounded-[3rem] italic font-black text-2xl text-slate-700 text-center leading-relaxed text-left text-center">"{section.reasoning}"<button onClick={() => askAI('develop')} className="bg-emerald-600 text-white px-10 py-4 rounded-full text-xs font-black mt-10 uppercase tracking-widest block mx-auto text-center shadow-lg">Hjälp mig tänka vidare</button></div>}
                                         </div>
                                     )}
 
                                     <section className="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group text-left">
-                                        <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-6 italic text-left">Tillämpning: Gör detta nu</h4>
+                                        <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-6 italic text-left text-left">Tillämpning: Gör detta nu</h4>
                                         <p className="text-2xl font-bold leading-snug tracking-tight text-left">{section.application}</p>
                                     </section>
                                 </div>
@@ -436,11 +461,11 @@
                     {isTeacherMode && (
                         <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[100] flex items-center justify-center p-10">
                             <div className="bg-white w-full max-w-6xl h-[90vh] rounded-[5rem] flex flex-col overflow-hidden border-4 border-white shadow-2xl">
-                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left text-left">
+                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left text-left text-left">
                                     <h2 className="text-4xl font-black uppercase italic text-slate-900 leading-none">Kontrollpanel</h2>
                                     <button onClick={() => setIsTeacherMode(false)} className="bg-white p-5 rounded-full border-2 border-slate-100 hover:text-red-500 transition-all shadow-sm text-left"><i data-lucide="x"></i></button>
                                 </header>
-                                <div className="flex-1 overflow-y-auto p-14 custom-scrollbar text-left text-left">
+                                <div className="flex-1 overflow-y-auto p-14 custom-scrollbar text-left text-left text-left">
                                     <table className="w-full text-left text-left text-left">
                                         <thead className="bg-slate-50 text-[11px] font-black text-slate-500 uppercase italic border-b-4 border-white"><tr><th className="p-10 text-left">Sida</th><th className="p-10 text-left">Input</th><th className="p-10 text-left">Svar</th></tr></thead>
                                         <tbody className="text-base font-bold text-slate-600 divide-y-4 divide-slate-50 text-left">
