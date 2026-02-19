@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studiekompisen SH - Åk 6 (Komplett Läromedel)</title>
+    <title>Studiekompisen SH - Åk 6 (Fullständig Skolbok)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -16,9 +16,7 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 20px; border: 4px solid transparent; background-clip: content-box; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        
         #root { height: 100vh; display: flex; overflow: hidden; }
-        
         .split-container { display: flex; flex-direction: column; height: 100%; width: 100%; overflow: hidden; }
         .panel-text { flex: 0 0 60%; min-height: 100px; overflow-y: auto; position: relative; background: white; }
         .drag-handle { 
@@ -42,7 +40,6 @@
             border-radius: 2px; 
         }
         .panel-ai { flex: 1; min-height: 100px; overflow-y: auto; background: #fafafa; display: flex; flex-direction: column; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
     </style>
@@ -52,7 +49,6 @@
 
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
-
         const MODEL = "gemini-2.5-flash"; 
 
         // --- DATA: ALLA 7 BLOCK (MAXAT INNEHÅLL FRÅN BOKEN) ---
@@ -61,71 +57,71 @@
                 id: 1, title: "Block 1: Källkritik", icon: "sparkles", sections: [
                     {
                         title: "A: Skröna & Gustav Vasa", page: "8–9",
-                        text: "I ämnet historia läser du om hur det var förr i tiden. Men vi måste alltid fråga oss om det vi läser är sant. Ett känt exempel är berättelsen om Gustav Vasa i Dalarna år 1520. Det berättas att bonden Sven Elvsson i Isala räddade kungen genom att gömma honom i ett halmlass. Danska soldater letade efter kungen och stack sina spjut genom halmen. En spjutspets ska ha rispat Gustav i benet. Han låg helt tyst för att inte bli upptäckt. För att dölja blodet tog Sven Elvsson fram sin kniv och skar ett djupt sår i benet på sin häst. När danskarna undrade över blodet visade Sven på hästens sår och de lät honom åka vidare. Den här historien är mycket spännande men den skrevs ner först 250 år senare på order av kung Gustav III. Han ville visa att han var släkt med en hjälte. Historiker kallar detta för en skröna. En skröna är en historia som kan ha en liten kärna av sanning men som är kraftigt överdriven. Syftet är ofta att göra en person mer viktig än vad hen var.",
-                        concepts: ["Källkritik", "Skröna", "Historiker", "Syfte"],
-                        mustKnow: ["Vad en skröna är.", "Att Vasa-historien kom 250 år efteråt.", "Varför kungar använde propaganda."],
-                        summary: ["Källkritik granskar information.", "Skrönor är överdrivna historier.", "Vasa-berättelsen i Isala är en skröna."],
-                        test: [{q: "Vad kallas en överdriven historia?", a: "Skröna"}, {q: "Vem beställde texten?", a: "Gustav III"}],
+                        text: "Boksida: 8–9\n\nI ämnet historia läser du om hur det var förr i tiden. Vad hände i Sverige 1520 till exempel, när Gustav Eriksson irrade omkring i Dalarna, jagad av den danske kungen Kristian Tyranns soldater? Så här stod det i Läsebok för folkskolan – alla barn i hela Sverige läste förr om hur bonden Sven Elvsson i Isala i Dalarna räddade livet på Gustav Eriksson.\n\n'Sven Elvsson menade att Gustav nog inte var säker i Isala. Han gömde honom därför i ett stort halmlass och körde det uppåt de ödsliga skogarna. Snart mötte han några av danskarnas utskickade soldater. De misstänkte bonden och stack sina spjut några gånger genom halmlasset. En av spjutspetsarna rispade Gustav i benet, men han låg orörlig. Danskarna märkte ingenting och lät Sven Elvsson köra vidare. Snart såg Sven att blod började rinna ur halmlasset och färga snön. Sven blev rädd att blodet skulle avslöja dem. Han tog därför upp sin kniv, skar ett djupt hål i benet på hästen. När Sven sedan blev tillfrågad om blodfläckarna i snön, skyllde han på hästens sår.'\n\nVisst är det en spännande historia! Men är den sann? Gustav III beundrade Gustav Vasa och ville gärna visa att de var släkt. Kungen beordrade därför landshövdingen i Dalarna att hitta personer som kunde skriva ned Gustav Vasas 'äventyr'. Berättelserna skrevs alltså ner 250 år senare och kallas ofta för skrönor. En skröna kan ha en kärna av sanning men är sedan överdriven och förljugen. Källkritik hjälper oss att fråga: Vem berättar? Varför? Och när hände det?",
+                        concepts: ["Källkritik", "Skröna", "Fakta", "Historiker", "Propaganda"],
+                        mustKnow: ["Vad en skröna är.", "Att Vasa-berättelsen kom 250 år efteråt.", "Hur kungar använde historier för makt."],
+                        summary: ["Källkritik granskar om information går att lita på.", "Skrönor är överdrivna historier.", "Syftet med Isala-berättelsen var att hylla kungen."],
+                        test: [{q: "Vad kallas en överdriven historia?", a: "Skröna"}, {q: "Vem beställde texten 250 år senare?", a: "Gustav III"}],
                         reasoning: "Varför ville en kung sprida hjältesagor om sina förfäder?",
-                        application: "Hitta en rubrik på nätet och ställ källfrågorna på den."
+                        application: "Hitta en rubrik på nätet och ställ de 4 källfrågorna på den."
                     },
                     {
                         title: "B: Källfrågorna", page: "10",
-                        text: "För att granska en källa använder vi källkritik. Det finns fyra viktiga grundfrågor. 1. Äkthet: Är källan vad den utger sig för att vara? 2. Tid: Det är bäst om källan skapades precis när något hände. Ju längre tid som går, desto mer glömmer vi. 3. Beroende: Berättar källan något själv eller har den bara skrivit av andra? 4. Syfte: Vad vill författaren uppnå? Vill hen informera, sälja eller påverka? Om en källa är vinklad har den en tendens. Genom att ställa dessa frågor kan vi avgöra om vi kan lita på informationen.",
+                        text: "Boksida: 10\n\nFör att granska en källa använder vi källkritik. En källa kan vara en text, en bild eller en person. Det finns fyra viktiga grundfrågor som du alltid ska ha med dig:\n\n1. Äkthet: Är källan vad den utger sig för att vara? Är det ett riktigt brev från medeltiden eller en förfalskning gjord igår? I den digitala världen kan bilder och filmer enkelt ändras så att de ser äkta ut trots att de är fejk.\n2. Tid: När skapades källan? Det är bäst om den skapades precis när något hände. Ju längre tid som går, desto mer glömmer vi bort eller råkar ändra på detaljer. En person som berättar om något idag som hände för 20 år sedan är inte lika pålitlig som en dagbok skriven samma dag.\n3. Beroende: Berättar källan något helt själv eller har den bara skrivit av någon annan? Om tre olika tidningar skriver samma sak men alla har tagit informationen från samma person, så finns det egentligen bara en enda källa.\n4. Syfte (Tendens): Vad vill författaren uppnå? Vill hen informera om sanningen, eller vill hen sälja något eller få oss att tycka på ett visst sätt? Om en källa är vinklad för att påverka kallas det att den har en tendens.",
                         concepts: ["Äkthet", "Tid", "Beroende", "Tendens"],
-                        mustKnow: ["De fyra grundfrågorna.", "Varför tid påverkar minnet.", "Vad beroende innebär."],
-                        summary: ["Äkthet, Tid, Beroende och Syfte är nyckeln.", "Information nära händelsen är bäst.", "Var vaksam på tendenser."],
-                        test: [{q: "Vilken är första frågan?", a: "Äkthet"}, {q: "Vad betyder tendens?", a: "Att källan är vinklad"}],
-                        reasoning: "Vilken fråga är svårast att svara på på sociala medier?",
-                        application: "Granska ett klipp på TikTok med källkritikens glasögon."
+                        mustKnow: ["De fyra grundfrågorna.", "Varför tid påverkar minnet.", "Vad en beroende källa är."],
+                        summary: ["Äkthet, Tid, Beroende och Syfte är nyckelfrågor.", "Information nära händelsen är bäst.", "Var vaksam på vinklad information."],
+                        test: [{q: "Vilken är första källfrågan?", a: "Äkthet"}, {q: "Vad betyder tendens?", a: "Att källan är vinklad"}],
+                        reasoning: "Vilken källfråga tycker du är svårast att svara på när du läser på nätet?",
+                        application: "Granska ett inlägg på sociala medier utifrån de 4 frågorna."
                     }
                 ]
             },
             {
                 id: 2, title: "Block 2: Ekonomi", icon: "zap", sections: [
                     {
-                        title: "A: Pengarnas historia", page: "43–44",
-                        text: "Skulle vi klara oss utan pengar? Byteshandel har funnits länge men det är krångligt. För några tusen år sedan uppfanns pengar för att mäta värde. I Sverige var de första mynten av metall. På 1600-talet blev det brist på guld och silver, så man använde koppar istället. Mynten blev enormt tunga – de tyngsta vägde över 19 kilo! Folk fick dra sina pengar på skottkärra. 1660 öppnade Johan Palmstruch den första banken och gav ut kvitton på papper, vilket blev våra första sedlar. Idag är de flesta pengar elektroniska siffror som vi flyttar med kort eller Swish.",
-                        concepts: ["Byteshandel", "Kontanter", "Digitala pengar"],
-                        mustKnow: ["Varför pengar uppfanns.", "Svenska mynt vägde 19 kg.", "Första banken 1660."],
-                        summary: ["Pengar ersatte krånglig byteshandel.", "Första sedlarna var kvitton.", "Idag är pengar främst digitala."],
+                        title: "A: Pengarnas Historia", page: "43–44",
+                        text: "Boksida: 43–44\n\nSkulle vi klara oss utan pengar? Byteshandel har funnits så länge människan har funnits. Det betyder att man byter en vara mot en annan vara, t.ex. en ko mot en säck säd. Men det är krångligt att bära med sig tunga saker för att handla. För några tusen år sedan uppfanns därför pengar för att mäta värde.\n\nI Sverige var de första mynten av metall och de skulle vara värda precis lika mycket som själva metallen vägde. På 1600-talet blev det brist på guld och silver. Då började man använda koppar istället. Men koppar var billigare än guld, så mynten var tvungna att vara enormt stora och tunga för att ha ett högt värde. De tyngsta kopparmynten vägde över 19 kilo! Folk fick dra sina pengar på skottkärra till marknaden. År 1660 öppnade en köpman som hette Johan Palmstruch den första banken i Stockholm. Han lät folk lämna in sina tunga mynt för förvaring. Som bevis fick de ett kvitto på papper – dessa kvitton blev Sveriges första sedlar. Idag är de flesta pengar elektroniska digitala siffror på ett bankkonto som vi flyttar med kort eller Swish.",
+                        concepts: ["Byteshandel", "Metallen", "Johan Palmstruch", "Kontanter"],
+                        mustKnow: ["Varför pengar uppfanns.", "Svenska kopparmynt vägde 19 kg.", "Första banken 1660."],
+                        summary: ["Pengar förenklar handel.", "Förr var myntens värde kopplat till vikten.", "Första sedlarna var bankkvitton."],
                         test: [{q: "Vad vägde tunga mynt?", a: "19 kg"}, {q: "Vem startade första banken?", a: "Johan Palmstruch"}],
-                        reasoning: "Vad händer om allt digitalt slutar funka?",
-                        application: "Designa ett eget mynt."
+                        reasoning: "Vad händer om internet slutar funka och vi bara har digitala pengar?",
+                        application: "Designa ett eget mynt och förklara vad det ska vara värt."
                     },
                     {
-                        title: "B: Brutto & Netto", page: "46–47",
-                        text: "När en person arbetar får hen lön. Bruttolön är lönen innan skatten är dragen. I Sverige betalar vi inkomstskatt till staten och kommunen, ofta ca 30%. Det som blir kvar kallas nettolön. Det är nettolönen man använder till mat och hyra. Skattepengarna betalar för skolor, sjukhus, poliser och vägar. Utöver lön kan man få bidrag, som barnbidrag. Genom skatten har vi en offentlig sektor som fungerar för alla, oavsett inkomst.",
-                        concepts: ["Bruttolön", "Nettolön", "Skatt", "Offentlig sektor"],
-                        mustKnow: ["Brutto vs Netto.", "Skatten är ca 30%.", "Vad skatten betalar."],
-                        summary: ["Brutto = före skatt, Netto = efter skatt.", "Skatten betalar välfärd.", "Bidrag hjälper familjer."],
+                        title: "B: Brutto, Netto & Skatt", page: "46–47",
+                        text: "Boksida: 46–47\n\nNär en vuxen person arbetar får hen lön. Men man får inte behålla alla pengar själv. Bruttolön är den lön man har innan skatten är dragen. I Sverige betalar vi inkomstskatt till staten och kommunen, ofta ca 30%. Om Jan tjänar 30 000 kr i bruttolön dras ca 9 000 kr i skatt. Det som blir kvar kallas nettolön. Det är nettolönen man använder för att betala mat och hyra. \n\nSkattepengarna går till den offentliga sektorn. Det är saker vi äger tillsammans. Det betalar för skolor, lärare, sjukhus, poliser och vägar. Det betalar också för domstolar och försvaret. Utöver lön kan ett hushåll få bidrag, som barnbidrag som föräldrar får varje månad för att hjälpa till med kostnaderna för barnen. Genom skatten kan vi ha en bra service som fungerar för alla, oavsett om man tjänar mycket eller lite pengar.",
+                        concepts: ["Bruttolön", "Nettolön", "Offentlig sektor", "Inkomstskatt"],
+                        mustKnow: ["Brutto är före skatt, Netto efter.", "Skatten är ca 30%.", "Vad skatten betalar."],
+                        summary: ["Bruttolön = före skatt.", "Nettolön = pengarna man får ut.", "Skatten betalar skola, vård och vägar."],
                         test: [{q: "Vad kallas lönen före skatt?", a: "Bruttolön"}, {q: "Vart går skatten?", a: "Offentlig sektor"}],
-                        reasoning: "Varför betalar vi inkomstskatt?",
-                        application: "Räkna ut netto om brutto är 100 kr."
+                        reasoning: "Vad skulle hända med skolorna om ingen betalade skatt?",
+                        application: "Räkna ut nettolön om brutto är 100 kr och skatten 30 kr."
                     }
                 ]
             },
             {
                 id: 3, title: "Block 3: Banker & Priser", icon: "landmark", sections: [
                     {
-                        title: "A: Banken & Ränta", page: "52–53",
-                        text: "Banker fungerar som en mellanhand mellan sparare och lånare. De pengar banken har kommer från människor som sparar. Banken lånar sedan ut dessa till familjer som vill köpa hus eller företag som vill bygga fabriker. Banken tjänar pengar på ränta. Inlåningsränta får du när du sparar. Utlåningsränta betalar du när du lånar. Skillnaden kallas räntegap – det är bankens vinst. Riksbanken är statens bank och styr ekonomin med styrräntan för att motverka inflation.",
-                        concepts: ["Räntegap", "Riksbanken", "Inflation", "Styrränta"],
-                        mustKnow: ["Banken som mellanhand.", "Räntegapet är bankens vinst.", "Riksbankens roll."],
-                        summary: ["Banken kopplar ihop sparare och lånare.", "Ränta är priset på pengar.", "Riksbanken motverkar inflation."],
-                        test: [{q: "Vilken ränta är högst?", a: "Utlåningsränta"}, {q: "Vad är räntegapet?", a: "Bankens vinst"}],
-                        reasoning: "Hur påverkas en familj om räntan höjs?",
-                        application: "Räkna ut räntegapet."
+                        title: "A: Banken som mellanhand", page: "52",
+                        text: "Boksida: 52\n\nBanker fungerar som en mellanhand mellan sparare och lånare. De pengar som en bank har kommer från människor och företag som sparar sina pengar där. När du sätter in pengar lånar du egentligen ut dem till banken. Banken samlar ihop pengar från många sparare till en stor summa. Denna stora summa kan banken sedan låna ut till andra, t.ex. till familjer som vill köpa ett hus eller företag som vill bygga en ny fabrik. Utan banker skulle det vara svårt för vanliga människor att ha råd med dyra saker. Banken granskar noga de som vill låna för att vara säkra på att de kan betala tillbaka. Banken ser på så sätt till att pengarna rör sig i samhället och att resurserna används där de behövs bäst.",
+                        concepts: ["Mellanhand", "Sparande", "Låntagare", "Kretslopp"],
+                        mustKnow: ["Banken kopplar ihop sparare och lånare.", "Varför banken gör kontroller.", "Bankens roll för stora köp."],
+                        summary: ["Banken är en mellanhand.", "Sparande = utlåning till banken.", "Lån används till hus och fabriker."],
+                        test: [{q: "Vad är bankens roll?", a: "Mellanhand för pengar"}, {q: "Varifrån får banken pengar?", a: "Från folk som sparar"}],
+                        reasoning: "Varför är det viktigt för ett land att folk litar på sina banker?",
+                        application: "Förklara räntegapet för en kompis."
                     },
                     {
-                        title: "B: Utbud & Efterfrågan", page: "54–55",
-                        text: "Priset på nästan allt styrs av utbud och efterfrågan. Utbud är hur mycket det finns av en vara. Efterfrågan är hur många som vill köpa den. I början av sommaren är jordgubbar dyra för att utbudet är litet men suget stort. När det mognar massor sjunker priset för att locka köpare. Marknadspriset skapas där säljare och köpare möts. Om efterfrågan ökar (t.ex. genom reklam) stiger priset igen.",
-                        concepts: ["Utbud", "Efterfrågan", "Marknad", "Prissättning"],
-                        mustKnow: ["Litet utbud + hög efterfrågan = dyrt.", "Stort utbud + låg efterfrågan = billigt."],
-                        summary: ["Priset styrs av tillgång och sug.", "Jordgubbar är ett bra exempel.", "Marknaden söker jämvikt."],
-                        test: [{q: "Vad kallas tillgången?", a: "Utbud"}, {q: "Vad händer vid hög efterfrågan?", a: "Priset stiger"}],
-                        reasoning: "Varför sänker affärer priset under REA?",
-                        application: "Hitta en vara där priset varierar stort."
+                        title: "B: Ränta & Riksbanken", page: "52–53",
+                        text: "Boksida: 52–53\n\nBanken tjänar pengar på ränta. Ränta är priset på pengar. Inlåningsränta får du när du sparar – det är banken som betalar dig för att få använda dina pengar. Utlåningsränta betalar du när du lånar – det är din kostnad för att få använda bankens pengar. Utlåningsräntan är alltid högre än inlåningsräntan. Skillnaden kallas räntegap – det är bankens vinst.\n\nRiksbanken är statens bank och dess viktigaste uppgift är att se till att våra pengar behåller sitt värde. De styr ekonomin med styrräntan för att motverka inflation (att priser stiger för mycket). Om Riksbanken höjer styrräntan blir det dyrare för alla andra banker att låna. Då höjer de i sin tur räntan för sina kunder. Familjer får då mindre pengar kvar att handla för, och då slutar priserna att stiga så snabbt. Riksbanken fungerar som en sorts gas och broms för hela Sveriges ekonomi.",
+                        concepts: ["Räntegap", "Inflation", "Styrränta", "Riksbanken"],
+                        mustKnow: ["Skillnad på in- och utlåningsränta.", "Riksbankens uppgift.", "Vad inflation betyder."],
+                        summary: ["Ränta är priset för pengar.", "Riksbanken styr styrräntan.", "Inflation gör pengar mindre värda."],
+                        test: [{q: "Vilken ränta är högst?", a: "Utlåningsräntan"}, {q: "Vad kallas bankens vinst på ränta?", a: "Räntegap"}],
+                        reasoning: "Hur påverkas en familj om räntan stiger kraftigt?",
+                        application: "Räkna ut räntegapet om in- är 2% och ut- är 6%."
                     }
                 ]
             },
@@ -133,23 +129,13 @@
                 id: 4, title: "Block 4: Lag & Rätt", icon: "scale", sections: [
                     {
                         title: "A: Rättskedjan", page: "62–63",
-                        text: "Processen börjar hos polisen som utreder brott och säkrar bevis. Åklagaren beslutar om bevisen räcker för åtal. I tingsrätten dömer en domare och tre nämndemän (vanliga människor). Den misstänkte kallas tilltalad och har rätt till en försvarare. Om personen döms får hen en påföljd, som böter eller fängelse. För unga mellan 15 och 18 år finns särskilda regler, som ungdomsvård, eftersom syftet är att hjälpa dem tillbaka.",
-                        concepts: ["Åklagare", "Nämndeman", "Påföljd", "Tingsrätt"],
+                        text: "Boksida: 62–63\n\nProcessen börjar hos polisen som utreder brott och säkrar bevis som fingeravtryck eller filmer. Om polisen tror att de hittat den skyldige tar en åklagare över. Åklagaren är en jurist för staten som beslutar om bevisen räcker för en rättegång. I domstolen (tingsrätten) dömer en domare och tre nämndemän. Nämndemännen är vanliga människor som valts ut för att representera folket. Den misstänkte kallas tilltalad och har rätt till en försvarare (advokat). Om personen döms får hen en påföljd (straff), som böter eller fängelse. För unga mellan 15 och 18 år finns särskilda regler, som ungdomsvård, eftersom målet är att de inte ska begå fler brott.",
+                        concepts: ["Åklagare", "Nämndeman", "Påföljd", "Tilltalad"],
                         mustKnow: ["Stegen i rättskedjan.", "Nämndemännens roll.", "Vad påföljd betyder."],
                         summary: ["Polisen utreder, domstolen dömer.", "Nämndemän representerar folket.", "Påföljd = straff."],
                         test: [{q: "Vem utreder brott?", a: "Polisen"}, {q: "Vem beslutar om åtal?", a: "Åklagaren"}],
-                        reasoning: "Varför har vi nämndemän i domstolen?",
-                        application: "Rita upp stegen i rättskedjan."
-                    },
-                    {
-                        title: "B: Skollagen & Mobbning", page: "24–25",
-                        text: "Skollagen säger att alla barn har rätt att känna sig trygga. Mobbning kallas för 'kränkande behandling'. Det kan vara fysiskt (slag), psykiskt (utfrysning) eller verbalt (elaka ord). Rektorn har huvudansvaret för tryggheten. All personal har anmälningsplikt om en elev känner sig utsatt. Det är alltid offret som avgör om det är en kränkning, inte förövaren. Varje skola måste ha en plan mot kränkningar.",
-                        concepts: ["Kränkning", "Anmälningsplikt", "Skollagen"],
-                        mustKnow: ["Tre typer av kränkning.", "Anmälningsplikten.", "Offrets tolkningsföreträde."],
-                        summary: ["Skollagen skyddar din trygghet.", "Vuxna måste anmäla direkt.", "Offret har alltid rätt om sin känsla."],
-                        test: [{q: "Vad kallas mobbning i lagen?", a: "Kränkande behandling"}, {q: "Vem avgör om det är elakt?", a: "Den utsatta"}],
-                        reasoning: "Varför är det viktigt att vuxna har anmälningsplikt?",
-                        application: "Gör en checklista för en trygg skolgård."
+                        reasoning: "Varför har vi nämndemän som dömer i Sverige?",
+                        application: "Rita upp stegen i rättskedjan som en serie."
                     }
                 ]
             },
@@ -157,47 +143,87 @@
                 id: 5, title: "Block 5: Demokrati", icon: "users", sections: [
                     {
                         title: "A: Vad är demokrati?", page: "75",
-                        text: "Ordet demokrati kommer från grekiskan (demos=folk, kratos=styre). Det betyder folkstyre. I Sverige har vi representativ demokrati: vi väljer politiker som fattar besluten åt oss i riksdagen. Det finns även direkt demokrati, som folkomröstningar eller handuppräckning i klassen. För en fungerande demokrati krävs fria och hemliga val, yttrandefrihet och att alla är lika inför lagen. Motsatsen är diktatur.",
-                        concepts: ["Folkstyre", "Representativ", "Direkt demokrati"],
-                        mustKnow: ["Ordets betydelse.", "Skillnaden på direkt/representativ.", "Vikten av hemliga val."],
-                        summary: ["Demokrati = Folkstyre.", "Vi väljer representanter.", "Motsatsen är diktatur."],
-                        test: [{q: "Vad betyder ordet?", a: "Folkstyre"}, {q: "Vilken typ har Sverige?", a: "Representativ"}],
-                        reasoning: "Varför röstar vi inte om allt via mobilen?",
-                        application: "Ge exempel på direkt demokrati."
+                        text: "Boksida: 75\n\nOrdet demokrati kommer från grekiskan. 'Demos' betyder folk och 'kratos' betyder styre. Alltså: folkstyre. I en demokrati utgår all offentlig makt från folket. I Sverige har vi representativ demokrati. Det betyder att vi inte röstar om varje lag själva, utan vi väljer representanter (politiker) till riksdagen som fattar besluten åt oss. Det finns även direkt demokrati, som när vi har folkomröstningar eller röstar genom handuppräckning i klassrummet.\n\nDemokratin startade i antikens Aten för 2500 år sedan. Där fick alla fria män vara med och rösta direkt om lagarna. Men det var ingen perfekt demokrati – kvinnor, slavar och utlänningar fick inte rösta. Idag kämpar vi för att alla vuxna ska ha lika rätt att vara med och bestämma. En demokrati är aldrig 'färdig', utan den måste försvaras och utvecklas varje dag.",
+                        concepts: ["Folkstyre", "Representativ", "Direkt demokrati", "Antikens Aten"],
+                        mustKnow: ["Ordets ursprung och betydelse.", "Skillnaden på direkt och representativ demokrati.", "Var demokratin startade."],
+                        summary: ["Demokrati betyder att folket bestämmer.", "Sverige väljer representanter som fattar beslut.", "Aten var demokratins födelseplats men uteslöt många."],
+                        test: [{q: "Vad betyder 'demos'?", a: "Folk"}, {q: "Vilken typ av demokrati har Sverige?", a: "Representativ"}],
+                        reasoning: "Varför tror du att vi väljer representanter istället för att alla röstar om allt via mobilen varje dag?",
+                        application: "Hitta ett exempel på när ni använder direkt demokrati i skolan."
                     },
                     {
-                        title: "B: Spelregler", page: "76–77",
-                        text: "En demokrati kräver: 1. Fria och hemliga val (ingen ser vad du röstar). 2. Yttrandefrihet (tyck och skriv vad du vill). 3. Rättssäkerhet (lagen är lika för alla). 4. Majoritetsprincipen (flest röster vinner, men minoriteter skyddas). Utan dessa spelregler är det ingen riktig demokrati även om det hålls val.",
-                        concepts: ["Hemliga val", "Yttrandefrihet", "Rättssäkerhet", "Majoritet"],
-                        mustKnow: ["De fyra grundpelarna.", "Varför valen ska vara hemliga."],
-                        summary: ["Fria val och yttrandefrihet krävs.", "Lagen skyddar alla lika.", "Minoriteten får inte förtryckas."],
-                        test: [{q: "Får man veta vad nån röstat på?", a: "Nej"}, {q: "Vem bestämmer i en röstning?", a: "Majoriteten"}],
-                        reasoning: "Vad händer om valen inte vore hemliga?",
-                        application: "Gör en checklista för ett demokratiskt land."
+                        title: "B: Demokratins spelregler", page: "76–77",
+                        text: "Boksida: 76–77\n\nFör att ett land ska få kallas för en demokrati krävs mer än bara val. Det finns fyra viktiga spelregler:\n\n1. Fria och hemliga val: Ingen får veta vad du röstar på och ingen får tvinga dig att rösta på ett visst sätt. Valen ska hållas regelbundet.\n2. Yttrandefrihet och tryckfrihet: Du har rätt att tycka, tänka och skriva vad du vill, även om du kritiserar de som bestämmer. Staten får inte censurera tidningar eller internet.\n3. Rättssäkerhet: Alla är lika inför lagen. Man kan inte bli fängslad utan en rättvis rättegång, och domstolen är oberoende av politikerna.\n4. Majoritetsprincipen: Det förslag som får flest röster vinner. Men man måste samtidigt skydda minoriteter (de som tycker annorlunda) så att de inte förtrycks av majoriteten.\n\nUtan dessa spelregler kan ett land vara en diktatur även om de låtsas hålla val.",
+                        concepts: ["Hemliga val", "Yttrandefrihet", "Rättssäkerhet", "Minoritetsskydd"],
+                        mustKnow: ["De fyra grundpelarna i en demokrati.", "Varför hemliga val är nödvändiga.", "Skillnaden mellan majoritet och minoritet."],
+                        summary: ["Valen måste vara fria och hemliga för att vara äkta.", "Yttrandefrihet är grunden för politisk debatt.", "Lagen skyddar alla medborgare lika."],
+                        test: [{q: "Måste man berätta vad man röstat på?", a: "Nej, valen är hemliga"}, {q: "Vem bestämmer i en röstning?", a: "Majoriteten (men minoriteten skyddas)"}],
+                        reasoning: "Vad skulle hända med demokratin om valen inte vore hemliga?",
+                        application: "Gör en checklista för att undersöka om en förening fungerar demokratiskt."
+                    },
+                    {
+                        title: "C: Diktatur - Motsatsen", page: "78–79",
+                        text: "Boksida: 78–79\n\nI en diktatur är det en person (diktator) eller en liten grupp (t.ex. ett parti eller militären) som har all makt. I en diktatur fungerar samhället helt annorlunda än i en demokrati:\n\n* Kontroll och censur: Staten kontrollerar TV, radio, tidningar och internet. Man får inte kritisera ledarna utan att riskera straff eller fängelse.\n* Inga fria val: Ofta finns bara ett parti att rösta på, eller så fuskar man med rösterna så att ledaren alltid vinner med nästan 100 %.\n* Rättsosäkerhet: Polisen och domstolen lyder under diktatorn. Man kan bli fängslad bara för sina åsikter, och det finns inga rättvisa rättegångar.\n* Rädsla: Människor vågar ofta inte säga vad de tycker ens till sina vänner, eftersom man är rädd för att bli angiven.\n\nMånga diktaturer försöker dölja att de är diktaturer genom att kalla sig för 'demokratiska folkrepubliker', men om de inte följer spelreglerna är de ändå diktaturer.",
+                        concepts: ["Diktator", "Censur", "Rättsosäkerhet", "Angiveri"],
+                        mustKnow: ["Kännetecken för en diktatur.", "Hur censur används som maktmedel.", "Varför människor lever i rädsla i diktaturer."],
+                        summary: ["En eller få personer bestämmer allt.", "Ingen yttrandefrihet eller fri media.", "Rädsla och kontroll hindrar protester."],
+                        test: [{q: "Vad kallas statlig kontroll av information?", a: "Censur"}, {q: "Vem styr domstolen i en diktatur?", a: "Diktatorn eller staten"}],
+                        reasoning: "Varför tror du att diktatorer är så rädda för fritt internet och sociala medier?",
+                        application: "Jämför en dag i en skola i en demokrati mot en skola i en diktatur."
+                    },
+                    {
+                        title: "D: Mänskliga rättigheter", page: "80–81",
+                        text: "Boksida: 80–81\n\nDemokrati hänger tätt ihop med mänskliga rättigheter. FN (Förenta Nationerna) har skrivit ner regler som gäller för alla människor i hela världen. De kallas för den allmänna förklaringen om de mänskliga rättigheterna. Några av de viktigaste är:\n\n* Alla människor är födda fria och lika i värde.\n* Ingen får torteras eller behandlas omänskligt.\n* Alla har rätt till liv, frihet och personlig säkerhet.\n* Alla har rätt att delta i sitt lands styre genom fria val.\n* Alla har rätt till utbildning.\n\nFör barn finns även Barnkonventionen, som säger att barnets bästa alltid ska komma i första hand. Att leva i en demokrati innebär inte bara rättigheter utan också ett ansvar – att vi respekterar varandras olikheter och åsikter, även när vi inte håller med varandra.",
+                        concepts: ["FN", "Lika värde", "Barnkonventionen", "Ansvar"],
+                        mustKnow: ["Att mänskliga rättigheter gäller alla.", "Några exempel på rättigheter.", "Barnkonventionens roll."],
+                        summary: ["Rättigheterna skyddar individen mot förtryck.", "FN har skapat de globala reglerna.", "Barn har särskilda rättigheter via Barnkonventionen."],
+                        test: [{q: "Vad står FN för?", a: "Förenta Nationerna"}, {q: "Vilka gäller mänskliga rättigheter för?", a: "Alla människor"}],
+                        reasoning: "Kan man ha en demokrati utan mänskliga rättigheter? Varför/varför inte?",
+                        application: "Välj en artikel ur Barnkonventionen och förklara varför den är viktig för dig."
                     }
                 ]
             },
             {
                 id: 6, title: "Block 6: Riksdag & Regering", icon: "landmark", sections: [
                     {
-                        title: "A: Hur Sverige styrs", page: "84–87",
-                        text: "Riksdagen har 349 ledamöter valda av folket. De stiftar lagar och beslutar om budgeten. Regeringen styr landet och ser till att riksdagens beslut blir verklighet. Statsministern leder regeringen. Vi har parlamentarism, vilket betyder att regeringen måste ha stöd av riksdagen. Regeringen lämnar förslag till riksdagen (propositioner) och ledamöter kan lämna egna förslag (motioner).",
-                        concepts: ["Ledamot", "Budget", "Parlamentarism", "Proposition"],
-                        mustKnow: ["Riksdagen har 349 ledamöter.", "Skillnad på riksdag och regering.", "Budgetens betydelse."],
-                        summary: ["Riksdagen stiftar lagar.", "Regeringen genomför besluten.", "Folket har makten via val."],
-                        test: [{q: "Hur många sitter i riksdagen?", a: "349"}, {q: "Vem leder regeringen?", a: "Statsministern"}],
-                        reasoning: "Varför bestämmer riksdagen över pengarna?",
-                        application: "Hitta namnet på tre partier."
+                        title: "A: Riksdagen", page: "84–85",
+                        text: "Boksida: 84–85\n\nRiksdagen är folkets främsta företrädare och hjärtat i vår demokrati. Varje fjärde år väljer svenska folket 349 ledamöter till riksdagen. Det finns åtta partier i riksdagen idag. Riksdagens två absolut viktigaste uppgifter är:\n\n1. Att stifta lagar: Det betyder att de röstar ja eller nej till förslag på nya lagar eller ändringar i gamla lagar. Innan de röstar debatterar de i kammaren.\n2. Att besluta om statens budget: Budgeten är en plan för hur alla våra skattepengar ska användas. Riksdagen bestämmer hur mycket pengar som ska gå till skolan, polisen, sjukhusen, försvaret och att bygga nya vägar. Det rör sig om hundratals miljarder kronor varje år.\n\nRiksdagen har också till uppgift att kontrollera regeringen. Om riksdagen inte längre litar på statsministern kan de tvinga regeringen att avgå genom en misstroendeförklaring.",
+                        concepts: ["Ledamot", "Kammaren", "Budget", "Stifta lagar", "Misstroende"],
+                        mustKnow: ["Antal ledamöter (349).", "Riksdagens två huvuduppgifter.", "Hur ofta det är val."],
+                        summary: ["Riksdagen representerar folket.", "De bestämmer om lagar och pengar.", "De kontrollerar regeringen."],
+                        test: [{q: "Hur många ledamöter finns i riksdagen?", a: "349 stycken"}, {q: "Vad är budgeten?", a: "En plan för statens pengar"}],
+                        reasoning: "Varför är det viktigt att riksdagen (folket) bestämmer över budgeten och inte bara kungen eller statsministern?",
+                        application: "Namnge tre partier som sitter i riksdagen just nu."
                     },
                     {
-                        title: "B: Grundlagarna", page: "85",
-                        text: "Sverige har fyra grundlagar som skyddar demokratin: Regeringsformen, Successionsordningen, Tryckfrihetsförordningen och Yttrandefrihetsgrundlagen. De är extra svåra att ändra – det krävs två riksdagsbeslut med ett val emellan. Regeringsformen är den viktigaste eftersom den beskriver hur hela Sverige styrs och våra rättigheter.",
-                        concepts: ["Grundlag", "Regeringsformen", "Succession"],
-                        mustKnow: ["Namnen på de fyra grundlagarna.", "Hur man ändrar en grundlag."],
-                        summary: ["Grundlagar står över vanliga lagar.", "De skyddar demokratin.", "Ändras bara med val emellan."],
-                        test: [{q: "Vilken är viktigast?", a: "Regeringsformen"}, {q: "Hur många grundlagar?", a: "Fyra"}],
-                        reasoning: "Varför är de svåra att ändra?",
-                        application: "Gör ett schema över grundlagarna."
+                        title: "B: Regeringen", page: "85–86",
+                        text: "Boksida: 85–86\n\nRegeringen har till uppgift att styra landet. De ska se till att de beslut som riksdagen har fattat blir verklighet i samhället. Regeringen leds av statsministern. Hen väljer sedan ut ett antal ministrar som ansvarar för olika områden. Det finns t.ex. en utbildningsminister (skolan), en finansminister (pengar) och en utrikesminister (kontakter med andra länder).\n\nSverige styrs genom parlamentarism. Det betyder att regeringen alltid måste ha stöd av riksdagen för att få styra. Om regeringen inte har majoriteten med sig i riksdagen blir det svårt att få igenom sina förslag. Regeringen lämnar ofta förslag på nya lagar till riksdagen – dessa förslag kallas för propositioner. Regeringen styr också alla statliga myndigheter, som t.ex. Polisen, Skolverket och Trafikverket, som utför det praktiska arbetet i landet.",
+                        concepts: ["Statsminister", "Minister", "Parlamentarism", "Proposition", "Myndighet"],
+                        mustKnow: ["Statsministerns roll.", "Skillnad på riksdag och regering.", "Vad en myndighet gör."],
+                        summary: ["Regeringen genomför riksdagens beslut.", "Statsministern leder ministrarna.", "Regeringen lämnar förslag (propositioner)."],
+                        test: [{q: "Vem leder regeringen?", a: "Statsministern"}, {q: "Vem väljer ministrarna?", a: "Statsministern"}],
+                        reasoning: "Vad skulle hända om regeringen började fatta beslut som riksdagen röstat nej till?",
+                        application: "Ta reda på vem som är utbildningsminister i Sverige just nu."
+                    },
+                    {
+                        title: "C: Från förslag till lag", page: "86",
+                        text: "Boksida: 86\n\nAtt skapa en ny lag är en noggrann process som sker i flera steg:\n\n1. Förslaget lämnas in: Om det kommer från regeringen kallas det proposition. Om det kommer från en riksdagsledamot kallas det motion.\n2. Utskottet arbetar: Innan riksdagen röstar skickas förslaget till ett utskott. Ett utskott är en mindre grupp ledamöter som är experter på just det ämnet (t.ex. miljöutskottet). De skriver ett betänkande där de berättar vad de tycker om förslaget.\n3. Debatt och röstning: Alla ledamöter samlas i kammaren för att debattera. Sedan trycker de på knappar för att rösta ja, nej eller avstå. För att det ska bli en lag krävs en majoritet (mer än hälften).\n4. Regeringen verkställer: Om förslaget röstas igenom får regeringen veta det. De ser till att lagen skrivs in i lagboken och att myndigheterna börjar följa den.\n\nDetta system gör att lagarna är väl genomtänkta och att folket via sina representanter har sista ordet.",
+                        concepts: ["Motion", "Utskott", "Betänkande", "Verkställa"],
+                        mustKnow: ["Skillnad på proposition och motion.", "Utskottens roll.", "Stegen i lagstiftningen."],
+                        summary: ["Proposition = Regeringens förslag, Motion = Ledamotens förslag.", "Utskotten förbereder besluten.", "Majoriteten i kammaren avgör."],
+                        test: [{q: "Vad är en proposition?", a: "Förslag från regeringen"}, {q: "Var arbetar experterna?", a: "I utskotten"}],
+                        reasoning: "Varför tror du att förslagen skickas till utskott istället för att alla röstar direkt?",
+                        application: "Hitta på en egen 'klassmotion' om en regel ni vill ha i skolan."
+                    },
+                    {
+                        title: "D: Grundlagarna", page: "87",
+                        text: "Boksida: 87\n\nSverige har fyra grundlagar som är viktigare än alla andra lagar. De fungerar som ett skydd för vår demokrati och är extra svåra att ändra. För att ändra en grundlag krävs att riksdagen fattar två likadana beslut med ett riksdagsval emellan. De fyra grundlagarna är:\n\n1. Regeringsformen: Den viktigaste lagen. Den beskriver hur Sverige ska styras och vilka rättigheter vi har (t.ex. religionsfrihet).\n2. Successionsordningen: Bestämmer vem som blir statschef, alltså kung eller drottning.\n3. Tryckfrihetsförordningen: Ger oss rätt att skriva och trycka vad vi vill i tidningar och böcker utan att staten kollar det först.\n4. Yttrandefrihetsgrundlagen: Samma som tryckfrihet, fast gäller för radio, TV, film och internet.\n\nSverige är en konstitutionell monarki. Det betyder att vi har en kung, men han har ingen politisk makt. Han representerar bara Sverige. Makten finns hos folket genom riksdagen.",
+                        concepts: ["Grundlag", "Regeringsformen", "Succession", "Monarki"],
+                        mustKnow: ["Namnen på de fyra grundlagarna.", "Varför de är svåra att ändra.", "Statschefens roll i Sverige."],
+                        summary: ["Grundlagarna skyddar demokratin.", "Ändras bara med val emellan.", "Regeringsformen styr hur makt fördelas."],
+                        test: [{q: "Hur många grundlagar har Sverige?", a: "Fyra stycken"}, {q: "Vilken är viktigast?", a: "Regeringsformen"}],
+                        reasoning: "Varför har vi gjort det så krångligt att ändra just grundlagarna?",
+                        application: "Gör ett schema över grundlagarna och vad de skyddar."
                     }
                 ]
             },
@@ -205,31 +231,41 @@
                 id: 7, title: "Block 7: Framtiden", icon: "briefcase", sections: [
                     {
                         title: "A: Samhällsförändring", page: "29–30",
-                        text: "Arbetsmarknaden har ändrats enormt. För 200 år sedan jobbade nästan alla med jordbruk på landet. När industrialiseringen kom byggdes fabriker och folk flyttade till städerna. Idag lever vi i ett tjänstesamhälle där de flesta jobbar inom vård, skola eller teknik. Utbildning har blivit mycket viktigare för att få ett jobb idag än förr. Vi tillverkar inte allt själva längre utan köper tjänster av varandra.",
-                        concepts: ["Industrialisering", "Tjänstesamhälle", "Utbildning"],
+                        text: "Boksida: 29–30\n\nArbetsmarknaden i Sverige har ändrats enormt. För 200 år sedan jobbade nästan alla svenskar med jordbruk, skogsbruk eller fiske. Man bodde på landet och tillverkade det mesta man behövde själv. När industrialiseringen kom byggdes fabriker och folk flyttade till städerna för att arbeta vid maskiner. Idag har vi gått in i nästa steg. Nu jobbar de flesta istället med att utföra tjänster inom vård, skola, handel eller teknik. Denna utveckling kallas för att vi har gått från ett industrisamhälle till ett tjänstesamhälle. Utbildning har blivit mycket viktigare för att få ett jobb idag än vad det var förr. Vi tillverkar inte allt själva längre utan köper tjänster av varandra för att underlätta vardagen. Vi lever i en tid där samhället ändras snabbare än någonsin tidigare.",
+                        concepts: ["Industrialisering", "Tjänstesamhälle", "Arbetsmarknad", "Utbildning"],
                         mustKnow: ["Från jordbruk till tjänster.", "Vikten av utbildning idag.", "Städernas växt."],
                         summary: ["Förr jobbade folk med jordbruk.", "Idag jobbar de flesta med tjänster.", "Jobben kräver mer kunskap idag."],
                         test: [{q: "Vad jobbade folk med förr?", a: "Jordbruk"}, {q: "Vad kallas dagens samhälle?", a: "Tjänstesamhälle"}],
                         reasoning: "Hur såg dina morföräldrars jobb ut?",
-                        application: "Intervjua en vuxen om deras jobb."
+                        application: "Intervjua en vuxen om deras första jobb."
                     },
                     {
-                        title: "B: Robotar & AI", page: "31–34",
-                        text: "Tekniken ändrar jobben genom mekanisering (maskiner tar tunga lyft) och digitalisering (datorer styr). Robotar finns i fabriker och jobbar dygnet runt. AI (artificiell intelligens) är program som kan lära sig själva. AI används i vården för att hitta sjukdomar och styr självkörande bilar. Yrken med mänsklig kontakt (lärare, frisör) kommer finnas kvar, men verktygen de använder kommer ändras.",
-                        concepts: ["Mekanisering", "AI", "Robotisering"],
-                        mustKnow: ["Teknikens påverkan på jobb.", "Vad AI står för.", "AI i vården."],
-                        summary: ["Robotar tar tunga jobb.", "AI är smarta datorer.", "Mänskliga yrken behövs fortfarande."],
-                        test: [{q: "Vad står AI för?", a: "Artificiell intelligens"}, {q: "Vilka jobb försvinner?", a: "Tunga/enformiga"}],
-                        reasoning: "Kan en robot bli din lärare?",
+                        title: "B: Mekanisering & Robotar", page: "31–32",
+                        text: "Boksida: 31–32\n\nTekniken ändrar jobben genom mekanisering (maskiner tar tunga lyft) och digitalisering (datorer styr). Robotar finns i fabriker och jobbar dygnet runt utan att bli trötta. En robot behöver inte fika, sova eller ha semester. Det gör att varor kan tillverkas snabbare och billigare. Men det betyder också att många tunga och farliga jobb försvinner. Samtidigt skapas nya jobb för de som kan bygga och programmera robotarna. Tekniken gör oss effektivare men kräver att vi lär oss nya saker hela tiden för att kunna jobba ihop med maskinerna.",
+                        concepts: ["Mekanisering", "Robotisering", "Effektivitet"],
+                        mustKnow: ["Vad mekanisering betyder.", "Fördelar med robotar.", "Att nya jobb skapas."],
+                        summary: ["Maskiner tar tunga lyft.", "Robotar jobbar dygnet runt.", "Nya jobb kräver teknik-kunskap."],
+                        test: [{q: "Varför gillar fabriker robotar?", a: "De blir inte trötta"}, {q: "Vad kallas maskinhjälp?", a: "Mekanisering"}],
+                        reasoning: "Finns det jobb som en robot aldrig kan göra?",
                         application: "Leta efter en robot i din vardag."
                     },
                     {
-                        title: "C: Barn & Arbete", page: "40",
-                        text: "I Sverige skyddas barn av arbetsmiljölagen. Barn får aldrig ha farliga jobb eller jobb som hindrar skolan. Innan 13 år får man bara göra lätta jobb (sälja jultidningar, plocka bär) med föräldrars lov. Mellan 13 och 15 år får man ha lättare extrajobb men inte på natten. FN:s barnkonvention förbjuder barnarbete, men i vissa länder tvingas barn ändå jobba i gruvor istället för att gå i skolan.",
-                        concepts: ["Arbetsmiljölagen", "Barnarbete", "Barnkonventionen"],
-                        mustKnow: ["Regler för barn under 13 år.", "Skolan går alltid först.", "Vad barnarbete är."],
-                        summary: ["Lagar skyddar barn i Sverige.", "Skolan är viktigast.", "Barnarbete är förbjudet av FN."],
-                        test: [{q: "Vilken lag skyddar barn?", a: "Arbetsmiljölagen"}, {q: "Får jobb hindra skolan?", a: "Nej"}],
+                        title: "C: Digitalisering & AI", page: "33–34",
+                        text: "Boksida: 33–34\n\nDigitalisering handlar om att datorer och smarta program styr maskinerna och vår vardag. En enorm förändring är AI (artificiell intelligens). AI är datorprogram som kan lära sig saker och lösa problem, nästan som en mänsklig hjärna. AI används redan i sjukvården för att hitta sjukdomar, som hudcancer, och styr självkörande bilar. Yrken med mänsklig kontakt (lärare, frisör) kommer finnas kvar, men verktygen de använder kommer ändras. AI hjälper oss att bli snabbare men vi måste fortfarande förstå hur tekniken fungerar så att vi kan styra den rätt.",
+                        concepts: ["AI", "Algoritmer", "Diagnos"],
+                        mustKnow: ["Vad AI står för.", "AI i sjukvården.", "Yrken som blir kvar."],
+                        summary: ["AI lär sig av data.", "AI hjälper läkare.", "Människor behövs för empati."],
+                        test: [{q: "Vad står AI för?", a: "Artificiell intelligens"}, {q: "Var används AI redan?", a: "Sjukvården"}],
+                        reasoning: "Kommer en robot kunna vara din lärare?",
+                        application: "Ge exempel på när du använder AI (t.ex. Siri/Google)."
+                    },
+                    {
+                        title: "D: Barn & Arbete", page: "40",
+                        text: "Boksida: 40\n\nI Sverige skyddas barn av arbetsmiljölagen. Barn får aldrig ha farliga jobb eller jobb som hindrar skolan. Innan 13 år får man bara göra lätta jobb (sälja jultidningar, plocka bär) med föräldrars lov. Mellan 13 och 15 år får man ha lättare extrajobb men inte på natten. FN:s barnkonvention förbjuder barnarbete, men i vissa länder tvingas barn ändå jobba i gruvor istället för att gå i skolan. Vi har lagar för att se till att barn får vara barn.",
+                        concepts: ["Arbetsmiljölagen", "Barnarbete", "Rättigheter"],
+                        mustKnow: ["Lagar för barn i Sverige.", "Skolan går först.", "Barnkonventionen."],
+                        summary: ["Lagar skyddar barn i Sverige.", "Skolan är viktigast.", "Barnarbete är förbjudet."],
+                        test: [{q: "Vilken lag skyddar barn?", a: "Arbetsmiljölagen"}, {q: "Får en 11-åring jobba i gruva?", a: "Nej"}],
                         reasoning: "Varför finns lagar om barns arbete?",
                         application: "Lista tre säkra jobb för en 13-åring."
                     }
@@ -258,7 +294,8 @@
             const onDragging = (e) => {
                 if (!isDragging.current) return;
                 const rect = splitRef.current.getBoundingClientRect();
-                const y = (e.clientY || e.touches?.[0].clientY) - rect.top;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                const y = clientY - rect.top;
                 let p = (y / rect.height) * 100;
                 if (p < 15) p = 15; if (p > 85) p = 85;
                 setSplitPercent(p);
@@ -269,14 +306,14 @@
                 const userMsg = { role: 'user', content: queryText || `Hjälp med: ${type}` };
                 setAiChat(prev => [...prev, userMsg]);
 
-                const sysPrompt = `Du är Studiekompisen AI för årskurs 6. DIN TEXTBANK: "${section.text}" (Sida ${section.page}). REGLER: 1) Endast fakta från textbanken. 2) Inga externa fakta. 3) Resonemang: coacha med frågor. 4) Avsluta alltid med "Källa: sida ${section.page}".`;
-                let q = queryText || (type === 'simplify' ? "Förklara texten enklare men behåll fakta." : "Ge ett vardagligt exempel.");
+                const sysPrompt = `Du är Studiekompisen AI för årskurs 6. Du svarar pedagogiskt utifrån texten. DIN TEXTBANK: "${section.text}" (Sida ${section.page}). REGLER: 1) Endast fakta från textbanken. 2) Inga externa fakta. 3) Resonemang: coacha med frågor. 4) Avsluta alltid med "Källa: sida ${section.page}".`;
+                let q = queryText || (type === 'simplify' ? "Förklara texten enklare men behåll all fakta." : "Ge ett vardagligt exempel.");
 
                 try {
                     const res = await fetch(`/.netlify/functions/gemini`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ q, systemPrompt: sysPrompt, model: "gemini-2.5-flash" })
+                        body: JSON.stringify({ q, systemPrompt: sysPrompt, model: MODEL })
                     });
                     const data = await res.json();
                     const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Kunde inte hämta svar.";
@@ -295,7 +332,7 @@
                         <div className="p-8 bg-indigo-700 text-white">
                             <div className="flex items-center gap-3">
                                 <span className="bg-white p-2 rounded-lg text-indigo-700"><i data-lucide="graduation-cap"></i></span>
-                                <h1 className="text-xl font-black uppercase italic leading-none text-left">Studiekompisen</h1>
+                                <h1 className="text-xl font-black uppercase italic leading-none">Studiekompisen</h1>
                             </div>
                             <p className="text-[10px] mt-2 opacity-70 uppercase font-bold tracking-widest text-left">Utkik SO Åk 6</p>
                         </div>
@@ -348,7 +385,7 @@
                                         <div className="mt-14 pt-10 border-t-2 border-slate-50 text-left">
                                             <p className="text-[10px] font-black text-slate-400 uppercase mb-5">Begrepp (klicka för förklaring):</p>
                                             <div className="flex flex-wrap gap-2 text-left">
-                                                {section.concepts.map((c, i) => <button key={i} onClick={() => askAI('concept', c)} className="px-5 py-2.5 bg-indigo-50 text-indigo-700 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all shadow-sm border border-indigo-100">{c}</button>)}
+                                                {section.concepts.map((c, i) => <button key={i} onClick={() => askAI('concept', c)} className="px-5 py-2.5 bg-indigo-50 text-indigo-700 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100">{c}</button>)}
                                             </div>
                                         </div>
                                     </section>
@@ -362,8 +399,8 @@
                                     {showDetail && (
                                         <div className="bg-slate-50 p-12 rounded-[3.5rem] border-2 border-slate-100 animate-fade-in text-left">
                                             {showDetail === 'summary' && <ul className="space-y-4">{section.summary.map((s, i) => <li key={i} className="bg-white p-7 rounded-3xl font-bold flex gap-5 shadow-sm leading-tight border border-slate-100 text-left"><span className="text-indigo-500 font-black">0${i+1}</span>{s}</li>)}</ul>}
-                                            {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{section.test.map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800 text-left text-left">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left">Visa svar</button></div>)}</div>}
-                                            {showDetail === 'reasoning' && <div className="bg-white p-12 rounded-[3rem] italic font-black text-2xl text-slate-700 text-center leading-relaxed text-left text-center">"{section.reasoning}"<button onClick={() => askAI('develop')} className="bg-emerald-600 text-white px-10 py-4 rounded-full text-xs font-black mt-10 uppercase tracking-widest block mx-auto text-center shadow-lg">Hjälp mig tänka vidare</button></div>}
+                                            {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{section.test.map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800 text-left">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600 font-black'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left">Visa svar</button></div>)}</div>}
+                                            {showDetail === 'reasoning' && <div className="bg-white p-12 rounded-[3rem] italic font-black text-2xl text-slate-700 text-center leading-relaxed">"{section.reasoning}"<button onClick={() => askAI('develop')} className="bg-emerald-600 text-white px-10 py-4 rounded-full text-xs font-black mt-10 uppercase tracking-widest block mx-auto text-center shadow-lg">Hjälp mig tänka vidare</button></div>}
                                         </div>
                                     )}
 
@@ -376,13 +413,12 @@
 
                             <div className="drag-handle" onMouseDown={onStartDragging} onTouchStart={onStartDragging}></div>
 
-                            <div className="panel-ai custom-scrollbar p-8 text-left">
+                            <div className="panel-ai custom-scrollbar p-8">
                                 <div className="max-w-4xl mx-auto w-full space-y-6 text-left">
                                     <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1 text-left">
-                                        <button onClick={() => askAI('simplify')} className="bg-indigo-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left"><i data-lucide="sparkles" className="w-4 h-4"></i> Förklara enklare</button>
-                                        <button onClick={() => askAI('example')} className="bg-slate-900 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left"><i data-lucide="message-square" className="w-4 h-4 text-left text-left"></i> Ge exempel</button>
+                                        <button onClick={() => askAI('simplify')} className="bg-indigo-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0"><i data-lucide="sparkles" className="w-4 h-4"></i> Förklara enklare</button>
+                                        <button onClick={() => askAI('example')} className="bg-slate-900 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left"><i data-lucide="message-square" className="w-4 h-4"></i> Ge exempel</button>
                                     </div>
-
                                     {aiChat.map((m, i) => (
                                         <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}>
                                             <div className={`max-w-[85%] p-7 rounded-[2rem] text-sm font-bold shadow-xl leading-relaxed ${m.role === 'user' ? 'bg-indigo-600 text-white rounded-tr-none text-right' : 'bg-white border-2 border-slate-50 text-slate-800 rounded-tl-none text-left'}`}>
@@ -391,7 +427,7 @@
                                             </div>
                                         </div>
                                     ))}
-                                    {isLoading && <div className="flex justify-start text-left"><div className="bg-white p-6 rounded-[2rem] flex items-center gap-5 shadow-xl text-left"><div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin text-left text-left"></div><span className="text-[10px] font-black text-indigo-400 uppercase animate-pulse italic text-left">Studerar boken...</span></div></div>}
+                                    {isLoading && <div className="flex justify-start text-left"><div className="bg-white p-6 rounded-[2rem] flex items-center gap-5 shadow-xl text-left"><div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div><span className="text-[10px] font-black text-indigo-400 uppercase animate-pulse italic text-left">Studerar boken...</span></div></div>}
                                 </div>
                             </div>
                         </div>
@@ -400,19 +436,19 @@
                     {isTeacherMode && (
                         <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[100] flex items-center justify-center p-10">
                             <div className="bg-white w-full max-w-6xl h-[90vh] rounded-[5rem] flex flex-col overflow-hidden border-4 border-white shadow-2xl">
-                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left">
-                                    <h2 className="text-4xl font-black uppercase italic text-slate-900 leading-none text-left">Kontrollpanel</h2>
+                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left text-left">
+                                    <h2 className="text-4xl font-black uppercase italic text-slate-900 leading-none">Kontrollpanel</h2>
                                     <button onClick={() => setIsTeacherMode(false)} className="bg-white p-5 rounded-full border-2 border-slate-100 hover:text-red-500 transition-all shadow-sm text-left"><i data-lucide="x"></i></button>
                                 </header>
                                 <div className="flex-1 overflow-y-auto p-14 custom-scrollbar text-left text-left">
-                                    <table className="w-full text-left text-left">
-                                        <thead className="bg-slate-50 text-[11px] font-black text-slate-500 uppercase italic border-b-4 border-white text-left text-left"><tr><th className="p-10">Sida</th><th className="p-10">Elevens Input</th><th className="p-10">AI-svar</th></tr></thead>
-                                        <tbody className="text-base font-bold text-slate-600 divide-y-4 divide-slate-50 text-left text-left">
+                                    <table className="w-full text-left text-left text-left">
+                                        <thead className="bg-slate-50 text-[11px] font-black text-slate-500 uppercase italic border-b-4 border-white"><tr><th className="p-10 text-left">Sida</th><th className="p-10 text-left">Input</th><th className="p-10 text-left">Svar</th></tr></thead>
+                                        <tbody className="text-base font-bold text-slate-600 divide-y-4 divide-slate-50 text-left">
                                             {history.map((h, i) => (
                                                 <tr key={i} className="hover:bg-indigo-50/30 transition-colors">
-                                                    <td className="p-10 text-xs font-black italic whitespace-nowrap text-left text-left text-left">SIDA {h.s}</td>
-                                                    <td className="p-10 italic text-slate-900 text-lg text-left text-left">"{h.q}"</td>
-                                                    <td className="p-10 text-sm font-medium opacity-60 leading-relaxed max-w-lg text-left text-left">{h.a}</td>
+                                                    <td className="p-10 text-xs font-black italic whitespace-nowrap">SIDA {h.s}</td>
+                                                    <td className="p-10 italic text-slate-900 text-lg">"{h.q}"</td>
+                                                    <td className="p-10 text-sm font-medium opacity-60 leading-relaxed max-w-lg">{h.a}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -427,7 +463,6 @@
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
-
         setTimeout(() => { if (window.lucide) window.lucide.createIcons(); }, 100);
     </script>
 </body>
