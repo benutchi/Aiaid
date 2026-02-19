@@ -53,7 +53,7 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
         
-        // --- PATCH A: Ändrad modell till gemini-2.5-flash för stabilitet ---
+        // --- PATCH: Stabil modell för skolverksamhet ---
         const MODEL = "gemini-2.5-flash"; 
 
         const BLOCKS = [
@@ -71,7 +71,7 @@
                     },
                     {
                         title: "B: De 4 Källfrågorna", page: "10",
-                        text: "Boksida: 10\n\nFör att granska en källa använder vi källkritik. Det finns fyra viktiga grundfrågor som du alltid ska ha med dig:\n\n1. Äkthet: Är källan vad den utger sig för att vara? Är det ett riktigt brev eller en falsk bild? I den digitala världen kan bilder och filmer enkelt ändras så att de ser äkta ut trots att de är fejk.\n\n2. Tid: När skapades källan? Det är bäst om den skapades precis när något hände. Ju längre tid som går, desto mer glömmer vi bort eller råkar ändra på detaljer i vår berättelse. En person som berättar om något idag som hände för 20 år sedan är inte lika pålitlig som en dagbok skriven samma dag.\n\n3. Beroende: Berättar källan något helt själv eller har den bara skrivit av någon annan? Om tre tidningar skriver samma sak men alla har tagit informationen från samma person, så finns det egentligen bara en enda källa.\n\n4. Syfte (Tendens): Vad vill författaren uppnå? Vill hen informera om sanningen, sälja något eller påverka dig? Om en källas syfte är att påverka kallas det att den har en tendens.",
+                        text: "Boksida: 10\n\nFör att granska en källa använder vi källkritik. Det finns fyra viktiga grundfrågor som du alltid ska ha med dig:\n\n1. Äkthet: Är källan vad den utger sig för att vara? Är det ett riktigt brev eller en falsk bild? I den digitala världen kan bilder och filmer enkelt ändras så att de ser äkta ut trots att de är fejk.\n\n2. Tid: När skapades källan? Det är bäst om den skapades precis när något hände. Ju längre tid som går, desto mer glömmer vi bort eller råkar ändra på detaljer i vår berättelse.\n\n3. Beroende: Berättar källan något helt själv eller har den bara skrivit av någon annan? Om tre tidningar skriver samma sak men alla har tagit informationen från samma person, så finns det egentligen bara en enda källa.\n\n4. Syfte (Tendens): Vad vill författaren uppnå? Vill hen informera om sanningen, sälja något eller påverka dig? Om en källas syfte är att påverka kallas det att den har en tendens.",
                         concepts: ["Äkthet", "Tid", "Beroende", "Tendens"],
                         mustKnow: ["De fyra källfrågorna.", "Tidens påverkan på minnet.", "Vad beroende innebär."],
                         summary: ["Äkthet, Tid, Beroende och Syfte.", "Information nära händelsen är bäst.", "Var vaksam på tendens."],
@@ -98,7 +98,7 @@
                         text: "Boksida: 46–47\n\nNär en person arbetar får hen lön. Men man får inte behålla alla pengar själv. Bruttolön är lönen före skatten är dragen. I Sverige betalar vi inkomstskatt till staten och kommunen, ofta ca 30%. Om en person tjänar 30 000 kr i bruttolön dras ca 9 000 kr i skatt. Det som blir kvar kallas nettolön. Det är nettolönen man använder för att betala mat och hyra. \n\nSkattepengarna går till den offentliga sektorn. Det är saker vi äger tillsammans. Det betalar för skolor, lärare, sjukhus, poliser och vägar. Det betalar också för domstolar och försvaret. Utöver lön kan ett hushåll få bidrag, som barnbidrag som föräldrar får varje månad. Genom skatten kan vi ha en bra service som fungerar för alla, oavsett inkomst.",
                         concepts: ["Bruttolön", "Nettolön", "Offentlig sektor", "Inkomstskatt"],
                         mustKnow: ["Brutto vs Netto.", "Skatten är ca 30%.", "Vart skattepengarna går."],
-                        summary: ["Bruttolön = före skatt, Netto = efter skatt.", "Skatten betalar skola och vård.", "Offentliga sektorn är gemensam."],
+                        summary: ["Bruttolön = före skatt, Netto = efter skatt.", "Skatten betalar skola och vård.", "Den offentliga sektorn är gemensam."],
                         test: [{q: "Vad kallas lönen före skatt?", a: "Bruttolön"}, {q: "Vart går skatten?", a: "Offentlig sektor"}],
                         reasoning: "Varför betalar vi inkomstskatt?",
                         application: "Räkna ut netto om brutto är 100 kr."
@@ -110,12 +110,12 @@
                     {
                         title: "A: Banken som mellanhand", page: "52",
                         text: "Boksida: 52\n\nBanker fungerar som en mellanhand mellan sparare och lånare. De pengar som en bank har kommer från människor och företag som sparar sina pengar där. När du sätter in pengar lånar du egentligen ut dem till banken. Banken samlar ihop pengar från många sparare till en stor summa. Denna stora summa kan banken sedan låna ut till andra, t.ex. till familjer som vill köpa ett hus eller företag som vill bygga en ny fabrik. Utan banker skulle det vara svårt för vanliga människor att ha råd med dyra saker. Banken granskar noga de som vill låna för att vara säkra på att de kan betala tillbaka. Banken ser på så sätt till att pengarna rör sig i samhället.",
-                        concepts: ["Mellanhand", "Sparande", "Låntagare", "Kretslopp"],
-                        mustKnow: ["Banken som mellanhand.", "Sparade pengar finansierar lån.", "Bankens roll för investeringar."],
-                        summary: ["Banken kopplar ihop sparare och lånare.", "Banken tjänar på att flytta pengar.", "Sparande ger trygghet."],
+                        concepts: ["Mellanhand", "Sparande", "Låntagare", "Bank"],
+                        mustKnow: ["Banken som mellanhand.", "Hur sparande blir lån.", "Vikten av bankkontroller."],
+                        summary: ["Banken kopplar ihop sparare och lånare.", "När du sparar lånar du ut till banken.", "Banken lånar ut pengar till hus och företag."],
                         test: [{q: "Vad är bankens roll?", a: "Mellanhand för pengar"}, {q: "Varifrån får banken pengar?", a: "Från folk som sparar"}],
-                        reasoning: "Varför är det viktigt att lita på banken?",
-                        application: "Förklara för en kompis varför hens sparande hjälper andra."
+                        reasoning: "Varför är det viktigt för ett land att folk litar på sina banker?",
+                        application: "Förklara räntegapet för en kompis."
                     }
                 ]
             },
@@ -123,13 +123,13 @@
                 id: 4, title: "Block 4: Lag & Rätt", icon: "scale", sections: [
                     {
                         title: "A: Rättskedjan", page: "62–63",
-                        text: "Boksida: 62–63\n\nProcessen börjar hos polisen som utreder brott och säkrar bevis. Om polisen tror att de hittat den skyldige tar en åklagare över. Åklagaren beslutar om bevisen räcker för en rättegång. I domstolen (tingsrätten) dömer en domare och tre nämndemän (vanliga människor). Den misstänkte kallas tilltalad och har rätt till en försvarare. Om personen döms får hen en påföljd (straff), som böter eller fängelse. För unga mellan 15 och 18 år finns särskilda regler, som ungdomsvård, eftersom syftet är att hjälpa dem tillbaka.",
+                        text: "Boksida: 62–63\n\nProcessen börjar hos polisen som utreder brott och säkrar bevis som fingeravtryck eller filmer. Om polisen tror att de hittat den skyldige tar en åklagare över. Åklagaren beslutar om bevisen räcker för en rättegång. I domstolen (tingsrätten) dömer en domare och tre nämndemän. Nämndemännen är vanliga människor som valts ut för att representera folket. Den misstänkte kallas tilltalad och har rätt till en försvarare (advokat). Om personen döms får hen en påföljd (straff), som böter eller fängelse.",
                         concepts: ["Åklagare", "Nämndeman", "Påföljd", "Tingsrätt"],
-                        mustKnow: ["Stegen i rättskedjan.", "Nämndemännens roll.", "Vad påföljd betyder."],
+                        mustKnow: ["Stegen i rättskedjan.", "Vad en nämndeman är.", "Att påföljd betyder straff."],
                         summary: ["Polisen utreder, domstolen dömer.", "Nämndemän representerar folket.", "Påföljd = straff."],
                         test: [{q: "Vem utreder brott?", a: "Polisen"}, {q: "Vem beslutar om åtal?", a: "Åklagaren"}],
                         reasoning: "Varför har vi nämndemän i domstolen?",
-                        application: "Rita upp stegen i rättskedjan."
+                        application: "Rita upp stegen i rättskedjan som en serie."
                     }
                 ]
             },
@@ -137,22 +137,22 @@
                 id: 5, title: "Block 5: Demokrati", icon: "users", sections: [
                     {
                         title: "A: Vad är demokrati?", page: "75",
-                        text: "Boksida: 75\n\nOrdet demokrati kommer från de grekiska orden 'demos' (folk) och 'kratos' (styre). Det betyder alltså folkstyre. I en demokrati utgår all makt från folket. I Sverige har vi representativ demokrati. Det betyder att vi inte röstar om varje enskild lag själva, utan vi väljer representanter (politiker) till riksdagen som fattar besluten åt oss. \n\nDet finns också direkt demokrati, till exempel när vi har en folkomröstning (som när Sverige röstade om Euro) eller när ni röstar genom handuppräckning i klassrummet. Demokratin startade i antikens Aten för 2500 år sedan. Där fick alla fria män rösta direkt. Men det var ingen perfekt demokrati – kvinnor, slavar och utlänningar fick inte vara med. Idag kämpar vi för att alla vuxna ska ha samma rätt att bestämma.",
-                        concepts: ["Folkstyre", "Representativ", "Direkt demokrati", "Antikens Aten"],
-                        mustKnow: ["Ordets ursprung och betydelse.", "Skillnaden på direkt och representativ.", "Vem som fick rösta i Aten."],
-                        summary: ["Demokrati = Folkstyre.", "Sverige väljer representanter.", "Aten var demokratins födelseplats."],
-                        test: [{q: "Vad betyder 'demos'?", a: "Folk"}, {q: "Vilken typ har Sverige?", a: "Representativ"}],
-                        reasoning: "Varför röstar vi inte om allt via mobilen varje dag?",
-                        application: "Ge ett exempel på direkt demokrati i skolan."
+                        text: "Boksida: 75\n\nOrdet demokrati kommer från grekiskan (demos=folk, kratos=styre). Det betyder folkstyre. I Sverige har vi representativ demokrati: vi väljer politiker som fattar besluten åt oss i riksdagen. Det finns även direkt demokrati, som folkomröstningar eller handuppräckning i klassen. För en fungerande demokrati krävs fria och hemliga val, yttrandefrihet och att alla är lika inför lagen. Motsatsen är diktatur.",
+                        concepts: ["Folkstyre", "Representativ", "Direkt demokrati"],
+                        mustKnow: ["Ordets betydelse.", "Skillnaden på direkt/representativ.", "Vikten av hemliga val."],
+                        summary: ["Demokrati = Folkstyre.", "Vi väljer representanter.", "Motsatsen är diktatur."],
+                        test: [{q: "Vad betyder ordet?", a: "Folkstyre"}, {q: "Vilken typ har Sverige?", a: "Representativ"}],
+                        reasoning: "Varför röstar vi inte om allt via mobilen?",
+                        application: "Ge exempel på direkt demokrati."
                     },
                     {
-                        title: "B: Spelregler & Pelare", page: "76–77",
-                        text: "Boksida: 76–77\n\nFör att ett land ska få kallas för en demokrati krävs mer än bara val. Det finns fyra viktiga grundpelare:\n\n1. Fria och hemliga val: Alla över 18 år får rösta på vad de vill. Att rösterna är hemliga betyder att ingen får se vad du röstar på och ingen får tvinga dig. Valen sker regelbundet.\n2. Yttrandefrihet och tryckfrihet: Du har rätt att tycka, tänka och skriva vad du vill. Staten får inte censurera nyheter eller stänga ner internet för att dölja sanningen.\n3. Rättssäkerhet: Alla är lika inför lagen. Man kan inte straffas utan en rättvis rättegång, och domstolen får inte styras av politiker eller landets ledare.\n4. Majoritetsprincipen: Det förslag som får flest röster vinner. Men man måste samtidigt skydda minoriteter (de som tycker annorlunda) så att de inte förtrycks av de som är flest.\n\nUtan dessa fyra regler är det ingen riktig demokrati.",
-                        concepts: ["Hemliga val", "Rättssäkerhet", "Majoritet", "Minoritet"],
-                        mustKnow: ["De fyra grundpelarna.", "Varför hemliga val är nödvändiga.", "Skillnaden på majoritet och minoritet."],
-                        summary: ["Pelarna skyddar folkets rättigheter.", "Lagen gäller lika för alla.", "Yttrandefrihet är grunden för debatt."],
-                        test: [{q: "Måste man berätta vad man röstat på?", a: "Nej"}, {q: "Vem bestämmer i en röstning?", a: "Majoriteten"}],
-                        reasoning: "Vad händer om en domstol styrs helt av landets ledare?",
+                        title: "B: Spelregler", page: "76–77",
+                        text: "Boksida: 76–77\n\nEn demokrati kräver: 1. Fria och hemliga val (ingen ser vad du röstar). 2. Yttrandefrihet (tyck och skriv vad du vill). 3. Rättssäkerhet (lagen är lika för alla). 4. Majoritetsprincipen (förslaget med flest röster vinner, men minoriteter skyddas). Utan dessa spelregler är det ingen riktig demokrati.",
+                        concepts: ["Hemliga val", "Yttrandefrihet", "Rättssäkerhet", "Majoritet"],
+                        mustKnow: ["De fyra grundpelarna.", "Varför valen ska vara hemliga."],
+                        summary: ["Fria val och yttrandefrihet krävs.", "Lagen skyddar alla.", "Minoriteten har också rättigheter."],
+                        test: [{q: "Får man veta vad nån röstat på?", a: "Nej"}, {q: "Vem bestämmer i en röstning?", a: "Majoriteten"}],
+                        reasoning: "Vad händer om valen inte vore hemliga?",
                         application: "Gör en checklista för ett demokratiskt land."
                     }
                 ]
@@ -160,24 +160,14 @@
             {
                 id: 6, title: "Block 6: Riksdag & Regering", icon: "landmark", sections: [
                     {
-                        title: "A: Riksdagen & Pengarna", page: "84–85",
-                        text: "Boksida: 84–85\n\nRiksdagen har 349 ledamöter valda av folket. Riksdagens två viktigaste uppgifter är att stifta lagar och besluta om statens budget. Budgeten är en plan för hur skattepengarna ska användas. Det handlar om hundratals miljarder som ska fördelas till skola, sjukvård, polis och försvar. Riksdagen kontrollerar också regeringen. Om riksdagen inte längre litar på statsministern kan de rösta för att avsätta regeringen genom en misstroendeförklaring.",
-                        concepts: ["Ledamot", "Statens budget", "Lagstiftning", "Misstroende"],
-                        mustKnow: ["Antal ledamöter (349).", "Huvuduppgifterna lagar och pengar.", "Kontroll av regeringen."],
-                        summary: ["Riksdagen representerar folket.", "De bestämmer om lagar och pengar.", "De kontrollerar regeringen."],
-                        test: [{q: "Hur många sitter i riksdagen?", a: "349"}, {q: "Vad är budgeten?", a: "En plan för pengar"}],
-                        reasoning: "Varför är det viktigt att riksdagen bestämmer över pengarna?",
+                        title: "A: Hur Sverige styrs", page: "84–87",
+                        text: "Boksida: 84–87\n\nRiksdagen har 349 ledamöter valda av folket vart fjärde år. De stiftar lagar och beslutar om budgeten (pengarna). Regeringen styr landet och ser till att besluten blir verklighet. Statsministern leder regeringen. Vi har parlamentarism, vilket betyder att regeringen måste ha stöd av riksdagen. Regeringen lämnar förslag på lagar (propositioner) och ledamöter kan lämna egna förslag (motioner).",
+                        concepts: ["Ledamot", "Budget", "Parlamentarism", "Proposition"],
+                        mustKnow: ["Riksdagen har 349 ledamöter.", "Skillnad på riksdag och regering.", "Budgetens betydelse."],
+                        summary: ["Riksdagen stiftar lagar.", "Regeringen genomför besluten.", "Folket har makten via val."],
+                        test: [{q: "Hur många sitter i riksdagen?", a: "349"}, {q: "Vem leder regeringen?", a: "Statsministern"}],
+                        reasoning: "Varför bestämmer riksdagen över pengarna?",
                         application: "Namnge tre partier i riksdagen."
-                    },
-                    {
-                        title: "B: Från Förslag till Lag", page: "86",
-                        text: "Boksida: 86\n\nAtt skapa en ny lag tar tid. Det börjar med ett förslag. Om förslaget kommer från regeringen kallas det proposition. Om det kommer från en riksdagsledamot kallas det motion. Förslaget skickas först till ett utskott (experter på området) som skriver ett betänkande. Sedan debatteras förslaget i kammaren innan de 349 ledamöterna röstar. Om en majoritet röstar ja, ser regeringen till att lagen börjar gälla.",
-                        concepts: ["Proposition", "Motion", "Utskott", "Kammaren"],
-                        mustKnow: ["Skillnad på proposition och motion.", "Utskottens roll.", "Hur röstningen går till."],
-                        summary: ["Proposition = Regering, Motion = Ledamot.", "Utskotten förbereder besluten.", "Majoriteten avgör."],
-                        test: [{q: "Vad är en proposition?", a: "Förslag från regeringen"}, {q: "Var arbetar experterna?", a: "I utskotten"}],
-                        reasoning: "Varför skickas förslag till utskott istället för att rösta direkt?",
-                        application: "Hitta på en egen 'klassmotion'."
                     }
                 ]
             },
@@ -185,17 +175,17 @@
                 id: 7, title: "Block 7: Framtiden", icon: "briefcase", sections: [
                     {
                         title: "A: Samhällsförändring", page: "29–30",
-                        text: "Boksida: 29–30\n\nArbetsmarknaden i Sverige har ändrats enormt. För 200 år sedan jobbade nästan alla svenskar med jordbruk. Man bodde på landet och tillverkade det mesta själv. När industrialiseringen kom byggdes fabriker och folk flyttade till städerna för att arbeta vid maskiner. Idag lever vi i ett tjänstesamhälle där de flesta jobbar inom vård, skola, handel eller teknik. Utbildning har blivit mycket viktigare för att få ett jobb idag än förr.",
+                        text: "Boksida: 29–30\n\nArbetsmarknaden i Sverige har ändrats enormt. För 200 år sedan jobbade nästan alla svenskar med jordbruk. När industrialiseringen kom byggdes fabriker och folk flyttade till städerna. Idag lever vi i ett tjänstesamhälle där de flesta jobbar inom vård, skola eller teknik. Utbildning har blivit mycket viktigare för att få ett jobb idag än förr. Vi köper tjänster av varandra.",
                         concepts: ["Industrialisering", "Tjänstesamhälle", "Utbildning"],
                         mustKnow: ["Från jordbruk till tjänster.", "Vikten av utbildning idag.", "Städernas växt."],
                         summary: ["Förr jobbade folk med jordbruk.", "Idag jobbar de flesta med tjänster.", "Jobben kräver mer kunskap idag."],
                         test: [{q: "Vad jobbade folk med förr?", a: "Jordbruk"}, {q: "Vad kallas dagens samhälle?", a: "Tjänstesamhälle"}],
                         reasoning: "Hur såg dina morföräldrars jobb ut?",
-                        application: "Intervjua en vuxen om deras första jobb."
+                        application: "Intervjua en vuxen om deras jobb."
                     },
                     {
                         title: "B: Robotar & AI", page: "31–34",
-                        text: "Boksida: 31–34\n\nTekniken ändrar jobben genom mekanisering (maskiner tar tunga lyft) och digitalisering (datorer styr). Robotar finns i fabriker och jobbar dygnet runt utan att bli trötta. AI (artificiell intelligens) är program som kan lära sig själva. AI används redan i sjukvården för att hitta sjukdomar, som hudcancer, och styr självkörande bilar. Yrken med mänsklig kontakt (lärare, frisör) kommer finnas kvar, men verktygen de använder kommer ändras.",
+                        text: "Boksida: 31–34\n\nTekniken ändrar jobben genom mekanisering (maskiner tar tunga lyft) och digitalisering (datorer styr). Robotar finns i fabriker och jobbar dygnet runt. AI (artificiell intelligens) är program som kan lära sig själva. AI används redan i sjukvården för att hitta sjukdomar, som hudcancer, och styr självkörande bilar. Yrken med mänsklig kontakt (lärare, frisör) kommer finnas kvar.",
                         concepts: ["Mekanisering", "AI", "Robotisering"],
                         mustKnow: ["Teknikens påverkan på jobb.", "Vad AI står för.", "AI i sjukvården."],
                         summary: ["Robotar tar tunga jobb.", "AI är smarta datorer.", "Mänskliga yrken behövs fortfarande."],
@@ -241,10 +231,8 @@
                 setIsLoading(true);
                 
                 const userMsgText = queryText || (type === 'simplify' ? 'Förenkla' : type === 'deepen' ? 'Fördjupa' : 'Exempel');
-                const userMsg = { role: 'user', content: userMsgText };
-                setAiChat(prev => [...prev, userMsg]);
-
-                // --- PATCH B: Kapa textbanken till max 8000 tecken ---
+                
+                // PATCH B: Kapa textbanken för AI-anropet för att undvika krasch vid långa texter
                 const TEXTBANK = (section.text || "").slice(0, 8000);
 
                 let sysPrompt = "";
@@ -268,23 +256,28 @@
                         body: JSON.stringify({ q, systemPrompt: sysPrompt, model: MODEL })
                     });
                     
-                    // --- PATCH E: Debug-stöd om fetch misslyckas ---
                     if (!res.ok) {
-                        const errText = await res.text();
-                        throw new Error(`Serverfel (HTTP ${res.status}): ${errText.substring(0, 100)}`);
+                        const errBody = await res.text();
+                        throw new Error(`Serverfel (HTTP ${res.status}): ${errBody.substring(0, 100)}`);
                     }
                     
                     const data = await res.json();
-                    const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "AI-motorn gav inget text-svar. Prova igen!";
+                    const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "AI-motorn gav inget svar.";
                     
-                    setAiChat(prev => [...prev, { role: 'ai', content: aiResponse }]);
+                    // Lägg till med ett unikt ID för att kunna stänga specifika rutor
+                    const newMsg = { id: Date.now(), role: 'ai', content: aiResponse, query: userMsgText };
+                    setAiChat(prev => [...prev, newMsg]);
                     setHistory(prev => [...prev, { s: section.page, q: q, a: aiResponse }]);
                 } catch (err) {
-                    console.error("AI Error:", err);
-                    setAiChat(prev => [...prev, { role: 'ai', content: `Kunde inte hämta ett svar från AI-motorn. Fel: ${err.message}. Se till att appen körs via Netlify.` }]);
+                    const errorMsg = { id: Date.now(), role: 'error', content: `Kunde inte hämta svar (${err.message}).` };
+                    setAiChat(prev => [...prev, errorMsg]);
                 } finally {
                     setIsLoading(false);
                 }
+            };
+
+            const removeMsg = (id) => {
+                setAiChat(prev => prev.filter(m => m.id !== id));
             };
 
             return (
@@ -299,7 +292,7 @@
                             </div>
                             <p className="text-[10px] mt-2 opacity-70 uppercase font-bold tracking-widest text-left">Utkik SO Åk 6</p>
                         </div>
-                        <nav className="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-1 text-left">
+                        <nav className="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-1 text-left text-left text-left">
                             {BLOCKS.map((b, i) => (
                                 <button key={i} onClick={() => { setActiveBlock(i); setActiveSection(0); setAiChat([]); }}
                                     className={`w-full flex items-center gap-3 p-4 rounded-2xl transition-all font-bold text-xs ${activeBlock === i ? 'bg-indigo-50 text-indigo-700' : 'text-slate-500 hover:bg-slate-50'}`}>
@@ -309,7 +302,7 @@
                             ))}
                         </nav>
                         <div className="p-4 border-t">
-                            <button onClick={() => setIsTeacherMode(!isTeacherMode)} className="w-full p-3 rounded-xl bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest flex justify-between items-center text-left">
+                            <button onClick={() => setIsTeacherMode(!isTeacherMode)} className="w-full p-3 rounded-xl bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest flex justify-between items-center text-left text-left">
                                 Lärarlogg <i data-lucide={isTeacherMode ? "eye" : "eye-off"} className="w-3 h-3 text-left"></i>
                             </button>
                         </div>
@@ -319,7 +312,7 @@
                         <header className="bg-white/90 border-b p-4 flex items-center justify-between z-10 shrink-0 text-left">
                             <div className="flex items-center gap-4 overflow-hidden text-left">
                                 <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 shrink-0"><i data-lucide={isSidebarOpen ? "panel-left-close" : "panel-left-open"}></i></button>
-                                <div className="flex gap-2 overflow-x-auto no-scrollbar text-left">
+                                <div className="flex gap-2 overflow-x-auto no-scrollbar text-left text-left text-left">
                                     {block.sections.map((s, i) => (
                                         <button key={i} onClick={() => { setActiveSection(i); setAiChat([]); setShowDetail(null); }}
                                             className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeSection === i ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'}`}>
@@ -331,84 +324,96 @@
                             <div className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase whitespace-nowrap border border-indigo-100 ml-2">Sida {section.page}</div>
                         </header>
 
-                        <div className="split-container text-left">
-                            <div className="panel-text custom-scrollbar text-left" style={{ flexBasis: `${splitPercent}%` }}>
+                        <div className="split-container text-left text-left text-left">
+                            <div className="panel-text custom-scrollbar text-left text-left" style={{ flexBasis: `${splitPercent}%` }}>
                                 <div className="max-w-4xl mx-auto p-8 space-y-12 pb-20 text-left">
-                                    <section className="bg-amber-50 p-10 rounded-[3rem] border-4 border-amber-100 shadow-xl relative overflow-hidden text-left text-left">
+                                    <section className="bg-amber-50 p-10 rounded-[3rem] border-4 border-amber-100 shadow-xl relative overflow-hidden text-left text-left text-left">
                                         <h4 className="text-[10px] font-black text-amber-700 uppercase tracking-widest mb-6 flex items-center gap-2 italic text-left text-left">
                                             <i data-lucide="check-circle-2" className="w-4 h-4 text-left text-left"></i> Detta behöver du kunna
                                         </h4>
-                                        <ul className="space-y-3 text-left">{section.mustKnow.map((m, i) => <li key={i} className="flex gap-4 font-bold text-amber-900 leading-snug text-left"><span className="text-amber-400">▶</span> {m}</li>)}</ul>
+                                        <ul className="space-y-3 text-left text-left">{section.mustKnow.map((m, i) => <li key={i} className="flex gap-4 font-bold text-amber-900 leading-snug text-left text-left"><span className="text-amber-400">▶</span> {m}</li>)}</ul>
                                     </section>
 
-                                    <section className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 relative animate-fade-in text-left">
-                                        <div className="absolute top-0 left-0 w-2 h-full bg-indigo-600"></div>
-                                        <p className="text-2xl leading-[1.8] text-slate-700 font-bold whitespace-pre-wrap text-left">{section.text}</p>
+                                    <section className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 relative animate-fade-in text-left text-left">
+                                        <div className="absolute top-0 left-0 w-2 h-full bg-indigo-600 text-left"></div>
+                                        <p className="text-2xl leading-[1.8] text-slate-700 font-bold whitespace-pre-wrap text-left text-left">{section.text}</p>
                                         <div className="mt-14 pt-10 border-t-2 border-slate-50 text-left">
-                                            <p className="text-[10px] font-black text-slate-400 uppercase mb-5">Begrepp (klicka för förklaring):</p>
-                                            <div className="flex flex-wrap gap-2 text-left">{section.concepts.map((c, i) => <button key={i} onClick={() => askAI('concept', c)} className="px-5 py-2.5 bg-indigo-50 text-indigo-700 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100">{c}</button>)}</div>
+                                            <p className="text-[10px] font-black text-slate-400 uppercase mb-5 text-left text-left">Begrepp (klicka för förklaring):</p>
+                                            <div className="flex flex-wrap gap-2 text-left text-left">{section.concepts.map((c, i) => <button key={i} onClick={() => askAI('concept', c)} className="px-5 py-2.5 bg-indigo-50 text-indigo-700 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100 text-left text-left">{c}</button>)}</div>
                                         </div>
                                     </section>
 
-                                    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 font-black uppercase text-[10px] tracking-widest text-left">
+                                    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 font-black uppercase text-[10px] tracking-widest text-left text-left">
                                         <button onClick={() => setShowDetail('summary')} className="p-10 rounded-[2.5rem] border-4 border-slate-100 bg-white text-slate-400 flex flex-col items-center gap-4 hover:border-indigo-200 transition-all text-center"><i data-lucide="list-checks" className="w-10 h-10 text-left"></i> Sammanfattning</button>
                                         <button onClick={() => setShowDetail('test')} className="p-10 rounded-[2.5rem] border-4 border-slate-100 bg-white text-slate-400 flex flex-col items-center gap-4 hover:border-blue-200 transition-all text-center"><i data-lucide="zap" className="w-10 h-10 text-left text-left"></i> Självtest</button>
                                         <button onClick={() => setShowDetail('reasoning')} className="p-10 rounded-[2.5rem] border-4 border-slate-100 bg-white text-slate-400 flex flex-col items-center gap-4 hover:border-emerald-200 transition-all text-center"><i data-lucide="brain-circuit" className="w-10 h-10 text-left text-left"></i> Resonera</button>
                                     </section>
 
                                     {showDetail && (
-                                        <div className="bg-slate-50 p-12 rounded-[3.5rem] border-2 border-slate-100 animate-fade-in text-left">
-                                            {showDetail === 'summary' && <ul className="space-y-4 text-left">{section.summary.map((s, i) => <li key={i} className="bg-white p-7 rounded-3xl font-bold flex gap-5 shadow-sm border border-slate-100 text-left text-left"><span className="text-indigo-500 font-black">0${i+1}</span>{s}</li>)}</ul>}
-                                            {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">{section.test.map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800 text-left text-left">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600 font-black'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left text-left">Visa svar</button></div>)}</div>}
+                                        <div className="bg-slate-50 p-12 rounded-[3.5rem] border-2 border-slate-100 animate-fade-in text-left text-left">
+                                            {showDetail === 'summary' && <ul className="space-y-4 text-left text-left text-left">{section.summary.map((s, i) => <li key={i} className="bg-white p-7 rounded-3xl font-bold flex gap-5 shadow-sm border border-slate-100 text-left text-left text-left"><span className="text-indigo-500 font-black">0${i+1}</span>{s}</li>)}</ul>}
+                                            {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left text-left text-left">{section.test.map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800 text-left text-left text-left">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600 font-black'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left text-left text-left">Visa svar</button></div>)}</div>}
                                         </div>
                                     )}
 
-                                    <section className="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group text-left text-left">
-                                        <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-6 italic text-left text-left">Tillämpning: Gör detta nu</h4>
-                                        <p className="text-2xl font-bold leading-snug tracking-tight text-left text-left">{section.application || "Läs i boken och svara på frågorna."}</p>
+                                    <section className="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group text-left text-left text-left">
+                                        <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-6 italic text-left text-left text-left text-left text-left">Tillämpning: Gör detta nu</h4>
+                                        <p className="text-2xl font-bold leading-snug tracking-tight text-left text-left text-left text-left">{section.application || "Läs i boken och svara på frågorna."}</p>
                                     </section>
                                 </div>
                             </div>
 
                             <div className="drag-handle" onMouseDown={onStartDragging} onTouchStart={onStartDragging}></div>
 
-                            <div className="panel-ai custom-scrollbar p-8 text-left text-left text-left">
-                                <div className="max-w-4xl mx-auto w-full space-y-6 text-left">
-                                    <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1 text-left text-left text-left">
-                                        <button onClick={() => askAI('simplify')} className="bg-blue-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left"><i data-lucide="sparkles" className="w-4 h-4 text-left text-left"></i> Förenkla texten</button>
-                                        <button onClick={() => askAI('deepen')} className="bg-emerald-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left"><i data-lucide="brain" className="w-4 h-4 text-left text-left text-left"></i> Fördjupa & samband</button>
-                                        <button onClick={() => askAI('example')} className="bg-slate-900 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left text-left"><i data-lucide="message-square" className="w-4 h-4 text-left text-left text-left text-left"></i> Ge exempel</button>
+                            <div className="panel-ai custom-scrollbar p-8 text-left text-left text-left text-left">
+                                <div className="max-w-4xl mx-auto w-full space-y-6">
+                                    <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1 text-left text-left text-left text-left text-left">
+                                        <button onClick={() => askAI('simplify')} className="bg-blue-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left text-left"><i data-lucide="sparkles" className="w-4 h-4 text-left text-left text-left"></i> Förenkla texten</button>
+                                        <button onClick={() => askAI('deepen')} className="bg-emerald-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left text-left"><i data-lucide="brain" className="w-4 h-4 text-left text-left text-left text-left text-left"></i> Fördjupa & samband</button>
+                                        <button onClick={() => askAI('example')} className="bg-slate-900 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left text-left text-left text-left text-left text-left text-left text-left"><i data-lucide="message-square" className="w-4 h-4 text-left text-left text-left text-left text-left"></i> Ge exempel</button>
                                     </div>
-                                    {aiChat.map((m, i) => (
-                                        <div key={i} className={`flex ${m.role === 'user' ? 'justify-end text-right text-left text-left' : 'justify-start text-left text-left text-left text-left'} animate-fade-in`}>
-                                            <div className={`max-w-[85%] p-7 rounded-[2rem] text-sm font-bold shadow-xl leading-relaxed ${m.role === 'user' ? 'bg-indigo-600 text-white rounded-tr-none text-right' : 'bg-white border-2 border-slate-50 text-slate-800 rounded-tl-none'}`}>
-                                                {m.role === 'ai' && <div className="text-[9px] uppercase tracking-widest text-indigo-500 mb-3 font-black opacity-60 text-left text-left text-left">Studiekompisen AI</div>}
-                                                <div className="whitespace-pre-wrap text-left text-left text-left text-left text-left">{m.content}</div>
+                                    
+                                    {isLoading && <div className="flex justify-start text-left text-left text-left text-left text-left text-left text-left text-left"><div className="bg-white p-6 rounded-[2rem] flex items-center gap-5 shadow-xl text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin text-left text-left text-left text-left"></div><span className="text-[10px] font-black text-indigo-400 uppercase animate-pulse italic text-left text-left text-left text-left text-left text-left text-left text-left">Studerar boken...</span></div></div>}
+
+                                    {/* CHATT-LISTA: Nyast överst */}
+                                    <div className="space-y-6 flex flex-col">
+                                        {[...aiChat].reverse().map((m) => (
+                                            <div key={m.id} className="animate-fade-in group relative">
+                                                <div className={`p-7 rounded-[2rem] text-sm font-bold shadow-xl leading-relaxed bg-white border-2 text-slate-800 border-slate-50`}>
+                                                    <div className="flex justify-between items-start mb-3">
+                                                        <div className="text-[9px] uppercase tracking-widest text-indigo-500 font-black opacity-60">
+                                                            {m.role === 'ai' ? `Hjälp med ${m.query}` : 'Systemfel'}
+                                                        </div>
+                                                        <button onClick={() => removeMsg(m.id)} className="p-1 hover:bg-slate-100 rounded-full text-slate-300 hover:text-red-500 transition-all">
+                                                            <i data-lucide="x" className="w-4 h-4"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div className="whitespace-pre-wrap text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">{m.content}</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                    {isLoading && <div className="flex justify-start text-left text-left text-left text-left text-left text-left"><div className="bg-white p-6 rounded-[2rem] flex items-center gap-5 shadow-xl text-left text-left text-left text-left text-left text-left"><div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin text-left text-left text-left text-left"></div><span className="text-[10px] font-black text-indigo-400 uppercase animate-pulse italic text-left text-left text-left text-left text-left">Studerar boken...</span></div></div>}
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </main>
 
                     {isTeacherMode && (
-                        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[100] flex items-center justify-center p-10 text-left text-left text-left text-left text-left text-left">
-                            <div className="bg-white w-full max-w-6xl h-[90vh] rounded-[5rem] flex flex-col overflow-hidden border-4 border-white shadow-2xl text-left text-left text-left text-left text-left text-left">
-                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left text-left text-left text-left">
-                                    <h2 className="text-4xl font-black uppercase italic text-slate-900 leading-none text-left text-left text-left text-left">Kontrollpanel</h2>
-                                    <button onClick={() => setIsTeacherMode(false)} className="bg-white p-5 rounded-full border-2 border-slate-100 hover:text-red-500 transition-all shadow-sm text-left text-left text-left text-left text-left text-left"><i data-lucide="x"></i></button>
+                        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[100] flex items-center justify-center p-10 text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                            <div className="bg-white w-full max-w-6xl h-[90vh] rounded-[5rem] flex flex-col overflow-hidden border-4 border-white shadow-2xl text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left text-left text-left text-left text-left">
+                                    <h2 className="text-4xl font-black uppercase italic text-slate-900 leading-none text-left text-left text-left text-left text-left text-left text-left">Kontrollpanel</h2>
+                                    <button onClick={() => setIsTeacherMode(false)} className="bg-white p-5 rounded-full border-2 border-slate-100 hover:text-red-500 transition-all shadow-sm text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><i data-lucide="x"></i></button>
                                 </header>
-                                <div className="flex-1 overflow-y-auto p-14 custom-scrollbar text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
-                                    <table className="w-full text-left text-left text-left text-left text-left text-left text-left text-left text-left">
-                                        <thead className="bg-slate-50 text-[11px] font-black text-slate-500 uppercase italic border-b-4 border-white text-left text-left text-left text-left text-left text-left text-left"><tr><th className="p-10 text-left text-left text-left">Sida</th><th className="p-10 text-left text-left text-left text-left">Input</th><th className="p-10 text-left text-left text-left text-left">Svar</th></tr></thead>
-                                        <tbody className="text-base font-bold text-slate-600 divide-y-4 divide-slate-50 text-left text-left text-left text-left text-left text-left text-left">
+                                <div className="flex-1 overflow-y-auto p-14 custom-scrollbar text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                    <table className="w-full text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                        <thead className="bg-slate-50 text-[11px] font-black text-slate-500 uppercase italic border-b-4 border-white text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><tr><th className="p-10 text-left text-left text-left text-left">Sida</th><th className="p-10 text-left text-left text-left text-left text-left text-left text-left text-left">Input</th><th className="p-10 text-left text-left text-left text-left text-left text-left text-left text-left">Svar</th></tr></thead>
+                                        <tbody className="text-base font-bold text-slate-600 divide-y-4 divide-slate-50 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
                                             {history.map((h, i) => (
-                                                <tr key={i} className="hover:bg-indigo-50/30 transition-colors text-left text-left text-left text-left text-left text-left">
-                                                    <td className="p-10 text-xs font-black italic whitespace-nowrap text-left text-left text-left text-left text-left text-left text-left">SIDA {h.s}</td>
-                                                    <td className="p-10 italic text-slate-900 text-lg text-left text-left text-left text-left text-left">"{h.q}"</td>
-                                                    <td className="p-10 text-sm font-medium opacity-60 leading-relaxed max-w-lg text-left text-left text-left text-left text-left text-left text-left text-left">{h.a}</td>
+                                                <tr key={i} className="hover:bg-indigo-50/30 transition-colors text-left text-left text-left text-left text-left text-left text-left">
+                                                    <td className="p-10 text-xs font-black italic whitespace-nowrap text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">SIDA {h.s}</td>
+                                                    <td className="p-10 italic text-slate-900 text-lg text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">"{h.q}"</td>
+                                                    <td className="p-10 text-sm font-medium opacity-60 leading-relaxed max-w-lg text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">{h.a}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
