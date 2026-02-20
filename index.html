@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studiekompisen SH - Åk 6</title>
+    <title>Studiekompisen SH - Åk 6 (Stabil)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -42,28 +42,24 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
-        // --- DATA: ALLA 7 BLOCK ÅTERSTÄLLDA ---
         const BLOCKS = [
             { id: 1, title: "Block 1: Källkritik", icon: "sparkles", sections: [
-                { title: "A: Skröna & Vasa", page: "8–9", text: "I ämnet historia läser du om hur det var förr i tiden. Vad hände i Sverige 1520 till exempel, när Gustav Eriksson irrade omkring i Dalarna, jagad av den danske kungen Kristian Tyranns soldater? Så här stod det i Läsebok för folkskolan – alla barn i hela Sverige läste förr om hur bonden Sven Elvsson i Isala i Dalarna räddade livet på Gustav Eriksson.\n\n'Sven Elvsson menade att Gustav nog inte var säker i Isala. Han gömde honom därför i ett stort halmlass och körde det uppåt de ödsliga skogarna. Snart mötte han några av danskarnas utskickade soldater. De misstänkte bonden och stack sina spjut några gånger genom halmlasset. En av spjutspetsarna rispade Gustav i benet, men han låg orörlig. Danskarna märkte ingenting och lät Sven Elvsson köra vidare. Snart såg Sven att blod började rinna ur halmlasset och färga snön. Sven blev rädd att blodet skulle avslöja dem. Han tog därför upp sin kniv, skar ett djupt hål i benet på hästen. När Sven sedan blev tillfrågad om blodfläckarna i snön, skyllde han på hästens sår.'\n\nVisst är det en spännande historia! Men är den sann? Gustav III beundrade Gustav Vasa och ville gärna visa att de var släkt. Kungen beordrade därför landshövdingen i Dalarna att hitta personer som kunde skriva ned Gustav Vasas 'äventyr'. Berättelserna skrevs alltså ner 250 år senare och kallas ofta för skrönor. En skröna kan ha en kärna av sanning men är sedan överdriven och förljugen. Källkritik hjälper oss att fråga: Vem berättar? Varför? Och när hände det?", concepts: ["Källkritik", "Skröna", "Fakta", "Historiker"], mustKnow: ["Vad en skröna är.", "Att Vasa-berättelsen skrevs 250 år efteråt.", "Varför kungar använde historier för makt."], summary: ["Källkritik granskar information.", "Skrönor är överdrivna historier.", "Vasa-berättelsen i Isala är en skröna."], test: [{q: "Vad kallas en överdriven historia?", a: "Skröna"}, {q: "Vem beställde texten 250 år senare?", a: "Gustav III"}], reasoning: "Varför ville en kung sprida hjältesagor om sina förfäder?", application: "Hitta en rubrik på nätet och ställ källfrågorna." }
+                { title: "A: Skröna & Vasa", page: "8–9", text: "Boksida: 8–9\n\nI ämnet historia läser du om hur det var förr i tiden. Vad hände i Sverige 1520 till exempel, när Gustav Eriksson irrade omkring i Dalarna, jagad av den danske kungen Kristian Tyranns soldater? Så här stod det i Läsebok för folkskolan – alla barn i hela Sverige läste förr om hur bonden Sven Elvsson i Isala i Dalarna räddade livet på Gustav Eriksson.\n\n'Sven Elvsson menade att Gustav nog inte var säker i Isala. Han gömde honom därför i ett stort halmlass och körde det uppåt de ödsliga skogarna. Snart mötte han några av danskarnas utskickade soldater. De misstänkte bonden och stack sina spjut några gånger genom halmlasset. En av spjutspetsarna rispade Gustav i benet, men han låg orörlig. Danskarna märkte ingenting och lät Sven Elvsson köra vidare. Snart såg Sven att blod började rinna ur halmlasset och färga snön. Sven blev rädd att blodet skulle avslöja dem. Han tog därför upp sin kniv, skar ett djupt hål i benet på hästen. När Sven sedan blev tillfrågad om blodfläckarna i snön, skyllde han på hästens sår.'\n\nVisst är det en spännande historia! Men är den sann? Gustav III beundrade Gustav Vasa och ville gärna visa att de var släkt. Kungen beordrade därför landshövdingen i Dalarna att hitta personer som kunde skriva ned Gustav Vasas 'äventyr'. Berättelserna skrevs alltså ner 250 år senare och kallas ofta för skrönor. En skröna kan ha en kärna av sanning men är sedan överdriven och förljugen. Källkritik hjälper oss att fråga: Vem berättar? Varför? Och när hände det?", concepts: ["Källkritik", "Skröna", "Fakta", "Historiker"], mustKnow: ["Skillnaden mellan en skröna och fakta.", "Att Gustav Vasa-historien skrevs ner 250 år senare.", "Varför kungar använde historier för makt."], summary: ["Källkritik granskar information.", "Skrönor är överdrivna historier.", "Vasa-berättelsen i Isala är en skröna."], test: [{q: "Vad kallas en överdriven historia?", a: "Skröna"}, {q: "Vem beställde texten 250 år senare?", a: "Gustav III"}], reasoning: "Varför ville en kung sprida hjältesagor om sina förfäder?", application: "Hitta en rubrik på nätet och ställ källfrågorna." }
             ]},
             { id: 2, title: "Block 2: Ekonomi", icon: "zap", sections: [
-                { title: "A: Pengar förr & nu", page: "43–44", text: "Byteshandel har funnits så länge människan har funnits. Men det är krångligt att bära med sig tunga saker för att handla. För några tusen år sedan uppfanns därför pengar för att mäta värde. I Sverige var de första mynten av metall och de skulle vara värda precis lika mycket som själva metallen vägde. På 1600-talet blev det brist på guld och silver. Då började man använda koppar istället. Men koppar var billigare än guld, så mynten var tvungna att vara enormt stora och tunga. De tyngsta kopparmynten vägde över 19 kilo! Folk fick dra sina pengar på skottkärra till marknaden. År 1660 öppnade Johan Palmstruch den första banken i Stockholm. Han lät folk lämna in sina tunga mynt. Som bevis fick de ett kvitto på papper – dessa kvitton blev Sveriges första sedlar. Idag är de flesta pengar elektroniska digitala siffror.", concepts: ["Byteshandel", "Metallen", "Johan Palmstruch", "Digitala pengar"], mustKnow: ["Varför pengar uppfanns.", "Svenska mynt vägde 19 kg.", "Första banken 1660."], summary: ["Pengar ersatte byteshandel.", "Första sedlarna var bankkvitton.", "Idag är pengar främst digitala."], test: [{q: "Vad vägde tunga mynt?", a: "19 kg"}, {q: "Vem startade första banken?", a: "Johan Palmstruch"}], reasoning: "Vad händer om internet slutar funka?", application: "Designa ett eget mynt." }
-            ]},
-            { id: 3, title: "Block 3: Banker & Priser", icon: "landmark", sections: [
-                { title: "A: Banken som mellanhand", page: "52", text: "Banker fungerar som en mellanhand mellan sparare och lånare. De pengar som en bank har kommer från människor och företag som sparar sina pengar där. När du sätter in pengar lånar du egentligen ut dem till banken. Banken samlar ihop pengar från många sparare till en stor summa. Denna stora summa kan banken sedan låna ut till andra, t.ex. till familjer som vill köpa ett hus eller företag som vill bygga en ny fabrik. Banken tjänar pengar på ränta. Ränta är priset på pengar. Inlåningsränta får du när du sparar. Utlåningsränta betalar du när du lånar. Skillnaden kallas räntegap – det är bankens vinst.", concepts: ["Mellanhand", "Ränta", "Räntegap", "Vinst"], mustKnow: ["Bankens roll som förmedlare.", "Skillnad på in- och utlåningsränta.", "Vad räntegapet är."], summary: ["Banken kopplar ihop sparare och lånare.", "Ränta är avgiften för att låna pengar.", "Räntegapet täcker bankens kostnader."], test: [{q: "Vad kallas bankens vinst?", a: "Räntegap"}, {q: "Vem lånar ut till banken?", a: "Spararen"}], reasoning: "Varför kräver banken högre ränta av lånare än vad de ger till sparare?", application: "Räkna ut vinsten om räntan in är 2% och ut är 5%." }
+                { title: "A: Pengar förr & nu", page: "43–44", text: "Boksida: 43–44\n\nByteshandel har funnits länge. Men för några tusen år sedan uppfanns pengar för att mäta värde. I Sverige var de första mynten av metall. På 1600-talet blev det brist på guld och silver. Man började då använda koppar. Koppar var billigare, så mynten var tvungna att vara enormt stora. De tyngsta kopparmynten vägde över 19 kilo! Folk fick dra sina pengar på skottkärra. År 1660 öppnade Johan Palmstruch den första banken i Stockholm. Han tog emot de tunga mynten och gav ut kvitton på papper – dessa blev Sveriges första sedlar. Idag är de flesta pengar elektroniska digitala siffror.", concepts: ["Byteshandel", "Metallen", "Johan Palmstruch", "Digitala pengar"], mustKnow: ["Varför pengar uppfanns.", "Svenska mynt vägde 19 kg.", "Första banken 1660."], summary: ["Pengar ersatte krånglig byteshandel.", "Första sedlarna var bankkvitton.", "Idag är pengar främst digitala."], test: [{q: "Vad vägde tunga mynt?", a: "19 kg"}, {q: "Vem startade första banken?", a: "Johan Palmstruch"}], reasoning: "Vad händer om internet slutar funka?", application: "Designa ett eget mynt." }
             ]},
             { id: 4, title: "Block 4: Lag & rätt", icon: "scale", sections: [
-                { title: "A: Rättskedjan", page: "62-63", text: "När ett brott har begåtts börjar rättskedjan. Det börjar med polisen. Deras uppgift är att utreda vad som har hänt och säkrar bevis. Om polisen tror att de har hittat den skyldige tar en åklagare över. Åklagaren beslutar om bevisen räcker för en rättegång. I domstolen (tingsrätten) dömer en domare och tre nämndemän. Nämndemännen är vanliga människor som representerar folket. Om personen döms får hen en påföljd, vilket betyder straff. Det kan vara böter eller fängelse. För unga mellan 15 och 18 år används ofta ungdomsvård istället för fängelse.", concepts: ["Åklagare", "Nämndeman", "Påföljd", "Tingsrätt"], mustKnow: ["Stegen i rättskedjan.", "Vad en nämndeman är.", "Att påföljd betyder straff."], summary: ["Polisen utreder, domstolen dömer.", "Nämndemän är vanliga medborgare.", "Påföljd = straff."], test: [{q: "Vad är polisens första uppgift?", a: "Utreda och samla bevis"}, {q: "Vem beslutar om rättegång?", a: "Åklagaren"}], reasoning: "Varför har vi nämndemän i domstolen?", application: "Rita upp stegen i rättskedjan." }
+                { title: "A: Rättskedjan", page: "62-63", text: "Processen börjar hos polisen som utreder brott och säkrar bevis. Om polisen tror att de hittat den skyldige tar en åklagare över. Åklagaren beslutar om bevisen räcker för en rättegång. I domstolen (tingsrätten) dömer en domare och tre nämndemän. Nämndemännen är vanliga människor som representerar folket. Om personen döms får hen en påföljd (straff), som böter eller fängelse.", concepts: ["Åklagare", "Nämndeman", "Påföljd", "Tingsrätt"], mustKnow: ["Stegen i rättskedjan.", "Vad en nämndeman är.", "Att påföljd betyder straff."], summary: ["Polisen utreder, domstolen dömer.", "Nämndemän representerar folket.", "Påföljd = straff."], test: [{q: "Vem utreder brott?", a: "Polisen"}, {q: "Vem beslutar om åtal?", a: "Åklagaren"}], reasoning: "Varför har vi nämndemän i domstolen?", application: "Rita upp stegen i rättskedjan." }
             ]},
             { id: 5, title: "Block 5: Demokrati", icon: "users", sections: [
-                { title: "A: Vad är demokrati?", page: "75", text: "Ordet demokrati kommer från grekiskan (demos=folk, kratos=styre) och betyder folkstyre. I en demokrati utgår all makt från folket. I Sverige har vi representativ demokrati. Det betyder att vi inte röstar om varje enskild lag själva, utan vi väljer representanter (politiker) som vi litar på. Demokratin startade i antikens Aten för 2500 år sedan. Där fick alla fria män rösta direkt. Men det var ingen perfekt demokrati – kvinnor, slavar och utlänningar fick inte vara med. Idag kämpar vi för att alla vuxna ska ha samma rätt att påverka.", concepts: ["Folkstyre", "Representativ", "Direkt demokrati", "Antikens Aten"], mustKnow: ["Vad ordet demokrati betyder.", "Skillnaden på direkt och representativ.", "Vem som fick rösta i Aten."], summary: ["Demokrati = Folkstyre.", "Sverige väljer representanter.", "Aten var demokratins födelseplats."], test: [{q: "Vad betyder 'demos'?", a: "Folk"}, {q: "Vilken typ har Sverige?", a: "Representativ"}], reasoning: "Varför väljer vi representanter istället för att rösta om allt i mobilen varje dag?", application: "Ge ett exempel på direkt demokrati i skolan." }
+                { title: "A: Vad är demokrati?", page: "75", text: "Ordet demokrati kommer från grekiskan (demos=folk, kratos=styre) och betyder folkstyre. I en demokrati utgår all makt från folket. I Sverige har vi representativ demokrati. Det betyder att vi inte röstar om varje enskild lag själva, utan vi väljer representanter (politiker) som vi litar på. Demokratin startade i antikens Aten för 2500 år sedan. Där fick alla fria män rösta direkt. Men kvinnor, slavar och utlänningar fick inte vara med. Idag kämpar vi för att alla vuxna ska ha samma rätt att påverka.", concepts: ["Folkstyre", "Representativ", "Direkt demokrati", "Antikens Aten"], mustKnow: ["Vad ordet demokrati betyder.", "Skillnaden på direkt och representativ.", "Vem som fick rösta i Aten."], summary: ["Demokrati = Folkstyre.", "Sverige väljer representanter.", "Aten var demokratins födelseplats."], test: [{q: "Vad betyder 'demos'?", a: "Folk"}, {q: "Vilken typ har Sverige?", a: "Representativ"}], reasoning: "Varför väljer vi representanter istället för att rösta om allt i mobilen?", application: "Ge ett exempel på direkt demokrati i skolan." }
             ]},
             { id: 6, title: "Block 6: Riksdag & Regering", icon: "landmark", sections: [
-                { title: "A: Riksdagen", page: "84–85", text: "Riksdagen består av 349 ledamöter valda av folket vart fjärde år. Riksdagens två viktigaste uppgifter är att stifta lagar och att besluta om statens budget. Budgeten är en plan för hur skattepengarna ska användas till t.ex. skola och polis. Riksdagen kontrollerar också att regeringen gör sitt jobb på rätt sätt. Om riksdagen inte längre litar på statsministern kan de rösta för att avsätta dem.", concepts: ["Ledamot", "Statens budget", "Majoritet", "Stifta lagar"], mustKnow: ["Antal ledamöter (349).", "Riksdagens två huvuduppgifter.", "Hur ofta det är val."], summary: ["Riksdagen representerar folket.", "De bestämmer om lagar och pengar.", "De kontrollerar regeringen."], test: [{q: "Hur många sitter i riksdagen?", a: "349 stycken"}, {q: "Vem väljer ledamöterna?", a: "Folket"}], reasoning: "Varför är det riksdagen och inte kungen som bestämmer över pengarna?", application: "Namnge tre partier som sitter i riksdagen." }
+                { title: "A: Riksdagen", page: "84–85", text: "Riksdagen består av 349 ledamöter valda av folket vart fjärde år. Riksdagens två viktigaste uppgifter är att stifta lagar och att besluta om statens budget. Budgeten är en plan för hur skattepengarna ska användas till t.ex. skola och polis. Riksdagen kontrollerar också att regeringen gör sitt jobb. Om riksdagen inte längre litar på statsministern kan de rösta för att avsätta dem.", concepts: ["Ledamot", "Statens budget", "Majoritet", "Stifta lagar"], mustKnow: ["Antal ledamöter (349).", "Riksdagens två huvuduppgifter.", "Hur ofta det är val."], summary: ["Riksdagen representerar folket.", "De bestämmer om lagar och pengar.", "De kontrollerar regeringen."], test: [{q: "Hur många sitter i riksdagen?", a: "349 stycken"}, {q: "Vem väljer ledamöterna?", a: "Folket"}], reasoning: "Varför är det riksdagen och inte kungen som bestämmer över pengarna?", application: "Namnge tre partier som sitter i riksdagen." }
             ]},
             { id: 7, title: "Block 7: Framtiden", icon: "briefcase", sections: [
-                { title: "A: Samhällsförändring", page: "29–30", text: "Arbetsmarknaden i Sverige har ändrats enormt. För 200 år sedan jobbade nästan alla svenskar med jordbruk. Man bodde på landet och tillverkade det mesta själv. När industrialiseringen kom byggdes fabriker och folk flyttade till städerna. Idag lever vi i ett tjänstesamhälle där de flesta jobbar inom vård, skola, handel eller teknik. Utbildning har blivit mycket viktigare för att få ett jobb idag än förr. Vi köper tjänster av varandra.", concepts: ["Industrialisering", "Tjänstesamhälle", "Utbildning"], mustKnow: ["Från jordbruk till tjänster.", "Vikten av utbildning idag.", "Städernas växt."], summary: ["Förr jobbade folk med jordbruk.", "Idag jobbar de flesta med tjänster.", "Jobben kräver mer kunskap idag."], test: [{q: "Vad jobbade folk med förr?", a: "Jordbruk"}, {q: "Vad kallas dagens samhälle?", a: "Tjänstesamhälle"}], reasoning: "Hur såg dina morföräldrars jobb ut?", application: "Intervjua en vuxen om deras första jobb." }
+                { title: "A: Samhällsförändring", page: "29–30", text: "Arbetsmarknaden i Sverige har ändrats enormt. För 200 år sedan jobbade nästan alla svenskar med jordbruk. När industrialiseringen kom byggdes fabriker och folk flyttade till städerna. Idag lever vi i ett tjänstesamhälle där de flesta jobbar inom vård, skola eller teknik. Utbildning har blivit mycket viktigare för att få ett jobb idag än förr.", concepts: ["Industrialisering", "Tjänstesamhälle", "Utbildning"], mustKnow: ["Från jordbruk till tjänster.", "Vikten av utbildning idag.", "Städernas växt."], summary: ["Förr jobbade folk med jordbruk.", "Idag jobbar de flesta med tjänster.", "Jobben kräver mer kunskap idag."], test: [{q: "Vad jobbade folk med förr?", a: "Jordbruk"}, {q: "Vad kallas dagens samhälle?", a: "Tjänstesamhälle"}], reasoning: "Hur såg dina morföräldrars jobb ut?", application: "Intervjua en vuxen om deras första jobb." }
             ]}
         ];
 
@@ -84,19 +80,13 @@
             const block = BLOCKS[activeBlock] || BLOCKS[0];
             const section = block.sections[activeSection] || block.sections[0];
 
-            // Skydd mot tomma listor
-            const concepts = section.concepts || [];
-            const mustKnow = section.mustKnow || [];
-            const summary = section.summary || [];
-            const test = section.test || [];
-
-            // FIX: Uppdatera ikoner tryggt
+            // --- FIX: Robust ikon-rendering med try/catch ---
             useEffect(() => {
                 if (!window.lucide?.createIcons) return;
                 try {
                     window.lucide.createIcons();
                 } catch (e) {
-                    console.warn("Lucide ikon-rendering misslyckades:", e);
+                    console.warn("Lucide fail:", e);
                 }
             }, [aiChat, isSidebarOpen, isTeacherMode, showDetail, activeBlock, activeSection]);
 
@@ -106,10 +96,11 @@
                 const userMsgText = queryText || (type === 'simplify' ? 'Förenkla texten' : type === 'deepen' ? 'Fördjupa' : 'Ge exempel');
                 const userMsgId = Date.now();
                 
-                // Visa elevens fråga direkt för feedback (HÖGST UPP)
+                // --- FIX: Visa elevens fråga direkt för feedback ---
                 setAiChat(prev => [{ id: userMsgId, role: 'user', content: userMsgText }, ...prev]);
                 setIsLoading(true);
 
+                // --- FIX: Kapa textbanken för att aldrig skicka för mycket ---
                 const TEXTBANK = (section.text || "").slice(0, 8000); 
 
                 let sysPrompt = "";
@@ -130,7 +121,7 @@
                 }
 
                 try {
-                    // FIX: Vi tar bort 'model' från JSON för att inte krocka med backend
+                    // --- FIX: Ingen 'model' i JSON för att inte krocka med backend ---
                     const res = await fetch(`/.netlify/functions/gemini`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -167,14 +158,13 @@
                     }}
                     onMouseUp={() => isDragging.current = false}
                 >
-                    {/* SIDEBAR */}
                     <aside className={`bg-white border-r flex flex-col shrink-0 z-50 sidebar-transition ${isSidebarOpen ? 'w-80 opacity-100' : 'w-0 opacity-0 overflow-hidden'}`}>
                         <div className="p-8 bg-indigo-700 text-white flex flex-col items-start">
                             <div className="flex items-center gap-3">
                                 <span className="bg-white p-2 rounded-lg text-indigo-700"><i data-lucide="graduation-cap"></i></span>
                                 <h1 className="text-xl font-black uppercase italic leading-none">Studiekompisen</h1>
                             </div>
-                            <p className="text-[10px] mt-2 opacity-70 uppercase font-bold tracking-widest text-left">Utkik Samhällskunskap</p>
+                            <p className="text-[10px] mt-2 opacity-70 uppercase font-bold tracking-widest text-left">Utkik SO Åk 6</p>
                         </div>
                         <nav className="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-1">
                             {BLOCKS.map((b, i) => (
@@ -185,21 +175,18 @@
                                 </button>
                             ))}
                         </nav>
-                        <div className="p-4 border-t">
-                            <button onClick={() => setIsTeacherMode(!isTeacherMode)} className="w-full p-3 rounded-xl bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest flex justify-between items-center">
+                        <div className="p-4 border-t text-left text-left">
+                            <button onClick={() => setIsTeacherMode(!isTeacherMode)} className="w-full p-3 rounded-xl bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest flex justify-between items-center text-left">
                                 Lärarlogg <i data-lucide={isTeacherMode ? "eye" : "eye-off"}></i>
                             </button>
                         </div>
                     </aside>
 
-                    {/* MAIN AREA */}
                     <main className="flex-1 flex flex-col relative bg-white overflow-hidden text-left" ref={splitRef}>
-                        <header className="bg-white/90 border-b p-4 flex items-center justify-between z-10 shrink-0">
-                            <div className="flex items-center gap-4 overflow-hidden">
-                                <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 shrink-0">
-                                    <i data-lucide={isSidebarOpen ? "panel-left-close" : "panel-left-open"}></i>
-                                </button>
-                                <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                        <header className="bg-white/90 border-b p-4 flex items-center justify-between z-10 shrink-0 text-left text-left">
+                            <div className="flex items-center gap-4 overflow-hidden text-left text-left">
+                                <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 shrink-0"><i data-lucide={isSidebarOpen ? "panel-left-close" : "panel-left-open"}></i></button>
+                                <div className="flex gap-2 overflow-x-auto no-scrollbar text-left">
                                     {block.sections.map((s, i) => (
                                         <button key={i} onClick={() => { setActiveSection(i); setAiChat([]); setShowDetail(null); }}
                                             className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all ${activeSection === i ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'}`}>
@@ -211,69 +198,68 @@
                             <div className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase border border-indigo-100 ml-2">Sida {section.page}</div>
                         </header>
 
-                        <div className="split-container">
-                            <div className="panel-text custom-scrollbar" style={{ flexBasis: `${splitPercent}%` }}>
-                                <div className="max-w-4xl mx-auto p-8 space-y-12 pb-20 text-left">
-                                    <section className="bg-amber-50 p-10 rounded-[3rem] border-4 border-amber-100 shadow-xl relative overflow-hidden">
-                                        <h4 className="text-[10px] font-black text-amber-700 uppercase tracking-widest mb-6 flex items-center gap-2 italic text-left"><i data-lucide="check-circle-2"></i> Detta behöver du kunna</h4>
-                                        <ul className="space-y-3">{mustKnow.map((m, i) => <li key={i} className="flex gap-4 font-bold text-amber-900 leading-snug"><span className="text-amber-400 font-black">▶</span> {m}</li>)}</ul>
+                        <div className="split-container text-left text-left">
+                            <div className="panel-text custom-scrollbar text-left text-left" style={{ flexBasis: `${splitPercent}%` }}>
+                                <div className="max-w-4xl mx-auto p-8 space-y-12 pb-20 text-left text-left">
+                                    <section className="bg-amber-50 p-10 rounded-[3rem] border-4 border-amber-100 shadow-xl relative overflow-hidden text-left text-left">
+                                        <h4 className="text-[10px] font-black text-amber-700 uppercase tracking-widest mb-6 flex items-center gap-2 italic text-left text-left"><i data-lucide="check-circle-2"></i> Detta behöver du kunna</h4>
+                                        <ul className="space-y-3 text-left">{(section.mustKnow || []).map((m, i) => <li key={i} className="flex gap-4 font-bold text-amber-900 leading-snug text-left"><span className="text-amber-400 font-black">▶</span> {m}</li>)}</ul>
                                     </section>
 
-                                    <section className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 relative animate-fade-in text-left">
-                                        <div className="absolute top-0 left-0 w-2 h-full bg-indigo-600"></div>
-                                        <p className="text-2xl leading-[1.8] text-slate-700 font-bold whitespace-pre-wrap">{section.text}</p>
-                                        <div className="mt-14 pt-10 border-t-2 border-slate-50 text-left text-left">
+                                    <section className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 relative animate-fade-in text-left text-left">
+                                        <div className="absolute top-0 left-0 w-2 h-full bg-indigo-600 text-left text-left"></div>
+                                        <p className="text-2xl leading-[1.8] text-slate-700 font-bold whitespace-pre-wrap text-left text-left">{section.text}</p>
+                                        <div className="mt-14 pt-10 border-t-2 border-slate-50 text-left text-left text-left">
                                             <p className="text-[10px] font-black text-slate-400 uppercase mb-5">Begrepp (klicka för förklaring):</p>
-                                            <div className="flex flex-wrap gap-2">{concepts.map((c, i) => <button key={i} onClick={() => askAI('concept', c)} className="px-5 py-2.5 bg-indigo-50 text-indigo-700 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100">{c}</button>)}</div>
+                                            <div className="flex flex-wrap gap-2 text-left">{(section.concepts || []).map((c, i) => <button key={i} onClick={() => askAI('concept', c)} className="px-5 py-2.5 bg-indigo-50 text-indigo-700 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100 text-left">{c}</button>)}</div>
                                         </div>
                                     </section>
 
-                                    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 font-black uppercase text-[10px] tracking-widest text-left">
-                                        <button onClick={() => setShowDetail(showDetail === 'summary' ? null : 'summary')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'summary' ? 'bg-indigo-600 border-indigo-400 text-white' : 'bg-white border-slate-100 text-slate-400 shadow-sm'}`}><i data-lucide="list-checks"></i> Sammanfattning</button>
-                                        <button onClick={() => setShowDetail(showDetail === 'test' ? null : 'test')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'test' ? 'bg-blue-600 border-blue-400 text-white' : 'bg-white border-slate-100 text-slate-400 shadow-sm'}`}><i data-lucide="zap"></i> Självtest</button>
-                                        <button onClick={() => setShowDetail(showDetail === 'reasoning' ? null : 'reasoning')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'reasoning' ? 'bg-emerald-600 border-emerald-400 text-white' : 'bg-white border-slate-100 text-slate-400 shadow-sm'}`}><i data-lucide="brain-circuit"></i> Resonera</button>
+                                    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 font-black uppercase text-[10px] tracking-widest text-left text-left">
+                                        <button onClick={() => setShowDetail(showDetail === 'summary' ? null : 'summary')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'summary' ? 'bg-indigo-600 border-indigo-400 text-white' : 'bg-white border-slate-100 text-slate-400'}`}><i data-lucide="list-checks"></i> Sammanfattning</button>
+                                        <button onClick={() => setShowDetail(showDetail === 'test' ? null : 'test')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'test' ? 'bg-blue-600 border-blue-400 text-white' : 'bg-white border-slate-100 text-slate-400'}`}><i data-lucide="zap"></i> Självtest</button>
+                                        <button onClick={() => setShowDetail(showDetail === 'reasoning' ? null : 'reasoning')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'reasoning' ? 'bg-emerald-600 border-emerald-400 text-white' : 'bg-white border-slate-100 text-slate-400'}`}><i data-lucide="brain-circuit"></i> Resonera</button>
                                     </section>
 
                                     {showDetail && (
-                                        <div className="bg-slate-50 p-12 rounded-[3.5rem] border-2 border-slate-100 animate-fade-in text-left">
-                                            {showDetail === 'summary' && <ul className="space-y-4 text-left">{summary.map((s, i) => <li key={i} className="bg-white p-7 rounded-3xl font-bold flex gap-5 shadow-sm border border-slate-100 text-left"><span className="text-indigo-500 font-black">0${i+1}</span>{s}</li>)}</ul>}
-                                            {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">{test.map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600 font-black'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left">Visa svar</button></div>)}</div>}
-                                            {showDetail === 'reasoning' && <div className="bg-white p-12 rounded-[3rem] italic font-black text-2xl text-slate-700 text-center leading-relaxed">"{section.reasoning}"<button onClick={() => askAI('develop')} className="bg-emerald-600 text-white px-10 py-4 rounded-full text-xs font-black mt-10 uppercase block mx-auto shadow-lg text-center">Bena ut samband</button></div>}
+                                        <div className="bg-slate-50 p-12 rounded-[3.5rem] border-2 border-slate-100 animate-fade-in text-left text-left text-left">
+                                            {showDetail === 'summary' && <ul className="space-y-4 text-left">{(section.summary || []).map((s, i) => <li key={i} className="bg-white p-7 rounded-3xl font-bold flex gap-5 shadow-sm border border-slate-100 text-left"><span className="text-indigo-500 font-black text-left text-left">0${i+1}</span>{s}</li>)}</ul>}
+                                            {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">{(section.test || []).map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800 text-left">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600 font-black'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left">Visa svar</button></div>)}</div>}
                                         </div>
                                     )}
 
-                                    <section className="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group text-left">
-                                        <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-6 italic text-left">Tillämpning: Gör detta nu</h4>
-                                        <p className="text-2xl font-bold leading-snug tracking-tight text-left">{section.application || "Läs i boken."}</p>
+                                    <section className="bg-slate-900 text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group text-left text-left text-left">
+                                        <h4 className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-6 italic text-left text-left text-left">Tillämpning: Gör detta nu</h4>
+                                        <p className="text-2xl font-bold leading-snug tracking-tight text-left text-left">{section.application || "Läs i boken."}</p>
                                     </section>
                                 </div>
                             </div>
 
                             <div className="drag-handle" onMouseDown={(e) => { isDragging.current = true; e.preventDefault(); }}></div>
 
-                            <div className="panel-ai custom-scrollbar p-8 text-left">
-                                <div className="max-w-4xl mx-auto w-full space-y-6">
-                                    <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1 text-left">
-                                        <button onClick={() => askAI('simplify')} className="bg-blue-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left"><i data-lucide="sparkles"></i> Förenkla texten</button>
-                                        <button onClick={() => askAI('deepen')} className="bg-emerald-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left"><i data-lucide="brain"></i> Fördjupa & samband</button>
-                                        <button onClick={() => askAI('example')} className="bg-slate-900 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left"><i data-lucide="message-square"></i> Ge exempel</button>
+                            <div className="panel-ai custom-scrollbar p-8 text-left text-left text-left text-left text-left">
+                                <div className="max-w-4xl mx-auto w-full space-y-6 text-left text-left">
+                                    <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1 text-left text-left text-left text-left">
+                                        <button onClick={() => askAI('simplify')} className="bg-blue-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left"><i data-lucide="sparkles" className="w-4 h-4 text-left text-left text-left"></i> Förenkla texten</button>
+                                        <button onClick={() => askAI('deepen')} className="bg-emerald-600 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left text-left"><i data-lucide="brain" className="w-4 h-4 text-left text-left text-left"></i> Fördjupa & samband</button>
+                                        <button onClick={() => askAI('example')} className="bg-slate-900 text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 text-left text-left text-left text-left"><i data-lucide="message-square" className="w-4 h-4 text-left text-left text-left text-left"></i> Ge exempel</button>
                                     </div>
                                     
-                                    {isLoading && <div className="flex justify-start text-left"><div className="bg-white p-6 rounded-[2rem] flex items-center gap-5 shadow-xl text-left text-left"><div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div><span className="text-[10px] font-black text-indigo-400 uppercase animate-pulse italic">Studerar boken...</span></div></div>}
+                                    {isLoading && <div className="flex justify-start text-left text-left text-left text-left text-left text-left text-left text-left"><div className="bg-white p-6 rounded-[2rem] flex items-center gap-5 shadow-xl text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin text-left text-left text-left text-left"></div><span className="text-[10px] font-black text-indigo-400 uppercase animate-pulse italic text-left text-left text-left text-left text-left text-left text-left">Studerar boken...</span></div></div>}
 
-                                    <div className="space-y-6 flex flex-col text-left">
+                                    <div className="space-y-6 flex flex-col text-left text-left text-left">
                                         {aiChat.map((m) => (
-                                            <div key={m.id} className="animate-fade-in group relative text-left">
+                                            <div key={m.id} className="animate-fade-in group relative text-left text-left text-left">
                                                 <div className={`p-7 rounded-[2rem] text-sm font-bold shadow-xl leading-relaxed ${m.role === 'error' ? 'bg-red-50 text-red-600 border-red-100' : m.role === 'user' ? 'bg-indigo-600 text-white rounded-tr-none text-right' : 'bg-white border-2 text-slate-800 border-slate-50'}`}>
-                                                    <div className="flex justify-between items-start mb-3 text-left">
+                                                    <div className="flex justify-between items-start mb-3 text-left text-left text-left">
                                                         <div className={`text-[9px] uppercase tracking-widest font-black opacity-60 ${m.role === 'user' ? 'text-indigo-200' : m.role === 'error' ? 'text-red-500' : 'text-indigo-500'}`}>
                                                             {m.role === 'user' ? 'Din fråga' : m.role === 'ai' ? `Hjälp med ${m.query}` : 'Systemfel'}
                                                         </div>
-                                                        <button onClick={() => removeMsg(m.id)} className="p-1 hover:bg-black/10 rounded-full text-current opacity-40 hover:opacity-100 transition-all text-left">
-                                                            <i data-lucide="x" className="w-4 h-4 text-left"></i>
+                                                        <button onClick={() => removeMsg(m.id)} className="p-1 hover:bg-black/10 rounded-full text-current opacity-40 hover:opacity-100 transition-all text-left text-left text-left text-left text-left">
+                                                            <i data-lucide="x" className="w-4 h-4 text-left text-left text-left text-left text-left text-left"></i>
                                                         </button>
                                                     </div>
-                                                    <div className="whitespace-pre-wrap text-left text-left">{m.content}</div>
+                                                    <div className="whitespace-pre-wrap text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">{m.content}</div>
                                                 </div>
                                             </div>
                                         ))}
@@ -284,21 +270,21 @@
                     </main>
 
                     {isTeacherMode && (
-                        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[100] flex items-center justify-center p-10 text-left">
-                            <div className="bg-white w-full max-w-6xl h-[90vh] rounded-[5rem] flex flex-col overflow-hidden border-4 border-white shadow-2xl">
-                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left">
-                                    <h2 className="text-4xl font-black uppercase italic text-slate-900 leading-none">Kontrollpanel</h2>
-                                    <button onClick={() => setIsTeacherMode(false)} className="bg-white p-5 rounded-full border-2 border-slate-100 hover:text-red-500 transition-all shadow-sm text-left"><i data-lucide="x"></i></button>
+                        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-2xl z-[100] flex items-center justify-center p-10 text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                            <div className="bg-white w-full max-w-6xl h-[90vh] rounded-[5rem] flex flex-col overflow-hidden border-4 border-white shadow-2xl text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                <header className="p-14 border-b flex justify-between items-center bg-slate-50/50 text-left text-left text-left text-left text-left text-left">
+                                    <h2 className="text-4xl font-black uppercase italic text-slate-900 leading-none text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Kontrollpanel</h2>
+                                    <button onClick={() => setIsTeacherMode(false)} className="bg-white p-5 rounded-full border-2 border-slate-100 hover:text-red-500 transition-all shadow-sm text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><i data-lucide="x"></i></button>
                                 </header>
-                                <div className="flex-1 overflow-y-auto p-14 custom-scrollbar text-left text-left">
-                                    <table className="w-full text-left text-left">
-                                        <thead className="bg-slate-50 text-[11px] font-black text-slate-500 uppercase italic border-b-4 border-white text-left"><tr><th className="p-10 text-left text-left">Sida</th><th className="p-10 text-left text-left">Input</th><th className="p-10 text-left text-left">Svar</th></tr></thead>
-                                        <tbody className="text-base font-bold text-slate-600 divide-y-4 divide-slate-50 text-left text-left">
+                                <div className="flex-1 overflow-y-auto p-14 custom-scrollbar text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                    <table className="w-full text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                        <thead className="bg-slate-50 text-[11px] font-black text-slate-500 uppercase italic border-b-4 border-white text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><tr><th className="p-10 text-left text-left text-left text-left text-left text-left">Sida</th><th className="p-10 text-left text-left text-left text-left text-left text-left text-left text-left">Input</th><th className="p-10 text-left text-left text-left text-left text-left text-left text-left text-left text-left">Svar</th></tr></thead>
+                                        <tbody className="text-base font-bold text-slate-600 divide-y-4 divide-slate-50 text-left text-left text-left text-left text-left text-left text-left text-left text-left">
                                             {history.map((h, i) => (
-                                                <tr key={i} className="hover:bg-indigo-50/30 transition-colors">
-                                                    <td className="p-10 text-xs font-black italic whitespace-nowrap text-left text-left text-left text-left">SIDA {h.s}</td>
-                                                    <td className="p-10 italic text-slate-900 text-lg text-left text-left text-left text-left">"{h.q}"</td>
-                                                    <td className="p-10 text-sm font-medium opacity-60 leading-relaxed max-w-lg text-left text-left text-left text-left">{h.a}</td>
+                                                <tr key={i} className="hover:bg-indigo-50/30 transition-colors text-left text-left text-left text-left text-left">
+                                                    <td className="p-10 text-xs font-black italic whitespace-nowrap text-left text-left text-left text-left text-left text-left">SIDA {h.s}</td>
+                                                    <td className="p-10 italic text-slate-900 text-lg text-left text-left text-left text-left text-left text-left text-left text-left">"{h.q}"</td>
+                                                    <td className="p-10 text-sm font-medium opacity-60 leading-relaxed max-w-lg text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">{h.a}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
