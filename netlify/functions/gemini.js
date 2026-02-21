@@ -1,45 +1,62 @@
+// netlify/functions/gemini.js
+
+function reply(statusCode, body) {
+  return {
+    statusCode,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+    },
+    body: JSON.stringify(body),
+  };
+}
+
 export async function handler(event) {
   try {
-    const { q, systemPrompt, model } = JSON.parse(event.body);
-
-    const apiKey = process.env.GEMINI_API_KEY;
-
-    if (!apiKey) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "Missing API key" })
-      };
+    // 1) Preflight
+    if (event.httpMethod === "OPTIONS") {
+      return { statusCode: 204, headers: reply(204, {}).headers, body: "" };
     }
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts: [
-                { text: systemPrompt },
-                { text: q }
-              ]
-            }
-          ]
-        })
-      }
-    );
+    // 2) GET ska fungera i webbläsaren
+    if (event.httpMethod === "GET") {
+      return reply(200, {
+        ok: true,
+        message: "Gemini function is alive. Send POST with JSON: { q, systemPrompt }",
+      });
+    }
 
-    const data = await response.json();
+    // 3) Endast POST för AI anrop
+    if (event.httpMethod !== "POST") {
+      return reply(405, { error: "Method not allowed. Use POST." });
+    }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(data)
-    };
-  } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: error.message })
-    };
+    const raw = event.body || "";
+    if (!raw.trim()) {
+      return reply(400, { error: "Missing JSON body. Send { q, systemPrompt }" });
+    }
+
+    let body;
+    try {
+      body = JSON.parse(raw);
+    } catch {
+      return reply(400, { error: "Invalid JSON body." });
+    }
+
+    const q = body.q || "";
+    const systemPrompt = body.systemPrompt || "";
+
+    if (!q) return reply(400, { error: "Missing field: q" });
+
+    // TEMP TEST, bevis att kedjan funkar
+    return reply(200, {
+      candidates: [
+        { content: { parts: [{ text: `TEST OK. Jag fick din fråga: "${q}".` }] } },
+      ],
+    });
+  } catch (e) {
+    return reply(500, { error: String(e?.message || e) });
   }
-};
+}
