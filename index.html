@@ -134,8 +134,10 @@ useEffect(() => {
                 }
             };
 
-            const removeMsg = (id) => setAiChat(prev => prev.filter(m => m.id !== id));
+const removeMsg = (id) => setAiChat(prev => prev.filter(m => m.id !== id));
 
+const openAI = () => setSplitPercent(AI_OPEN_PERCENT);
+const dockAI = () => setSplitPercent(AI_DOCK_PERCENT);
             return (
                 <div className="flex w-full h-full text-left" 
                     onMouseMove={(e) => {
