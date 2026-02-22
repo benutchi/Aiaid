@@ -56,8 +56,16 @@ const AI_DOCK_PERCENT = 85; // AI ligger kvar så knappar syns
             const [showDetail, setShowDetail] = useState(null);
 
             const splitRef = useRef(null);
-            const isDragging = useRef(false);
+const isDragging = useRef(false);
 
+useEffect(() => {
+  const stopDragging = () => {
+    isDragging.current = false;
+  };
+
+  window.addEventListener("mouseup", stopDragging);
+  return () => window.removeEventListener("mouseup", stopDragging);
+}, []);
             const block = BLOCKS[activeBlock] || BLOCKS[0];
             const section = block.sections[activeSection] || block.sections[0];
 
