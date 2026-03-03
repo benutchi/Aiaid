@@ -81,114 +81,84 @@ useEffect(() => {
 }, []);
             const block = BLOCKS[activeBlock] || BLOCKS[0];
             const section = block.sections[activeSection] || block.sections[0];
-// --- Uppläsning (Web Speech API) STABIL: chunkad kö + paus/fortsätt + markerad text ---
+// --- Uppläsning (Web Speech API) STABIL: watchdog mot "tyst-läsning" ---
 const speakSessionRef = useRef(0);
-const queueRef = useRef([]);        // array av textbitar
-const queueIndexRef = useRef(0);    // vilken bit vi är på
-const lastSpokenTextRef = useRef(""); // senaste texten vi startade med (för restart)
+const lastTextRef = useRef("");
+const lastCharIndexRef = useRef(0);
+const heartbeatRef = useRef(Date.now());
+const watchdogTimerRef = useRef(null);
+const expectedSpeakingRef = useRef(false);
+const clearWatchdog = () => {
+  if (watchdogTimerRef.current) {
+    clearInterval(watchdogTimerRef.current);
+    watchdogTimerRef.current = null;
+  }
+};
 
-const hardResetSpeech = () => {
+const hardStop = () => {
   try {
     const ss = window.speechSynthesis;
-    if (!ss) return;
-    ss.cancel();
-    ss.cancel();
+    if (ss) {
+      ss.cancel();
+      ss.cancel();
+    }
   } catch (e) {}
 };
 
 const stopSpeak = () => {
+    expectedSpeakingRef.current = false;
   speakSessionRef.current += 1;
-  hardResetSpeech();
-  queueRef.current = [];
-  queueIndexRef.current = 0;
+  clearWatchdog();
+  hardStop();
   utteranceRef.current = null;
+  lastTextRef.current = "";
+  lastCharIndexRef.current = 0;
   setIsSpeaking(false);
   setIsPaused(false);
 };
 
-// Dela upp text i korta bitar (meningsliknande) för stabilitet
-const chunkText = (text) => {
-  const clean = String(text || "")
-    .replace(/\s+/g, " ")
-    .trim();
-  if (!clean) return [];
-
-  // Dela på punkt, utrop, frågetecken, och även på radbrytningar
-  const parts = clean
-    .split(/(?<=[.!?])\s+|\n+/g)
-    .map((s) => s.trim())
-    .filter(Boolean);
-
-  // Om vissa delar ändå blir jättelånga, dela dem grovt
-  const out = [];
-  for (const p of parts) {
-    if (p.length <= 180) {
-      out.push(p);
-    } else {
-      // dela långa strängar i ~120 tecken bitar på mellanslag
-      let cur = "";
-      for (const w of p.split(" ")) {
-        if ((cur + " " + w).trim().length > 120) {
-          if (cur.trim()) out.push(cur.trim());
-          cur = w;
-        } else {
-          cur = (cur + " " + w).trim();
-        }
-      }
-      if (cur.trim()) out.push(cur.trim());
-    }
-  }
-  return out;
-};
-
-const speakQueueFromIndex = (startIndex = 0, sessionId) => {
-  const ss = window.speechSynthesis;
-
-  if (sessionId !== speakSessionRef.current) return;
-  if (!queueRef.current.length) {
-    stopSpeak();
-    return;
-  }
-
-  // Klar
-  if (startIndex >= queueRef.current.length) {
-    setIsSpeaking(false);
-    setIsPaused(false);
-    utteranceRef.current = null;
-    return;
-  }
-
-  queueIndexRef.current = startIndex;
-
-  const u = new SpeechSynthesisUtterance(queueRef.current[startIndex]);
-  u.lang = "sv-SE";
-  u.rate = Number(speechRate || 1.0);
-  u.pitch = 1.0;
-
-  const safeNext = () => {
+const startWatchdog = (sessionId) => {
+  clearWatchdog();
+  watchdogTimerRef.current = setInterval(() => {
     if (sessionId !== speakSessionRef.current) return;
 
-    // Chrome kan “stanna”, så vi kickar igång nästa bit med en micro delay
-    setTimeout(() => {
-      if (sessionId !== speakSessionRef.current) return;
-      speakQueueFromIndex(queueIndexRef.current + 1, sessionId);
-    }, 30);
-  };
+    const ss = window.speechSynthesis;
+    if (!ss) return;
 
-  u.onend = safeNext;
-  u.onerror = safeNext;
+    // Om den är pausad ska vi inte trigga watchdog
+    if (ss.paused) return;
 
-  utteranceRef.current = u;
+    // Om vi egentligen inte förväntar oss tal, gör inget
+    if (!expectedSpeakingRef.current) return;
 
-  // Viktigt: ingen extra cancel här, det kan döda kön
-  try {
-    ss.speak(u);
-  } catch (e) {
-    safeNext();
-  }
+    // Om vi "ska" prata men inget boundary på 1500ms,
+    // då har den troligen hängt i tyst läge
+    const ms = Date.now() - heartbeatRef.current;
+
+    if ((ss.speaking || ss.pending) && ms > 1500) {
+      const text = lastTextRef.current;
+      const idx = lastCharIndexRef.current || 0;
+
+      const restartFrom = Math.max(0, idx - 30);
+      const rest = text.slice(restartFrom).trim();
+
+      // Ny session så gamla callbacks dör
+      speakSessionRef.current += 1;
+      const newSession = speakSessionRef.current;
+
+      hardStop();
+      utteranceRef.current = null;
+
+      if (rest) {
+        speakText(rest, newSession, restartFrom);
+      } else {
+        stopSpeak();
+      }
+    }
+  }, 400);
 };
-
-const speakText = (text) => {
+// Intern start så vi kan återstarta från mitten
+const speakText = (text, forcedSessionId = null, offset = 0) => {
   const clean = String(text || "").trim();
   if (!clean) return;
 
@@ -200,22 +170,66 @@ const speakText = (text) => {
     return;
   }
 
-  // Ny session
-  const sessionId = (speakSessionRef.current += 1);
-  hardResetSpeech();
+  const ss = window.speechSynthesis;
 
-  lastSpokenTextRef.current = clean;
-  queueRef.current = chunkText(clean);
-  queueIndexRef.current = 0;
+  const sessionId = forcedSessionId ?? (speakSessionRef.current += 1);
+    expectedSpeakingRef.current = true;
+  heartbeatRef.current = Date.now();
 
+  // Om den redan håller på: cancel, men bara då
+  try {
+    if (ss.speaking || ss.pending) ss.cancel();
+  } catch (e) {}
+
+  try {
+    if (ss.paused) ss.resume();
+  } catch (e) {}
+
+  lastTextRef.current = clean;
+  lastCharIndexRef.current = 0; // vi bygger upp den via boundary
+  utteranceRef.current = null;
+
+  const u = new SpeechSynthesisUtterance(" " + clean); // ledande space hjälper mot klipp
+  u.lang = "sv-SE";
+  u.rate = Number(speechRate || 1.0);
+  u.pitch = 1.0;
+  u.volume = 1.0;
+
+  const safeEnd = () => {
+  if (sessionId !== speakSessionRef.current) return;
+  expectedSpeakingRef.current = false;
+  clearWatchdog();
+  utteranceRef.current = null;
+  setIsSpeaking(false);
+  setIsPaused(false);
+};
+
+  u.onboundary = (e) => {
+    if (sessionId !== speakSessionRef.current) return;
+    heartbeatRef.current = Date.now();
+
+    // charIndex är index i utterance-texten, vi vill ha index i originaltexten
+    const ci = Number(e.charIndex || 0);
+    lastCharIndexRef.current = Math.max(0, ci - 1) + (offset || 0);
+  };
+
+  u.onend = safeEnd;
+  u.onerror = safeEnd;
+
+  utteranceRef.current = u;
   setIsSpeaking(true);
   setIsPaused(false);
 
-  // Liten delay efter cancel, annars dör första biten ibland
+  startWatchdog(sessionId);
+
   setTimeout(() => {
     if (sessionId !== speakSessionRef.current) return;
-    speakQueueFromIndex(0, sessionId);
-  }, 80);
+    try {
+      ss.speak(u);
+    } catch (e) {
+      safeEnd();
+    }
+  }, 0);
 };
 
 const pauseSpeak = () => {
@@ -234,9 +248,12 @@ const resumeSpeak = () => {
     if (ss?.paused) {
       ss.resume();
       setIsPaused(false);
+      heartbeatRef.current = Date.now(); // så watchdog inte triggar direkt
     }
   } catch (e) {}
 };
+
+
 
 const toggleSpeak = () => {
   if (isSpeaking && isPaused) {
