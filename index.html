@@ -54,8 +54,8 @@ const AI_DOCK_PERCENT = 85; // AI ligger kvar så knappar syns
             const [isSidebarOpen, setIsSidebarOpen] = useState(true);
             const [history, setHistory] = useState([]);
             const [showDetail, setShowDetail] = useState(null);
-
-            const splitRef = useRef(null);
+const [cooldownLeft, setCooldownLeft] = useState(0);
+const lastRequestRef = useRef(null);            const splitRef = useRef(null);
 const isDragging = useRef(false);
 
 useEffect(() => {
