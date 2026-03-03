@@ -55,6 +55,15 @@ const AI_DOCK_PERCENT = 85; // AI ligger kvar så knappar syns
             const [history, setHistory] = useState([]);
             const [showDetail, setShowDetail] = useState(null);
 const [cooldownLeft, setCooldownLeft] = useState(0);
+            useEffect(() => {
+  if (cooldownLeft <= 0) return;
+
+  const t = setInterval(() => {
+    setCooldownLeft((c) => Math.max(0, c - 1));
+  }, 1000);
+
+  return () => clearInterval(t);
+}, [cooldownLeft]);
 const lastRequestRef = useRef(null);            const splitRef = useRef(null);
 const isDragging = useRef(false);
 
