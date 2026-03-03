@@ -135,26 +135,29 @@ const startWatchdog = (sessionId) => {
     // då har den troligen hängt i tyst läge
     const ms = Date.now() - heartbeatRef.current;
 
-    if ((ss.speaking || ss.pending) && ms > 1500) {
-      const text = lastTextRef.current;
-      const idx = lastCharIndexRef.current || 0;
+    // Ge startfasen lite nåd: om vi ännu inte fått boundary, restartar vi inte
+const idx = lastCharIndexRef.current || 0;
 
-      const restartFrom = Math.max(0, idx - 30);
-      const rest = text.slice(restartFrom).trim();
+// 1) längre gräns, 2) kräver att vi kommit en bit, 3) kräver att den faktiskt "pågår"
+if ((ss.speaking || ss.pending) && idx > 20 && ms > 2500) {
+  const text = lastTextRef.current;
 
-      // Ny session så gamla callbacks dör
-      speakSessionRef.current += 1;
-      const newSession = speakSessionRef.current;
+  const restartFrom = Math.max(0, idx - 30);
+  const rest = text.slice(restartFrom).trim();
 
-      hardStop();
-      utteranceRef.current = null;
+  speakSessionRef.current += 1;
+  const newSession = speakSessionRef.current;
 
-      if (rest) {
-        speakText(rest, newSession, restartFrom);
-      } else {
-        stopSpeak();
-      }
-    }
+  hardStop();
+  utteranceRef.current = null;
+
+  if (rest) {
+    speakText(rest, newSession, restartFrom);
+  } else {
+    stopSpeak();
+  }
+}
+     
   }, 400);
 };
 // Intern start så vi kan återstarta från mitten
@@ -229,7 +232,7 @@ const speakText = (text, forcedSessionId = null, offset = 0) => {
     } catch (e) {
       safeEnd();
     }
-  }, 0);
+  }, 80);
 };
 
 const pauseSpeak = () => {
