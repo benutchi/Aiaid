@@ -338,7 +338,12 @@ const toggleSpeak = () => {
   }
 
   const selected = (window.getSelection?.().toString() || "").trim();
-  speakText(selected || section.text || "");
+  if (selected) {
+  speakText(selected);
+  return;
+}
+
+speakFromChar(currentChar || 0);
 };
   
             useEffect(() => {
