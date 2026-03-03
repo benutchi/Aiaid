@@ -136,8 +136,17 @@ if (cooldownLeft > 0) {
                     setAiChat(prev => [{ id: Date.now(), role: 'ai', content: aiResponse, query: userMsgText }, ...prev]);
                     setHistory(prev => [{ s: section.page, q: userMsgText, a: aiResponse }, ...prev]);
                 } catch (err) {
-                    setAiChat(prev => [{ id: Date.now(), role: 'error', content: `Hoppsan! Kunde inte hämta svar (${err.message}).` }, ...prev]);
-                } finally {
+  // Om vi blir rate-limitade (429), starta cooldown
+  const msg = String(err?.message || "");
+  if (msg.includes("HTTP 429") || msg.includes("429")) {
+    setCooldownLeft(30);
+  }
+
+  setAiChat(prev => [
+    { id: Date.now(), role: 'error', content: `Hoppsan! Kunde inte hämta svar (${err.message}).` },
+    ...prev
+  ]);
+} finally {
                     setIsLoading(false);
                 }
             };
