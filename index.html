@@ -59,6 +59,48 @@ const [cooldownLeft, setCooldownLeft] = useState(0);
             const [isPaused, setIsPaused] = useState(false);
 const [speechRate, setSpeechRate] = useState(1.0);
 const utteranceRef = useRef(null);
+            // --- Sök & medföljning ---
+const [searchQ, setSearchQ] = useState("");
+const [currentChar, setCurrentChar] = useState(0);
+const activeRef = useRef(null);
+
+const buildSentenceChunks = (text) => {
+  const t = String(text || "");
+  const parts = t.match(/[^.!?]+[.!?]+|\s*[^.!?]+$/g) || [t];
+  let pos = 0;
+  return parts.map((p) => {
+    const start = pos;
+    pos += p.length;
+    return { start, text: p };
+  });
+};
+
+const escapeReg = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const renderWithSearchMarks = (str, q) => {
+  const s = String(str || "");
+  const qq = String(q || "").trim();
+  if (!qq) return s;
+
+  const re = new RegExp(escapeReg(qq), "gi");
+  const out = [];
+  let last = 0;
+  let m;
+
+  while ((m = re.exec(s)) !== null) {
+    const i = m.index;
+    if (i > last) out.push(s.slice(last, i));
+    out.push(
+      <mark key={`${i}-${m[0]}`} className="bg-yellow-200 px-1 rounded">
+        {s.slice(i, i + m[0].length)}
+      </mark>
+    );
+    last = i + m[0].length;
+  }
+
+  if (last < s.length) out.push(s.slice(last));
+  return out;
+};
             useEffect(() => {
   if (cooldownLeft <= 0) return;
 
