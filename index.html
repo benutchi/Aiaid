@@ -445,14 +445,14 @@ setCooldownLeft((c) => Math.max(c, 60));  }
 
 const removeMsg = (id) => setAiChat(prev => prev.filter(m => m.id !== id));
 
-const openAI = () => setSplitPercent(AI_OPEN_PERCENT);
-const dockAI = () => setSplitPercent(AI_DOCK_PERCENT);
+const openAI = () => setSplitPercent(AI_OPEN_PERCENT);   // AI upp (stor)
+const dockAI = () => setSplitPercent(AI_DOCK_PERCENT);   // AI ner (liten)
 
 const toggleAI = () => {
   if (splitPercent < 50) {
-    openAI();   // om AI är “dold” (liten), visa den
+    dockAI();   // AI är uppe -> dölj (ner)
   } else {
-    dockAI();   // om AI är “visad” (stor), dölj den
+    openAI();   // AI är nere -> visa (upp)
   }
 };
             return (
