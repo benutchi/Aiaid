@@ -280,8 +280,7 @@ setSplitPercent(Math.max(3, Math.min(97, p)));                    }}
   }`}
 >
     <i data-lucide="sparkles" className="w-4 h-4"></i>
-    Förenkla texten
-  </button>
+{cooldownLeft > 0 ? `Vänta ${cooldownLeft}s` : "Förenkla texten"}  </button>
 
   <button
     onClick={() => askAI('deepen')}
