@@ -148,8 +148,7 @@ if (cooldownLeft > 0) {
   // Om vi blir rate-limitade (429), starta cooldown
   const msg = String(err?.message || "");
   if (msg.includes("HTTP 429") || msg.includes("429")) {
-    setCooldownLeft(30);
-  }
+setCooldownLeft((c) => Math.max(c, 60));  }
 
   setAiChat(prev => [
     { id: Date.now(), role: 'error', content: `Hoppsan! Kunde inte hämta svar (${err.message}).` },
