@@ -351,16 +351,15 @@ setSplitPercent(Math.max(3, Math.min(97, p)));                    }}
                                         <p className="text-2xl leading-[1.8] text-slate-700 font-bold whitespace-pre-wrap text-left text-left">{section.text}</p>
                                       <div className="mt-6 flex flex-wrap gap-3">
   <button
-    onClick={() => {
-      const selected = (window.getSelection?.().toString() || "").trim();
-      if (selected) speakText(selected);
-      else speakText(section.text || "");
-    }}
-    className="px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg bg-slate-900 text-white"
-  >
-    <i data-lucide="volume-2" className="w-4 h-4"></i>
-    Läs upp
-  </button>
+  onClick={toggleSpeak}
+  className="px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg bg-slate-900 text-white"
+>
+  <i
+    data-lucide={isSpeaking ? (isPaused ? "play" : "pause") : "volume-2"}
+    className="w-4 h-4"
+  ></i>
+  {isSpeaking ? (isPaused ? "Fortsätt" : "Pausa") : "Läs upp"}
+</button>
 
   <button
     disabled={!isSpeaking || isPaused}
