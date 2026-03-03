@@ -282,6 +282,16 @@ const speakText = (text, forcedSessionId = null, offset = 0) => {
     // charIndex är index i utterance-texten, vi vill ha index i originaltexten
     const ci = Number(e.charIndex || 0);
     lastCharIndexRef.current = Math.max(0, ci - 1) + (offset || 0);
+      // SCROLL MEDFÖLJNING LIGHT
+if (textBodyRef.current) {
+  const el = textBodyRef.current;
+
+  // ungefärlig procent genom texten
+  const percent = lastCharIndexRef.current / (clean.length || 1);
+
+  const scrollHeight = el.scrollHeight - el.clientHeight;
+  el.scrollTop = scrollHeight * percent;
+}
   };
 
   u.onend = safeEnd;
