@@ -101,6 +101,32 @@ const renderWithSearchMarks = (str, q) => {
   if (last < s.length) out.push(s.slice(last));
   return out;
 };
+            // --- Klicka i texten & starta från position ---
+const textBodyRef = useRef(null);
+
+const getCaretCharIndexIn = (containerEl) => {
+  const sel = window.getSelection?.();
+  if (!sel || sel.rangeCount === 0) return null;
+
+  const range = sel.getRangeAt(0);
+  const pre = range.cloneRange();
+  pre.selectNodeContents(containerEl);
+  pre.setEnd(range.startContainer, range.startOffset);
+
+  return pre.toString().length;
+};
+
+const speakFromChar = (charIndex) => {
+  const text = String(section.text || "");
+  const start = Math.max(0, Math.min(text.length, Number(charIndex || 0)));
+  const rest = text.slice(start).trim();
+
+  if (!rest) return;
+
+  stopSpeak();
+  setCurrentChar(start);
+  speakText(rest, null, start);
+};
             useEffect(() => {
   if (cooldownLeft <= 0) return;
 
