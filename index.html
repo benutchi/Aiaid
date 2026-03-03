@@ -80,6 +80,14 @@ useEffect(() => {
             }, [aiChat, isSidebarOpen, isTeacherMode, showDetail, activeBlock, activeSection]);
 
             const askAI = async (type, queryText = "") => {
+                // Cooldown, om vi har nedräkning kvar så gör inget
+if (cooldownLeft > 0) {
+  setAiChat(prev => [
+    { id: Date.now(), role: 'error', content: `Vänta ${cooldownLeft}s innan du frågar igen.` },
+    ...prev
+  ]);
+  return;
+}
                 if (isLoading) return;
                 setSplitPercent(AI_OPEN_PERCENT);
                 const userMsgText = queryText || (type === 'simplify' ? 'Förenkla texten' : type === 'deepen' ? 'Fördjupa' : 'Ge exempel');
