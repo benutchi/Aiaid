@@ -196,7 +196,7 @@ const toggleSpeak = () => {
                 } catch (e) {
                     console.warn("Lucide fail:", e);
                 }
-            }, [aiChat, isSidebarOpen, isTeacherMode, showDetail, activeBlock, activeSection]);
+            }, [aiChat, isSidebarOpen, isTeacherMode, showDetail, activeBlock, activeSection, isSpeaking, isPaused]);
 
             const askAI = async (type, queryText = "") => {
                 // Cooldown, om vi har nedräkning kvar så gör inget
