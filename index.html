@@ -450,9 +450,9 @@ const dockAI = () => setSplitPercent(AI_DOCK_PERCENT);
 
 const toggleAI = () => {
   if (splitPercent < 50) {
-    dockAI();
+    openAI();   // om AI är “dold” (liten), visa den
   } else {
-    openAI();
+    dockAI();   // om AI är “visad” (stor), dölj den
   }
 };
             return (
