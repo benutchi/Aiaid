@@ -138,13 +138,29 @@ const speakText = (text) => {
   setIsPaused(false);
 
   setTimeout(() => {
-    if (sessionId !== speakSessionRef.current) return;
-    try {
-      window.speechSynthesis.speak(u);
-    } catch (e) {
-      safeEnd();
-    }
-  }, 50);
+  if (sessionId !== speakSessionRef.current) return;
+
+  try {
+    const ss = window.speechSynthesis;
+
+    // extra flush mot "klipp i början"
+    ss.cancel();
+    ss.cancel();
+
+    // liten delay innan speak
+    setTimeout(() => {
+      if (sessionId !== speakSessionRef.current) return;
+      try {
+        ss.speak(u);
+      } catch (e) {
+        safeEnd();
+      }
+    }, 120);
+
+  } catch (e) {
+    safeEnd();
+  }
+}, 30);
 };
 
 const pauseSpeak = () => {
