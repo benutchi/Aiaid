@@ -94,7 +94,7 @@ const hardResetSpeech = () => {
 };
 
 const stopSpeak = () => {
-  speakSessionRef.current += 1; // dödar gamla sessioner
+  speakSessionRef.current += 1; // dödar gamla callbacks
   hardResetSpeech();
   utteranceRef.current = null;
   setIsSpeaking(false);
@@ -102,9 +102,9 @@ const stopSpeak = () => {
 };
 
 const speakText = (text) => {
-  if (!text) return;
+  const clean = String(text || "").trim();
+  if (!clean) return;
 
-  // Om webbläsaren saknar stöd
   if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
     setAiChat((prev) => [
       { id: Date.now(), role: "error", content: "Uppläsning stöds inte i den här webbläsaren." },
@@ -113,46 +113,45 @@ const speakText = (text) => {
     return;
   }
 
-  // starta alltid "rent" (Chrome kan behöva dubbel cancel)
-  try { window.speechSynthesis?.cancel(); } catch (e) {}
-  try { window.speechSynthesis?.cancel(); } catch (e) {}
+  // Ny session, gör gammalt ofarligt
+  const sessionId = (speakSessionRef.current += 1);
+  hardResetSpeech();
   utteranceRef.current = null;
 
-  const u = new SpeechSynthesisUtterance(text);
+  const u = new SpeechSynthesisUtterance(clean);
   u.lang = "sv-SE";
   u.rate = Number(speechRate || 1.0);
   u.pitch = 1.0;
 
-  u.onend = () => {
+  const safeEnd = () => {
+    if (sessionId !== speakSessionRef.current) return;
     setIsSpeaking(false);
     setIsPaused(false);
     utteranceRef.current = null;
   };
-  u.onerror = () => {
-    setIsSpeaking(false);
-    setIsPaused(false);
-    utteranceRef.current = null;
-  };
+
+  u.onend = safeEnd;
+  u.onerror = safeEnd;
 
   utteranceRef.current = u;
   setIsSpeaking(true);
   setIsPaused(false);
 
   setTimeout(() => {
+    if (sessionId !== speakSessionRef.current) return;
     try {
       window.speechSynthesis.speak(u);
     } catch (e) {
-      setIsSpeaking(false);
-      setIsPaused(false);
-      utteranceRef.current = null;
+      safeEnd();
     }
-  }, 30);
+  }, 50);
 };
 
 const pauseSpeak = () => {
   try {
-    if (window.speechSynthesis?.speaking && !window.speechSynthesis?.paused) {
-      window.speechSynthesis.pause();
+    const ss = window.speechSynthesis;
+    if (ss?.speaking && !ss?.paused) {
+      ss.pause();
       setIsPaused(true);
     }
   } catch (e) {}
@@ -160,33 +159,27 @@ const pauseSpeak = () => {
 
 const resumeSpeak = () => {
   try {
-    if (window.speechSynthesis?.paused) {
-      window.speechSynthesis.resume();
+    const ss = window.speechSynthesis;
+    if (ss?.paused) {
+      ss.resume();
       setIsPaused(false);
     }
   } catch (e) {}
 };
 
 const toggleSpeak = () => {
-  // Om den är pausad: fortsätt
   if (isSpeaking && isPaused) {
     resumeSpeak();
     return;
   }
 
-  // Om den läser: pausa (inte stoppa)
   if (isSpeaking && !isPaused) {
     pauseSpeak();
     return;
   }
 
-  // Annars: läs markerad text om den finns, annars hela section
   const selected = (window.getSelection?.().toString() || "").trim();
-  if (selected.length > 0) {
-    speakText(selected);
-  } else {
-    speakText(section.text || "");
-  }
+  speakText(selected || section.text || "");
 };
   
             useEffect(() => {
