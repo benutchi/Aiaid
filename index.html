@@ -419,7 +419,10 @@ setCooldownLeft(90);
                     // --- FIX: Ingen 'model' i JSON för att inte krocka med backend ---
                     const res = await fetch(`/.netlify/functions/gemini`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                       headers: {
+  'Content-Type': 'application/json',
+  'X-Client-Id': clientIdRef.current
+},
                         body: JSON.stringify({ q, systemPrompt: sysPrompt })
                     });
                     
