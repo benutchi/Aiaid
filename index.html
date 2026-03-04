@@ -43,6 +43,11 @@
 
         const BLOCKS = window.BLOCKS_DATA;
         function App() {
+            const clientIdRef = useRef(localStorage.getItem("clientId") || crypto.randomUUID());
+
+useEffect(() => {
+  localStorage.setItem("clientId", clientIdRef.current);
+}, []);
             const [activeBlock, setActiveBlock] = useState(0);
             const [activeSection, setActiveSection] = useState(0);
             const [aiChat, setAiChat] = useState([]);
