@@ -1,3 +1,7 @@
+// --- Klassrums-skydd mot spam / 429 ---
+const lastHitByClient = new Map();
+const MIN_MS_PER_CLIENT = 90_000; // 90 sek
+
 // netlify/functions/gemini.js
 
 function reply(statusCode, body) {
