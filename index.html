@@ -388,8 +388,8 @@ if (cooldownLeft > 0) {
                 
                 // --- FIX: Visa elevens fråga direkt för feedback ---
                 setAiChat(prev => [{ id: userMsgId, role: 'user', content: userMsgText }, ...prev]);
-                setIsLoading(true);
-
+setIsLoading(true);
+setCooldownLeft(90);
                 // --- FIX: Kapa textbanken för att aldrig skicka för mycket ---
                 const TEXTBANK = (section.text || "").slice(0, 8000); 
 
