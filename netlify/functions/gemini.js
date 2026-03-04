@@ -18,6 +18,24 @@ function reply(statusCode, body) {
 }
 
 export async function handler(event) {
+  const clientId =
+    event.headers["x-client-id"] ||
+    event.headers["x-nf-client-connection-ip"] ||
+    event.headers["x-forwarded-for"] ||
+    "unknown";
+
+  const now = Date.now();
+  const last = lastHitByClient.get(clientId) || 0;
+
+  if (now - last < MIN_MS_PER_CLIENT) {
+    return reply(429, {
+      error: "cooldown",
+      waitMs: MIN_MS_PER_CLIENT - (now - last)
+    });
+  }
+
+  lastHitByClient.set(clientId, now);
+
   try {
     // 1) Preflight
     if (event.httpMethod === "OPTIONS") {
