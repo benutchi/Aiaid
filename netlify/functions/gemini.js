@@ -69,12 +69,6 @@ if (cached && Date.now() - cached.time < CACHE_TTL) {
     const now = Date.now();
 const last = lastHitByClient.get(clientId) || 0;
 
-if (Date.now() - last < MIN_MS_PER_CLIENT) {
-  return reply(429, {
-    error: "cooldown",
-    waitMs: MIN_MS_PER_CLIENT - (Date.now() - last)
-  });
-}
 
 lastHitByClient.set(clientId, Date.now());   // RIKTIGT ANROP TILL GEMINI
 const apiKey = process.env.GEMINI_API_KEY;
