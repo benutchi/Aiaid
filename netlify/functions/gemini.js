@@ -1,6 +1,6 @@
 // --- Klassrums-skydd mot spam / 429 ---
 const lastHitByClient = new Map();
-const MIN_MS_PER_CLIENT = 10_000; // 90 sek
+const MIN_MS_PER_CLIENT = 10_000; // 10 sek
 
 // netlify/functions/gemini.js
 
@@ -10,8 +10,7 @@ function reply(statusCode, body) {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+"Access-Control-Allow-Headers": "Content-Type, X-Client-Id",      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
     },
     body: JSON.stringify(body),
   };
@@ -120,6 +119,7 @@ try {
 }
 
 // Skicka tillbaka i samma format som din frontend redan läser
+    CACHE.set(cacheKey, { time: Date.now(), text: data.text });
 return reply(200, data);
   } catch (e) {
     return reply(500, { error: String(e?.message || e) });
