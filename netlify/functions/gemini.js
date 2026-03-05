@@ -72,10 +72,10 @@ if (cached && Date.now() - cached.time < CACHE_TTL) {
     const now = Date.now();
 const last = lastHitByClient.get(clientId) || 0;
 
-if (now - last < MIN_MS_PER_CLIENT) {
+if (Date.now() - last < MIN_MS_PER_CLIENT) {
   return reply(429, {
     error: "cooldown",
-    waitMs: MIN_MS_PER_CLIENT - (now - last)
+    waitMs: MIN_MS_PER_CLIENT - (Date.now() - last)
   });
 }
 
