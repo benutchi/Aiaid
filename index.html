@@ -395,8 +395,15 @@ if (cooldownLeft > 0) {
 }
                 if (isLoading) return;
                 setSplitPercent(AI_OPEN_PERCENT);
-                const userMsgText = queryText || (type === 'simplify' ? 'Förenkla texten' : type === 'deepen' ? 'Fördjupa' : 'Ge exempel');
-                const userMsgId = Date.now();
+const userMsgText =
+  queryText ||
+  (type === 'simplify'
+    ? 'Förenkla texten'
+    : type === 'deepen'
+    ? 'Fördjupa & samband'
+    : type === 'reason'
+    ? 'Resonera'
+    : 'Fråga');                const userMsgId = Date.now();
                 
                 // --- FIX: Visa elevens fråga direkt för feedback ---
                 setAiChat(prev => [{ id: userMsgId, role: 'user', content: userMsgText }, ...prev]);
