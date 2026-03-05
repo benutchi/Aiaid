@@ -17,8 +17,7 @@ function reply(statusCode, body) {
 }
 const CACHE = new Map();
 const CACHE_TTL = 30 * 60 * 1000; // 30 minuter
-export async function handler(event) {
-  const clientId =
+exports.handler = async function (event) {  const clientId =
     event.headers["x-client-id"] ||
     event.headers["x-nf-client-connection-ip"] ||
     event.headers["x-forwarded-for"] ||
