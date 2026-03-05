@@ -134,3 +134,7 @@ if (!outText) {
 
 CACHE.set(cacheKey, { time: Date.now(), text: outText });
 return reply(200, { text: outText });
+  } catch (e) {
+    return reply(500, { error: String(e?.message || e) });
+  }
+};
