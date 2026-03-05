@@ -426,16 +426,43 @@ if (type === "reason") {
                 let q = "";
 
                 if (type === 'simplify') {
-                    sysPrompt = `Du är Studiekompisen AI. Förenkla språket extremt mycket. REGLER: 1) KORTA stycken. 2) PUNKTLYSTOR. 3) Enkel svenska. Källa: sida ${section.page}. TEXTBANK: "${TEXTBANK}"`;
+                    sysPrompt = `Du är Studiekompisen AI. Förenkla språket extremt mycket. REGLER: 1) KORTA stycken. 2) PUNKTLYSTOR. 3) Enkel svenska. Källa: sida ${section.page}. TEXTBANK: "${CONTEXT}"`;
                     q = "Gör texten jättelätt att förstå.";
                 } else if (type === 'deepen' || type === 'develop') {
-                    sysPrompt = `Du är Studiekompisen AI. Fördjupa förståelsen. REGLER: 1) Fokusera på SAMBAND. 2) KONSEKVENSER. 3) Ställ en utmanande följdfråga. Källa: sida ${section.page}. TEXTBANK: "${TEXTBANK}"`;
+                    sysPrompt = `Du är Studiekompisen AI. Fördjupa förståelsen. REGLER: 1) Fokusera på SAMBAND. 2) KONSEKVENSER. 3) Ställ en utmanande följdfråga. Källa: sida ${section.page}. TEXTBANK: "${CONTEXT}"`;
                     q = "Hjälp mig fördjupa mig i sambanden i texten.";
-                } else if (type === 'concept') {
-                    sysPrompt = `Du är Studiekompisen AI. Förklara begreppet på enkel svenska utifrån texten. Källa: sida ${section.page}. TEXTBANK: "${TEXTBANK}"`;
+                    }
+                    else if (type === 'reason') {
+    sysPrompt = `Du är Studiekompisen AI och hjälper elever i årskurs 6 att förstå hur man RESONERAR i samhällskunskap.
+
+REGLER:
+1. Använd bara information från TEXTBANK.
+2. Visa hur man kan tänka steg för steg.
+3. Förklara samband mellan saker.
+4. Använd enkel svenska.
+5. Skriv inte ett facit.
+
+UPPGIFT:
+Visa hur man kan resonera utifrån texten.
+
+STRUKTUR:
+• Börja med "Så här kan man tänka:"
+• Visa 3–5 steg i resonemanget
+• Visa samband eller konsekvenser
+• Avsluta med en tänkfråga
+
+Om texten inte räcker:
+Skriv "Det finns för lite information i texten för att resonera vidare."
+
+TEXTBANK: "${CONTEXT}"`;
+
+    q = "Visa hur man kan resonera utifrån texten.";
+}
+                 else if (type === 'concept') {
+                    sysPrompt = `Du är Studiekompisen AI. Förklara begreppet på enkel svenska utifrån texten. Källa: sida ${section.page}. TEXTBANK: "${CONTEXT}"`;
                     q = `Förklara begreppet "${queryText}".`;
                 } else {
-                    sysPrompt = `Du är Studiekompisen AI. Coacha med frågor. Källa: sida ${section.page}. TEXTBANK: "${TEXTBANK}"`;
+                    sysPrompt = `Du är Studiekompisen AI. Coacha med frågor. Källa: sida ${section.page}. TEXTBANK: "${CONTEXT}"`;
                     q = queryText || "Ge ett vardagligt exempel.";
                 }
 
