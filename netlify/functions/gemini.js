@@ -24,15 +24,7 @@ export async function handler(event) {
     event.headers["x-forwarded-for"] ||
     "unknown";
 
-  const now = Date.now();
-  const last = lastHitByClient.get(clientId) || 0;
-
-  if (now - last < MIN_MS_PER_CLIENT) {
-    return reply(429, {
-      error: "cooldown",
-      waitMs: MIN_MS_PER_CLIENT - (now - last)
-    });
-  }
+ 
 
   lastHitByClient.set(clientId, now);
 
