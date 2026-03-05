@@ -26,8 +26,6 @@ export async function handler(event) {
 
  
 
-  lastHitByClient.set(clientId, now);
-
   try {
     // 1) Preflight
     if (event.httpMethod === "OPTIONS") {
