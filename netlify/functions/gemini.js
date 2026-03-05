@@ -69,7 +69,17 @@ const cached = CACHE.get(cacheKey);
 if (cached && Date.now() - cached.time < CACHE_TTL) {
   return reply(200, { text: cached.text, cached: true });
 }
-    
+    const now = Date.now();
+const last = lastHitByClient.get(clientId) || 0;
+
+if (now - last < MIN_MS_PER_CLIENT) {
+  return reply(429, {
+    error: "cooldown",
+    waitMs: MIN_MS_PER_CLIENT - (now - last)
+  });
+}
+
+lastHitByClient.set(clientId, now);
    // RIKTIGT ANROP TILL GEMINI
 const apiKey = process.env.GEMINI_API_KEY;
 if (!apiKey) {
