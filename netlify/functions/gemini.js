@@ -16,7 +16,8 @@ function reply(statusCode, body) {
     body: JSON.stringify(body),
   };
 }
-
+const CACHE = new Map();
+const CACHE_TTL = 30 * 60 * 1000; // 30 minuter
 export async function handler(event) {
   const clientId =
     event.headers["x-client-id"] ||
