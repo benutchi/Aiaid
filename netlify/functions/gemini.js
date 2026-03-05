@@ -119,8 +119,11 @@ try {
 }
 
 // Skicka tillbaka i samma format som din frontend redan läser
-    CACHE.set(cacheKey, { time: Date.now(), text: data.text });
-return reply(200, data);
+   const outText =
+  data?.candidates?.[0]?.content?.parts?.map(p => p.text || "").join("")?.trim() || "";
+
+CACHE.set(cacheKey, { time: Date.now(), text: outText });
+return reply(200, { text: outText });
   } catch (e) {
     return reply(500, { error: String(e?.message || e) });
   }
