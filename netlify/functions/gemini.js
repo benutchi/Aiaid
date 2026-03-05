@@ -118,12 +118,20 @@ try {
 }
 
 // Skicka tillbaka i samma format som din frontend redan läser
-   const outText =
-  data?.candidates?.[0]?.content?.parts?.map(p => p.text || "").join("")?.trim() || "";
+   // Plocka ut text ur Gemini-svaret
+const parts = data?.candidates?.[0]?.content?.parts || [];
+const outText = parts.map(p => p?.text || "").join("").trim();
+
+const blockReason =
+  data?.promptFeedback?.blockReason ||
+  data?.candidates?.[0]?.finishReason ||
+  "";
+
+if (!outText) {
+  return reply(200, {
+    text: `Tomt svar från Gemini. Orsak: ${blockReason || "okänd"}`
+  });
+}
 
 CACHE.set(cacheKey, { time: Date.now(), text: outText });
 return reply(200, { text: outText });
-  } catch (e) {
-    return reply(500, { error: String(e?.message || e) });
-  }
-}
