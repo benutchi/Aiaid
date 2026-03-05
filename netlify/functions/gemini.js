@@ -79,8 +79,7 @@ if (Date.now() - last < MIN_MS_PER_CLIENT) {
   });
 }
 
-lastHitByClient.set(clientId, now);
-   // RIKTIGT ANROP TILL GEMINI
+lastHitByClient.set(clientId, Date.now());   // RIKTIGT ANROP TILL GEMINI
 const apiKey = process.env.GEMINI_API_KEY;
 if (!apiKey) {
   return reply(500, { error: "Missing GEMINI_API_KEY in Netlify environment variables." });
