@@ -72,7 +72,13 @@ export async function handler(event) {
     const systemPrompt = body.systemPrompt || "";
 
     if (!q) return reply(400, { error: "Missing field: q" });
+const cacheKey = JSON.stringify({ q, systemPrompt });
 
+const cached = CACHE.get(cacheKey);
+if (cached && Date.now() - cached.time < CACHE_TTL) {
+  return reply(200, { text: cached.text, cached: true });
+}
+    
    // RIKTIGT ANROP TILL GEMINI
 const apiKey = process.env.GEMINI_API_KEY;
 if (!apiKey) {
