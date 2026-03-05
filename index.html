@@ -660,8 +660,7 @@ if (i != null) setCurrentChar(i);  }}
 
  <button
   disabled={cooldownLeft > 0}
-  onClick={() => askAI('example')}
-  className={`px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 ${
+onClick={() => askAI('reason')}  className={`px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-lg shrink-0 ${
     cooldownLeft > 0 ? "bg-slate-400 text-white cursor-not-allowed" : "bg-slate-900 text-white"
   }`}
 >
