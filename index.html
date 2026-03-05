@@ -482,8 +482,8 @@ TEXTBANK: "${CONTEXT}"`;
                         throw new Error(`Serverfel (HTTP ${res.status}): ${errBody.substring(0, 100)}`);
                     }
                     
-                    const data = await res.json();
-                    const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "AI gav inget svar.";
+                   const data = await res.json();
+const aiResponse = (data && typeof data.text === "string") ? data.text : "AI gav inget svar.";
                     
                     setAiChat(prev => [{ id: Date.now(), role: 'ai', content: aiResponse, query: userMsgText }, ...prev]);
                     setHistory(prev => [{ s: section.page, q: userMsgText, a: aiResponse }, ...prev]);
