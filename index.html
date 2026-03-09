@@ -648,17 +648,7 @@ if (i != null) setCurrentChar(i);  }}
                                         </div>
                                     </section>
 
-                                    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 font-black uppercase text-[10px] tracking-widest text-left text-left">
-                                        <button onClick={() => setShowDetail(showDetail === 'summary' ? null : 'summary')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'summary' ? 'bg-indigo-600 border-indigo-400 text-white' : 'bg-white border-slate-100 text-slate-400'}`}><i data-lucide="list-checks"></i> Sammanfattning</button>
-                                        <button onClick={() => setShowDetail(showDetail === 'test' ? null : 'test')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'test' ? 'bg-blue-600 border-blue-400 text-white' : 'bg-white border-slate-100 text-slate-400'}`}><i data-lucide="zap"></i> Självtest</button>
-                                        <button onClick={() => setShowDetail(showDetail === 'reasoning' ? null : 'reasoning')} className={`p-10 rounded-[2.5rem] border-4 transition-all flex flex-col items-center gap-4 ${showDetail === 'reasoning' ? 'bg-emerald-600 border-emerald-400 text-white' : 'bg-white border-slate-100 text-slate-400'}`}><i data-lucide="brain-circuit"></i> Resonera</button>
-                                    </section>
-
-                                    {showDetail && (
-                                        <div className="bg-slate-50 p-12 rounded-[3.5rem] border-2 border-slate-100 animate-fade-in text-left text-left text-left">
-                                            {showDetail === 'summary' && <ul className="space-y-4 text-left">{(section.summary || []).map((s, i) => <li key={i} className="bg-white p-7 rounded-3xl font-bold flex gap-5 shadow-sm border border-slate-100 text-left"><span className="text-indigo-500 font-black text-left text-left">0${i+1}</span>{s}</li>)}</ul>}
-                                            {showDetail === 'test' && <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">{(section.test || []).map((t, i) => <div key={i} className="bg-white p-6 rounded-3xl border border-blue-50 shadow-sm flex flex-col justify-between italic text-sm font-black text-slate-800 text-left">"{t.q}"<button onClick={(e) => { e.currentTarget.innerHTML = `<span class='text-blue-600 font-black'>${t.a}</span>`; }} className="text-[9px] text-blue-300 uppercase mt-4 text-left">Visa svar</button></div>)}</div>}
-                                        </div>
+                                  
                                     )}
 
                                    
