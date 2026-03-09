@@ -709,8 +709,12 @@ onClick={() => askAI('reason')}  className={`px-6 py-4 rounded-2xl text-[10px] f
                                                             <i data-lucide="x" className="w-4 h-4 text-left text-left text-left text-left text-left text-left"></i>
                                                         </button>
                                                     </div>
-                                                    <div className="whitespace-pre-wrap text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">{m.content}</div>
-                                                </div>
+<div
+  className="whitespace-pre-wrap text-left"
+  dangerouslySetInnerHTML={{
+    __html: m.content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+  }}
+></div>                                                </div>
                                             </div>
                                         ))}
                                     </div>
