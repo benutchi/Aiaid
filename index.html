@@ -567,10 +567,7 @@ setSplitPercent(Math.max(3, Math.min(97, p)));                    }}
                         <div className="split-container text-left text-left">
                             <div className="panel-text custom-scrollbar text-left text-left" style={{ flexBasis: `${splitPercent}%` }}>
                                 <div className="max-w-4xl mx-auto p-8 space-y-12 pb-20 text-left text-left">
-                                    <section className="bg-amber-50 p-10 rounded-[3rem] border-4 border-amber-100 shadow-xl relative overflow-hidden text-left text-left">
-                                        <h4 className="text-[10px] font-black text-amber-700 uppercase tracking-widest mb-6 flex items-center gap-2 italic text-left text-left"><i data-lucide="check-circle-2"></i> Detta behöver du kunna</h4>
-                                        <ul className="space-y-3 text-left">{(section.mustKnow || []).map((m, i) => <li key={i} className="flex gap-4 font-bold text-amber-900 leading-snug text-left"><span className="text-amber-400 font-black">▶</span> {m}</li>)}</ul>
-                                    </section>
+                                   
 
                                     <section className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100 relative animate-fade-in text-left text-left">
                                         <div className="absolute top-0 left-0 w-2 h-full bg-indigo-600 text-left text-left"></div>
