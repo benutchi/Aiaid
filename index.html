@@ -146,8 +146,8 @@ const getCaretCharIndexIn = (containerEl) => {
 const speakFromChar = (charIndex) => {
   const text = String(section.text || "");
   const start = Math.max(0, Math.min(text.length, Number(charIndex || 0)));
-  const rest = text.slice(start).trim();
-
+// ...existing code...
+const rest = text.slice(start);
   if (!rest) return;
 
   stopSpeak();
@@ -257,8 +257,8 @@ if ((ss.speaking || ss.pending) && idx > 20 && ms > 2500) {
 };
 // Intern start så vi kan återstarta från mitten
 const speakText = (text, forcedSessionId = null, offset = 0) => {
-  const clean = String(text || "").trim();
-  if (!clean) return;
+// ...existing code...
+const clean = String(text || "");  if (!clean) return;
 
   if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
     setAiChat((prev) => [
@@ -314,8 +314,9 @@ u.onboundary = (e) => {
   if (e.charIndex == null) return;
   // kompensation för ledande space i utter (" " + clean) och för speakText offset
   const utterOffset = Number(offset || 0);
-  const localChar = Math.max(0, e.charIndex - 1);
-  const globalIndex = utterOffset + localChar;
+// ...existing code...
+const leadingSpace = String(u.text || "").startsWith(" ");
+const localChar = Math.max(0, e.charIndex - (leadingSpace ? 1 : 0));  const globalIndex = utterOffset + localChar;
   lastCharIndexRef.current = globalIndex;
 
   const cleanText = String(lastTextRef.current || '').replace(/\r\n/g, '\n');
