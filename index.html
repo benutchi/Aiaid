@@ -169,6 +169,18 @@ const renderWithSearchMarks = (str, q) => {
 // ...existing code...
 const textBodyRef = useRef(null);
 const getCaretCharIndexIn = (containerEl) => {
+
+  const speakFromChar = (charIndex) => {
+  const text = String(section.text || "");
+  const start = Math.max(0, Math.min(text.length, Number(charIndex || 0)));
+  const rest = text.slice(start);
+
+  if (!rest) return;
+
+  stopSpeak();
+  setCurrentChar(start);
+  speakText(rest, null, start);
+};
   const sel = window.getSelection?.();
   if (!sel || sel.rangeCount === 0) return null;
 
