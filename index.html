@@ -258,12 +258,27 @@ const hardStop = () => {
 };
 
 const stopSpeak = () => {
-    expectedSpeakingRef.current = false;
+  expectedSpeakingRef.current = false;
+  speakSessionRef.current += 1;
   clearWatchdog();
-  hardStop();
+
+  try {
+    const ss = window.speechSynthesis;
+    if (ss) {
+      ss.cancel();
+      ss.cancel();
+    }
+  } catch (e) {}
+
   utteranceRef.current = null;
   lastTextRef.current = "";
   lastCharIndexRef.current = 0;
+  heartbeatRef.current = Date.now();
+
+  if (window.__wordSpans && window.__wordSpans.length) {
+    window.__wordSpans.forEach(s => s.classList.remove('highlight'));
+  }
+
   setIsSpeaking(false);
   setIsPaused(false);
 };
