@@ -119,29 +119,7 @@ const renderWithSearchMarks = (str, q) => {
 // ...existing code...
 const textBodyRef = useRef(null);
 
-useEffect(() => {
-  if (!textBodyRef.current) { window.__wordSpans = []; return; }
-  const update = () => {
-    window.__wordSpans = Array.from(textBodyRef.current.querySelectorAll('span.word, span.space'));
-  };
-  update();
-  const obs = new MutationObserver(update);
-  obs.observe(textBodyRef.current, { childList: true, subtree: true, characterData: true });
-  window.addEventListener('resize', update);
-  return () => { obs.disconnect(); window.removeEventListener('resize', update); window.__wordSpans = []; };
-}, [section.text, searchQ, fontScale]);
-// ...existing code...
-const getCaretCharIndexIn = (containerEl) => {
-  const sel = window.getSelection?.();
-  if (!sel || sel.rangeCount === 0) return null;
 
-  const range = sel.getRangeAt(0);
-  const pre = range.cloneRange();
-  pre.selectNodeContents(containerEl);
-  pre.setEnd(range.startContainer, range.startOffset);
-
-  return pre.toString().length;
-};
 
 const speakFromChar = (charIndex) => {
   const text = String(section.text || "");
@@ -176,6 +154,19 @@ useEffect(() => {
 }, []);
             const block = BLOCKS[activeBlock] || BLOCKS[0];
             const section = block.sections[activeSection] || block.sections[0];
+            // ...existing code...
+useEffect(() => {
+  if (!textBodyRef.current) { window.__wordSpans = []; return; }
+  const update = () => {
+    window.__wordSpans = Array.from(textBodyRef.current.querySelectorAll('span.word, span.space'));
+  };
+  update();
+  const obs = new MutationObserver(update);
+  obs.observe(textBodyRef.current, { childList: true, subtree: true, characterData: true });
+  window.addEventListener('resize', update);
+  return () => { obs.disconnect(); window.removeEventListener('resize', update); window.__wordSpans = []; };
+}, [section.text, searchQ, fontScale]);
+// ...existing code...
 // --- Uppläsning (Web Speech API) STABIL: watchdog mot "tyst-läsning" ---
 const speakSessionRef = useRef(0);
 const lastTextRef = useRef("");
