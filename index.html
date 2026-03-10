@@ -196,8 +196,7 @@ if (window.__wordSpans && window.__wordSpans.length) {
   let cum = 0, found = null;
   for (let i = 0; i < spans.length; i++) {
     const len = spans[i].textContent.length;
-    if (start >= cum && start < cum + len) { found = spans[i]; break; }
-    cum += len;
+if ((currentChar || 0) >= cum && (currentChar || 0) < cum + len) { found = spans[i]; break; }    cum += len;
   }
   spans.forEach(s => s.classList.remove('highlight'));
   if (found) {
