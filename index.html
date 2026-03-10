@@ -282,27 +282,41 @@ if (bestSv) u.voice = bestSv;
   const safeEnd = () => {
   if (sessionId !== speakSessionRef.current) return;
   expectedSpeakingRef.current = false;
-  clearWatchdog();
-  utteranceRef.current = null;
-  setIsSpeaking(false);
-  setIsPaused(false);
+ // ...existing code...
+utter.onboundary = (e) => {
+  if (e.charIndex == null) return;
+  lastCharIndexRef.current = e.charIndex;
+
+  // Försök hitta befintliga ord-spanar (byggs upp vid render)
+  // Förväntar att en global lista window.__wordSpans finns; fallback till procentbaserad scrollning.
+  const cleanText = (text || '').replace(/\r\n/g, '\n');
+  const idx = Math.min(e.charIndex, Math.max(0, cleanText.length - 1));
+
+  if (window.__wordSpans && window.__wordSpans.length) {
+    const spans = window.__wordSpans;
+    let cum = 0, found = null;
+    for (let i = 0; i < spans.length; i++) {
+      const len = spans[i].textContent.length;
+      if (idx >= cum && idx < cum + len) { found = spans[i]; break; }
+      cum += len;
+    }
+    if (found) {
+      spans.forEach(s => s.classList.remove('highlight'));
+      found.classList.add('highlight');
+      // Centrera ordet synligt
+      found.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+      return;
+    }
+  }
+
+  // Fallback: procentbaserad scrollning om inga spanar hittas
+  const percent = idx / (cleanText.length || 1);
+  const container = textBodyRef && textBodyRef.current;
+  if (container) {
+    container.scrollTop = percent * (container.scrollHeight - container.clientHeight);
+  }
 };
-
-  u.onboundary = (e) => {
-    if (sessionId !== speakSessionRef.current) return;
-    heartbeatRef.current = Date.now();
-
-    // charIndex är index i utterance-texten, vi vill ha index i originaltexten
-    const ci = Number(e.charIndex || 0);
-    lastCharIndexRef.current = Math.max(0, ci - 1) + (offset || 0);
-      // SCROLL MEDFÖLJNING LIGHT
-if (textBodyRef.current) {
-  const el = textBodyRef.current;
-
-  // ungefärlig procent genom texten
-  const percent = lastCharIndexRef.current / (clean.length || 1);
-
-  const scrollHeight = el.scrollHeight - el.clientHeight;
+// ...existing code...
   el.scrollTop = scrollHeight * percent;
 }
   };
