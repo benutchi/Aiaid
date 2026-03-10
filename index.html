@@ -189,17 +189,22 @@ const getCaretCharIndexIn = (containerEl) => {
 };
 
 
-const speakFromChar = (charIndex) => {
-  const text = String(section.text || "");
-  const start = Math.max(0, Math.min(text.length, Number(charIndex || 0)));
 // ...existing code...
-const rest = text.slice(start);
-  if (!rest) return;
-
-  stopSpeak();
-  setCurrentChar(start);
-  speakText(rest, null, start);
-};
+// immediate visual mark where user clicked
+if (window.__wordSpans && window.__wordSpans.length) {
+  const spans = window.__wordSpans;
+  let cum = 0, found = null;
+  for (let i = 0; i < spans.length; i++) {
+    const len = spans[i].textContent.length;
+    if (start >= cum && start < cum + len) { found = spans[i]; break; }
+    cum += len;
+  }
+  spans.forEach(s => s.classList.remove('highlight'));
+  if (found) {
+    found.classList.add('highlight');
+    try { found.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
+  }
+}
             useEffect(() => {
   if (cooldownLeft <= 0) return;
 
