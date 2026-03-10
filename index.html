@@ -174,6 +174,7 @@ const lastCharIndexRef = useRef(0);
 const heartbeatRef = useRef(Date.now());
 const watchdogTimerRef = useRef(null);
 const expectedSpeakingRef = useRef(false);
+const lastScrollRef = useRef(0);
 const clearWatchdog = () => {
   if (watchdogTimerRef.current) {
     clearInterval(watchdogTimerRef.current);
@@ -303,12 +304,12 @@ if (bestSv) u.voice = bestSv;
 // ...existing code...
 u.onboundary = (e) => {
   if (e.charIndex == null) return;
-  // kompensation för ledande space i utter (" " + clean) och för speakText offset
   const utterOffset = Number(offset || 0);
-// ...existing code...
-const leadingSpace = String(u.text || "").startsWith(" ");
-const localChar = Math.max(0, e.charIndex - (leadingSpace ? 1 : 0));  const globalIndex = utterOffset + localChar;
+  const leadingSpace = String(u.text || "").startsWith(" ");
+  const localChar = Math.max(0, e.charIndex - (leadingSpace ? 1 : 0));
+  const globalIndex = utterOffset + localChar;
   lastCharIndexRef.current = globalIndex;
+  heartbeatRef.current = Date.now();
 
   const cleanText = String(lastTextRef.current || '').replace(/\r\n/g, '\n');
   const idx = Math.min(globalIndex, Math.max(0, cleanText.length - 1));
@@ -324,7 +325,24 @@ const localChar = Math.max(0, e.charIndex - (leadingSpace ? 1 : 0));  const glob
     if (found) {
       spans.forEach(s => s.classList.remove('highlight'));
       found.classList.add('highlight');
-      found.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+
+      // Scroll only if not visible and throttle to avoid continuous jumps
+      const container = textBodyRef && textBodyRef.current;
+      const now = Date.now();
+      const THROTTLE_MS = 250;
+      if (container) {
+        const fRect = found.getBoundingClientRect();
+        const cRect = container.getBoundingClientRect();
+        const visible = fRect.top >= cRect.top && fRect.bottom <= cRect.bottom;
+        if (!visible && (now - lastScrollRef.current) > THROTTLE_MS) {
+          found.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+          lastScrollRef.current = now;
+        }
+      } else if ((now - lastScrollRef.current) > THROTTLE_MS) {
+        found.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+        lastScrollRef.current = now;
+      }
+
       return;
     }
   }
