@@ -172,6 +172,29 @@ const renderWithSearchMarks = (str, q) => {
             // --- Klicka i texten & starta från position ---
 // ...existing code...
 const textBodyRef = useRef(null);
+useEffect(() => {
+  const el = textBodyRef.current;
+  if (!el) return;
+
+  const handleClick = (e) => {
+    if (!window.__wordSpans) return;
+
+    window.__wordSpans.forEach(s =>
+      s.classList.remove("start-highlight")
+    );
+
+    const span = e.target.closest(".word");
+    if (span) {
+      span.classList.add("start-highlight");
+    }
+  };
+
+  el.addEventListener("click", handleClick);
+
+  return () => {
+    el.removeEventListener("click", handleClick);
+  };
+}, []);
 const getCaretCharIndexIn = (containerEl) => {
   const sel = window.getSelection?.();
   if (!sel || sel.rangeCount === 0) return null;
