@@ -116,8 +116,21 @@ const renderWithSearchMarks = (str, q) => {
 };
 // ...existing code...
             // --- Klicka i texten & starta från position ---
+// ...existing code...
 const textBodyRef = useRef(null);
 
+useEffect(() => {
+  if (!textBodyRef.current) { window.__wordSpans = []; return; }
+  const update = () => {
+    window.__wordSpans = Array.from(textBodyRef.current.querySelectorAll('span.word, span.space'));
+  };
+  update();
+  const obs = new MutationObserver(update);
+  obs.observe(textBodyRef.current, { childList: true, subtree: true, characterData: true });
+  window.addEventListener('resize', update);
+  return () => { obs.disconnect(); window.removeEventListener('resize', update); window.__wordSpans = []; };
+}, [section.text, searchQ, fontScale]);
+// ...existing code...
 const getCaretCharIndexIn = (containerEl) => {
   const sel = window.getSelection?.();
   if (!sel || sel.rangeCount === 0) return null;
