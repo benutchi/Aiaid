@@ -169,18 +169,6 @@ const renderWithSearchMarks = (str, q) => {
 // ...existing code...
 const textBodyRef = useRef(null);
 const getCaretCharIndexIn = (containerEl) => {
-
-  const speakFromChar = (charIndex) => {
-  const text = String(section.text || "");
-  const start = Math.max(0, Math.min(text.length, Number(charIndex || 0)));
-  const rest = text.slice(start);
-
-  if (!rest) return;
-
-  stopSpeak();
-  setCurrentChar(start);
-  speakText(rest, null, start);
-};
   const sel = window.getSelection?.();
   if (!sel || sel.rangeCount === 0) return null;
 
@@ -192,22 +180,23 @@ const getCaretCharIndexIn = (containerEl) => {
   return pre.toString().length;
 };
 
+const speakFromChar = (charIndex) => {
+  const text = String(section.text || "");
+  const start = Math.max(0, Math.min(text.length, Number(charIndex || 0)));
+  const rest = text.slice(start);
+
+  if (!rest) return;
+
+  stopSpeak();
+  setCurrentChar(start);
+  speakText(rest, null, start);
+};
+  
+
 
 // ...existing code...
 // immediate visual mark where user clicked
-if (window.__wordSpans && window.__wordSpans.length) {
-  const spans = window.__wordSpans;
-  let cum = 0, found = null;
-  for (let i = 0; i < spans.length; i++) {
-    const len = spans[i].textContent.length;
-if ((currentChar || 0) >= cum && (currentChar || 0) < cum + len) { found = spans[i]; break; }    cum += len;
-  }
-  spans.forEach(s => s.classList.remove('highlight'));
-  if (found) {
-    found.classList.add('highlight');
-    try { found.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
-  }
-}
+
             useEffect(() => {
   if (cooldownLeft <= 0) return;
 
