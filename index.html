@@ -262,7 +262,6 @@ const hardStop = () => {
 
 const stopSpeak = () => {
     expectedSpeakingRef.current = false;
-  speakSessionRef.current += 1;
   clearWatchdog();
   hardStop();
   utteranceRef.current = null;
