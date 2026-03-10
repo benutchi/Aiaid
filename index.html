@@ -84,14 +84,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding: 0; }
   padding: 0 0.12em;
 }
 </style>
-</head>        .panel-ai { flex: 1; min-height: 100px; overflow-y: auto; background: #fafafa; display: flex; flex-direction: column; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
-        .sidebar-transition { transition: width 0.3s ease-in-out, opacity 0.2s ease-in-out; }
-        // ...existing code...
-        .sidebar-transition { transition: width 0.3s ease-in-out, opacity: 0.2s ease-in-out; }
-+       .highlight { background: #fffb8f; border-radius: 4px; padding: 0 0.12em; }
-    </style>
   
 <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
