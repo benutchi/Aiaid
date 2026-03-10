@@ -83,30 +83,38 @@ const buildSentenceChunks = (text) => {
 
 const escapeReg = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+// ...existing code...
 const renderWithSearchMarks = (str, q) => {
   const s = String(str || "");
   const qq = String(q || "").trim();
-  if (!qq) return s;
-
-  const re = new RegExp(escapeReg(qq), "gi");
-  const out = [];
-  let last = 0;
-  let m;
-
-  while ((m = re.exec(s)) !== null) {
-    const i = m.index;
-    if (i > last) out.push(s.slice(last, i));
-    out.push(
-      <mark key={`${i}-${m[0]}`} className="bg-yellow-200 px-1 rounded">
-        {s.slice(i, i + m[0].length)}
-      </mark>
+  const parts = s.match(/(\S+|\s+)/g) || [];
+  if (!qq) {
+    return parts.map((part, i) =>
+      part.trim()
+        ? <span key={i} className="word">{part}</span>
+        : <span key={i} className="space">{part}</span>
     );
-    last = i + m[0].length;
   }
-
-  if (last < s.length) out.push(s.slice(last));
-  return out;
+  const re = new RegExp(escapeReg(qq), "gi");
+  return parts.map((part, i) => {
+    if (!part.trim()) return <span key={i} className="space">{part}</span>;
+    const segs = [];
+    let last = 0, m;
+    while ((m = re.exec(part)) !== null) {
+      const idx = m.index;
+      if (idx > last) segs.push(part.slice(last, idx));
+      segs.push(
+        <mark key={`${i}-${idx}`} className="bg-yellow-200 px-1 rounded">
+          {part.slice(idx, idx + m[0].length)}
+        </mark>
+      );
+      last = idx + m[0].length;
+    }
+    if (last < part.length) segs.push(part.slice(last));
+    return <span key={i} className="word">{segs}</span>;
+  });
 };
+// ...existing code...
             // --- Klicka i texten & starta från position ---
 const textBodyRef = useRef(null);
 
@@ -288,24 +296,42 @@ if (bestSv) u.voice = bestSv;
   setIsPaused(false);
 };
 
-  u.onboundary = (e) => {
-    if (sessionId !== speakSessionRef.current) return;
-    heartbeatRef.current = Date.now();
+// ...existing code...
+u.onboundary = (e) => {
+  if (e.charIndex == null) return;
+  // kompensation för ledande space i utter (" " + clean) och för speakText offset
+  const utterOffset = Number(offset || 0);
+  const localChar = Math.max(0, e.charIndex - 1);
+  const globalIndex = utterOffset + localChar;
+  lastCharIndexRef.current = globalIndex;
 
-    // charIndex är index i utterance-texten, vi vill ha index i originaltexten
-    const ci = Number(e.charIndex || 0);
-    lastCharIndexRef.current = Math.max(0, ci - 1) + (offset || 0);
-      // SCROLL MEDFÖLJNING LIGHT
-if (textBodyRef.current) {
-  const el = textBodyRef.current;
+  const cleanText = String(lastTextRef.current || '').replace(/\r\n/g, '\n');
+  const idx = Math.min(globalIndex, Math.max(0, cleanText.length - 1));
 
-  // ungefärlig procent genom texten
-  const percent = lastCharIndexRef.current / (clean.length || 1);
+  if (window.__wordSpans && window.__wordSpans.length) {
+    const spans = window.__wordSpans;
+    let cum = 0, found = null;
+    for (let i = 0; i < spans.length; i++) {
+      const len = spans[i].textContent.length;
+      if (idx >= cum && idx < cum + len) { found = spans[i]; break; }
+      cum += len;
+    }
+    if (found) {
+      spans.forEach(s => s.classList.remove('highlight'));
+      found.classList.add('highlight');
+      found.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
+      return;
+    }
+  }
 
-  const scrollHeight = el.scrollHeight - el.clientHeight;
-  el.scrollTop = scrollHeight * percent;
-}
-  };
+  // fallback: procentbaserad scroll
+  const percent = idx / (cleanText.length || 1);
+  const container = textBodyRef && textBodyRef.current;
+  if (container) {
+    container.scrollTop = percent * (container.scrollHeight - container.clientHeight);
+  }
+};
+// ...existing code...
 
   u.onend = safeEnd;
   u.onerror = safeEnd;
