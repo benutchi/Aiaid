@@ -11,23 +11,22 @@ window.BLOCKS_DATA = [
       page: "1",
       track: "Båda",
       core: true,
-      text: "I alla grupper finns det regler. I skolan finns regler för att alla ska kunna arbeta i lugn och känna sig trygga. Men det finns också något som kallas normer. Normer är oskrivna regler som visar hur vi förväntas bete oss mot varandra.\n\nTill exempel kan det vara en norm att säga tack, vänta på sin tur eller inte avbryta någon som pratar. Normer är inte nedskrivna i någon lagbok, men de påverkar ändå hur människor beter sig.\n\nRegler och normer hjälper samhället att fungera. Om ingen följde regler skulle det bli svårt att samarbeta. Om ingen brydde sig om normer skulle människor lättare såra varandra.\n\nSkillnaden är att regler ofta är bestämda och tydliga, medan normer är mer osynliga och kan vara olika i olika grupper.",
+      text: "I alla grupper finns det regler. I skolan finns regler för att alla ska kunna arbeta i lugn och känna sig trygga. Till exempel att man inte får skrika rakt ut eller slå någon.\n\nMen det finns också normer. Normer är oskrivna regler. Det kan vara saker som att säga hej, vänta på sin tur eller vara trevlig mot andra. Normer är inte lagar, men de styr ändå hur vi beter oss.\n\nSkillnaden är att regler ofta är bestämda av någon, till exempel en skola, medan normer växer fram i samhället. Om man bryter mot en norm får man oftast blickar eller kommentarer. Om man bryter mot en regel kan man få en konsekvens.\n\nBåde regler och normer behövs för att människor ska kunna fungera tillsammans. De hjälper oss att förstå vad som är okej och inte.",
       concepts: ["regel", "norm"],
       mustKnow: [
-        "Regler är bestämda och tydliga",
+        "Regler är bestämda regler som ska följas",
         "Normer är oskrivna regler",
-        "Normer påverkar hur vi beter oss",
-        "Regler och normer gör samarbete möjligt"
+        "Normer styr hur vi beter oss i vardagen"
       ],
       summary: [
-        "Regler och normer behövs för att människor ska fungera tillsammans",
-        "Normer är oskrivna men påverkar oss mycket"
+        "Regler och normer hjälper människor att fungera tillsammans",
+        "Normer är inte lagar men påverkar oss ändå"
       ],
       test: [
         { q: "Vad är en norm?", a: "En oskriven regel" },
         { q: "Vad är skillnaden mellan regler och normer?", a: "Regler är bestämda, normer är oskrivna" }
       ],
-      reasoning: "Varför tror du att normer kan vara olika i olika grupper eller länder?",
+      reasoning: "Varför tror du att normer kan vara lika viktiga som lagar i ett samhälle?",
       application: "Ge två exempel på normer i din vardag."
     },
 
@@ -36,97 +35,95 @@ window.BLOCKS_DATA = [
       page: "2",
       track: "Båda",
       core: true,
-      text: "Lagar är regler som gäller för alla i ett land. De är nedskrivna och måste följas. I Sverige är det riksdagen som bestämmer lagarna.\n\nLagar finns för att skydda människor och skapa trygghet. De bestämmer vad som är tillåtet och vad som är förbjudet. Till exempel är det förbjudet att stjäla eller slå någon.\n\nOm någon bryter mot en lag kan det leda till straff. Det kan vara böter, ungdomstjänst eller fängelse beroende på hur allvarligt brottet är.\n\nTill skillnad från normer är lagar tydliga och gäller alla. Man kan inte välja vilka lagar man vill följa.",
-      concepts: ["lag", "riksdag", "brott"],
+      text: "Lagar är regler som gäller för alla i ett land. De bestäms av riksdagen. Lagar finns för att skapa trygghet och rättvisa.\n\nTill skillnad från regler och normer är lagar mycket starkare. Om man bryter mot en lag kan man få ett straff. Det kan till exempel vara böter eller fängelse.\n\nLagar handlar ofta om att skydda människor. Det är till exempel förbjudet att stjäla eller slå någon. Det finns också lagar som styr hur samhället ska fungera, till exempel hur val går till.\n\nMan kan säga att lagar är samhällets viktigaste regler. De gäller alla och ska följas av alla.",
+      concepts: ["lag", "riksdag"],
       mustKnow: [
-        "Lagar gäller alla i ett land",
+        "Lagar gäller alla",
         "Riksdagen bestämmer lagar",
-        "Brott är att bryta mot en lag",
-        "Lagar skapar trygghet"
+        "Brott mot lagar kan ge straff"
       ],
       summary: [
-        "Lagar är regler som alla måste följa",
-        "Bryter man mot en lag kan man få straff"
+        "Lagar är starkare än regler och normer",
+        "De ska skapa trygghet och rättvisa"
       ],
       test: [
         { q: "Vem bestämmer lagar i Sverige?", a: "Riksdagen" },
-        { q: "Vad är ett brott?", a: "Att bryta mot en lag" }
+        { q: "Vad kan hända om man bryter mot en lag?", a: "Man kan få ett straff" }
       ],
-      reasoning: "Varför är det viktigt att lagar gäller alla och inte bara vissa personer?",
-      application: "Ge ett exempel på en lag som du tycker är viktig."
+      reasoning: "Varför räcker det inte med bara regler och normer i ett samhälle?",
+      application: "Ge ett exempel på en lag du tycker är viktig."
     },
 
     {
-      title: "Sida 3: Rättssystemet",
+      title: "Sida 3: Varför har vi lagar?",
       page: "3",
       track: "Båda",
       core: true,
-      text: "När ett brott har begåtts startar rättssystemet. Det består av tre viktiga delar: polisen, åklagaren och domstolen.\n\nPolisen undersöker vad som har hänt. De samlar bevis och pratar med vittnen. Om de tror att de vet vem som gjort brottet lämnas ärendet till åklagaren.\n\nÅklagaren bestämmer om det finns tillräckligt med bevis för att gå vidare till domstol. I domstolen hålls en rättegång där man går igenom vad som hänt.\n\nDomaren och nämndemännen bestämmer om personen är skyldig eller oskyldig. Det är viktigt att ingen döms utan bevis. Detta kallas rättssäkerhet.",
-      concepts: ["polis", "åklagare", "domstol", "rättssäkerhet"],
+      text: "Utan lagar skulle samhället inte fungera. Då skulle människor kunna göra vad de vill, och den som är starkast skulle bestämma.\n\nLagar finns för att skydda människor och skapa ordning. De gör att vi vet vad som är rätt och fel.\n\nLagar gör också att människor behandlas lika. Det spelar ingen roll vem du är – samma lagar gäller för alla.\n\nEtt samhälle utan lagar skulle bli otryggt. Därför är lagar en viktig del av ett demokratiskt samhälle.",
+      concepts: ["rättvisa", "trygghet"],
       mustKnow: [
-        "Polisen utreder brott",
-        "Åklagaren driver ärendet",
-        "Domstolen avgör skyldig eller oskyldig",
-        "Rättssäkerhet betyder rättvisa"
+        "Lagar skapar ordning",
+        "Lagar skyddar människor",
+        "Lagar gäller lika för alla"
       ],
       summary: [
-        "Rättssystemet består av polis, åklagare och domstol",
-        "Alla ska behandlas rättvist"
+        "Utan lagar blir det kaos",
+        "Lagar gör samhället tryggare"
       ],
       test: [
-        { q: "Vad gör polisen?", a: "Utreder brott" },
-        { q: "Vad betyder rättssäkerhet?", a: "Att alla behandlas rättvist" }
+        { q: "Varför har vi lagar?", a: "För att skapa ordning och skydda människor" },
+        { q: "Vad händer utan lagar?", a: "Det blir otryggt och kaos" }
       ],
-      reasoning: "Varför är det viktigt att det finns bevis innan någon döms?",
-      application: "Beskriv vad som händer från brott till dom."
+      reasoning: "Varför är det viktigt att samma lag gäller för alla?",
+      application: "Hur skulle din skola fungera utan regler?"
     },
 
     {
-      title: "Sida 4: Straff och konsekvenser",
+      title: "Sida 4: Vad är ett brott?",
       page: "4",
       track: "Båda",
       core: true,
-      text: "Om någon döms för ett brott får personen ett straff. Straffet beror på hur allvarligt brottet är.\n\nVanliga straff är böter, ungdomstjänst eller fängelse. Ungdomstjänst innebär att man måste arbeta utan lön under en tid.\n\nBrott påverkar inte bara den som begår det. Den som blir utsatt kan bli rädd och må dåligt. Även samhället påverkas, eftersom brott kostar pengar.\n\nPengar som går till att reparera skador eller utreda brott hade istället kunnat användas till skolor, sjukvård eller fritidsaktiviteter.",
-      concepts: ["straff", "böter", "fängelse", "konsekvens"],
+      text: "Ett brott är när någon bryter mot en lag. Det kan vara små eller stora brott.\n\nExempel på brott är stöld, misshandel och skadegörelse. Alla brott påverkar någon annan.\n\nNär ett brott begås kan det skapa otrygghet. Den som blir utsatt kan bli rädd eller ledsen.\n\nDet är viktigt att förstå att även små brott kan få konsekvenser. De påverkar både personer och samhället.",
+      concepts: ["brott", "stöld", "misshandel"],
       mustKnow: [
-        "Straff beror på brottets allvar",
-        "Brott påverkar både individ och samhälle",
-        "Brott kostar pengar för samhället"
+        "Ett brott är att bryta mot en lag",
+        "Brott påverkar andra människor",
+        "Det finns olika typer av brott"
       ],
       summary: [
-        "Brott leder till straff och konsekvenser",
-        "Hela samhället påverkas av brott"
+        "Brott skapar otrygghet",
+        "Alla brott har konsekvenser"
       ],
       test: [
-        { q: "Ge ett exempel på ett straff.", a: "Böter" },
-        { q: "Vem påverkas av brott?", a: "Både individ och samhälle" }
+        { q: "Vad är ett brott?", a: "När man bryter mot en lag" },
+        { q: "Ge ett exempel på ett brott", a: "Till exempel stöld" }
       ],
-      reasoning: "Varför tror du att samhället straffar brott?",
-      application: "Ge exempel på hur ett brott kan påverka fler än en person."
+      reasoning: "Är alla brott lika allvarliga? Varför eller varför inte?",
+      application: "Vad händer om någon förstör något i skolan?"
     },
 
     {
-      title: "Sida 5: Vad är ett rättssamhälle?",
+      title: "Sida 5: Rättssamhälle",
       page: "5",
       track: "Båda",
       core: true,
-      text: "Ett rättssamhälle är ett samhälle där lagarna gäller lika för alla. Ingen får särbehandlas.\n\nDet betyder att både vanliga människor och personer med makt måste följa samma lagar. Domstolar ska vara opartiska och inte påverkas av känslor eller makt.\n\nI ett rättssamhälle har människor rätt till en rättvis rättegång. Man ska få försvara sig och ingen ska dömas utan bevis.\n\nDetta skapar trygghet. Människor vet att de behandlas rättvist och att det finns regler som skyddar dem.",
-      concepts: ["rättssamhälle", "likabehandling", "rättvis rättegång"],
+      text: "Sverige är ett rättssamhälle. Det betyder att lagarna gäller alla och att samhället ska vara rättvist.\n\nI ett rättssamhälle får ingen bli straffad utan bevis. Alla har rätt att försvara sig.\n\nDet är också viktigt att domstolen är rättvis. Samma brott ska behandlas lika.\n\nRättssamhället skyddar människor från orättvisa och maktmissbruk.",
+      concepts: ["rättssamhälle", "rättvisa"],
       mustKnow: [
-        "Lagar gäller lika för alla",
-        "Alla har rätt till en rättvis rättegång",
-        "Domstolar ska vara opartiska"
+        "Ett rättssamhälle betyder att lagarna gäller alla",
+        "Man ska ha bevis innan någon döms",
+        "Alla har rätt att försvara sig"
       ],
       summary: [
-        "Ett rättssamhälle innebär rättvisa för alla",
-        "Lagar gäller lika oavsett vem man är"
+        "Rättssamhället handlar om rättvisa",
+        "Alla ska behandlas lika"
       ],
       test: [
-        { q: "Vad är ett rättssamhälle?", a: "Ett samhälle där lagar gäller lika för alla" },
-        { q: "Vad betyder likabehandling?", a: "Att alla behandlas lika" }
+        { q: "Vad är ett rättssamhälle?", a: "Ett samhälle där lagarna gäller alla" },
+        { q: "Får man döma någon utan bevis?", a: "Nej" }
       ],
-      reasoning: "Vad skulle kunna hända om lagar inte gällde lika för alla?",
-      application: "Ge ett exempel på varför rättvisa lagar är viktiga."
+      reasoning: "Varför är det viktigt att ingen döms utan bevis?",
+      application: "Hur skulle det kännas att bli dömd utan att ha gjort något?"
     }
 
   ]
