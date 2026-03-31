@@ -1,8 +1,7 @@
 window.BLOCKS_DATA = [
 {
   id: 1,
-  title: "Lag och rätt",
-  icon: "scale",
+title: "TEST AK5",  icon: "scale",
   subject: "Samhällskunskap",
   sections: [
 
